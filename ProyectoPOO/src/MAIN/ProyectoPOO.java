@@ -9,10 +9,9 @@ public class ProyectoPOO {
         byte opc=0;
         byte cont=0;
         Scanner in=new Scanner(System.in);
-        System.out.println("Hola mundo");
         Interfaz inicio=new Interfaz();
         inicio.iniciarSesion();
-        Usuario user=new Usuario();
+        Usuario user=new Administrador();
         Items[] almacen=new Items[50];
         while(opc!=3){
             for (int i = 0; i < 10; i++) {

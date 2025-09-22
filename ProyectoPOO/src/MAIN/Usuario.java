@@ -1,6 +1,6 @@
 package MAIN;
 import java.util.Scanner;
-public class Usuario {
+abstract class Usuario {
     public String Usuario;
     private String Nombres, APaterno, AMaterno;
     private byte Dia, Mes;
@@ -8,12 +8,16 @@ public class Usuario {
     public String Contrasenia;
     
     public void Consultar(Items[] inventario, String nombre){
+        byte encontrado=0;
         for (int i = 0; i < 50; i++) {
             if(inventario[i]!=null && nombre.equals(inventario[i].NombreProd)){
                 System.out.println("ENCONTRADO");
-            }else{
-                System.out.println("NO ENCONTRADO");
+                encontrado++;
+                break;
             }
+        }
+        if(encontrado!=0){
+            System.out.println("NO HAY REGISTROS");
         }
     }
     public Items Agregar(){
