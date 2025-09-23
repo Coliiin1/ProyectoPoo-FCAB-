@@ -8,6 +8,9 @@ package MAIN;
  *
  * @author fabri
  */
-public class Cliente {
-    
+public class Cliente extends Usuario{
+    public Items agregar(){
+        System.out.println("NO PUEDES AGREGAR");
+        return null;
+    }
 }
