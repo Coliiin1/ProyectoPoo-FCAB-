@@ -9,20 +9,20 @@ import java.util.Scanner;
  * @author fabri
  */
 public class Interfaz {
-    public void iniciarSesion(){
+    public void iniciarSesion(String usuario,String contrasenia){
         Scanner sc=new Scanner(System.in);
-        String usuario="";
-        String contrasena="";
-        while(!usuario.equals("ADMIN")){
+        String variable="";
+        while(!usuario.equals(variable)){
             System.out.println("INGERSE EL USUARIO");
-            usuario=sc.nextLine();
+            variable=sc.nextLine();
             if(!usuario.equals("ADMIN")){
                 System.out.println("USUARIO INCORRECTO");
             }
         }
-        while(!contrasena.equals("12345")){
+        variable="";
+        while(!contrasenia.equals(variable)){
             System.out.println("INGRESA LA CONTRASEÑA");
-            contrasena=sc.nextLine();
+            variable=sc.nextLine();
         }
     }
 }

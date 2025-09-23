@@ -6,12 +6,20 @@ import java.util.Scanner;
 public class ProyectoPOO {
 
     public static void main(String[] args) {
+        Usuario user;
         byte opc=0;
         byte cont=0;
         Scanner in=new Scanner(System.in);
         Interfaz inicio=new Interfaz();
-        inicio.iniciarSesion();
-        Usuario user=new Administrador();
+        
+        System.out.println("DESEA INICIAR SESION? (1/0)");
+        opc=in.nextByte();
+        if(opc==1){
+            user=new Administrador("ADMIN","12345");
+            inicio.iniciarSesion(user.Usuario,user.Contrasenia);
+        }else{
+            user=new Cliente(null,null);//es un cliente default
+        }
         Items[] almacen=new Items[50];
         while(opc!=3){
             for (int i = 0; i < 10; i++) {
@@ -24,9 +32,7 @@ public class ProyectoPOO {
                     cont++;
                     break;
                 case 2:
-                    System.out.println("QUE NOMBRE VAS A BUSCAR");
-                    String nombre=in.nextLine();
-                    user.Consultar(almacen, nombre);
+                    user.Consultar(almacen);
                     break;
             }
         }

@@ -9,7 +9,11 @@ package MAIN;
  * @author fabri
  */
 public class Cliente extends Usuario{
-    public Items agregar(){
+    public Cliente(String nombre,String contrasenia){
+        super(nombre,contrasenia);
+    }
+    
+    public Items Agregar(){
         System.out.println("NO PUEDES AGREGAR");
         return null;
     }
