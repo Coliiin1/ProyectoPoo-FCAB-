@@ -1,15 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package GUI;
+import javax.swing.*;
 import java.util.Scanner;
-/**
- *
- * @author fabri
- */
+
 public class Interfaz {
     public void iniciarSesion(String usuario,String contrasenia){
+
         Scanner sc=new Scanner(System.in);
         String variable="";
         while(!usuario.equals(variable)){
@@ -24,5 +19,19 @@ public class Interfaz {
             System.out.println("INGRESA LA CONTRASEÑA");
             variable=sc.nextLine();
         }
+        
+    }
+    public static byte menu(){
+        byte opc=0;
+        Scanner sc=new Scanner(System.in);
+        System.out.println("QUE DESEA HACER");
+        System.out.println("1: AGREGAR PRODUCTO");
+        System.out.println("2: CONSULTAR PRODUCTO");
+        System.out.println("3: SALIR");
+        opc=sc.nextByte();
+        return opc;
+    }
+    public static void mensaje(){
+        JOptionPane.showMessageDialog(null,"SE HA REGISTRADO CORRECTAMENTE");
     }
 }

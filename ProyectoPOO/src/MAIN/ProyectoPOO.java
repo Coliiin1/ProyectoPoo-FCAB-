@@ -17,15 +17,13 @@ public class ProyectoPOO {
         if(opc==1){
             user=new Administrador("ADMIN","12345");
             inicio.iniciarSesion(user.Usuario,user.Contrasenia);
+            inicio.mensaje();
         }else{
             user=new Cliente(null,null);//es un cliente default
         }
         Items[] almacen=new Items[50];
         while(opc!=3){
-            for (int i = 0; i < 10; i++) {
-                System.out.println("");//para limpiar la pantalla xd
-            }
-            opc=menu();
+            opc=inicio.menu();
             switch(opc){
                 case 1:
                     almacen[cont]=user.Agregar();
@@ -37,14 +35,5 @@ public class ProyectoPOO {
             }
         }
     }
-    public static byte menu(){
-        byte opc=0;
-        Scanner sc=new Scanner(System.in);
-        System.out.println("QUE DESEA HACER");
-        System.out.println("1: AGREGAR PRODUCTO");
-        System.out.println("2: CONSULTAR PRODUCTO");
-        System.out.println("3: SALIR");
-        opc=sc.nextByte();
-        return opc;
-    }
+    
 }
