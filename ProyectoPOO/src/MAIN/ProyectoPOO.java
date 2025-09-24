@@ -17,7 +17,6 @@ public class ProyectoPOO {
         if(opc==1){
             user=new Administrador("ADMIN","12345");
             inicio.iniciarSesion(user.Usuario,user.Contrasenia);
-            inicio.mensaje();
         }else{
             user=new Cliente(null,null);//es un cliente default
         }

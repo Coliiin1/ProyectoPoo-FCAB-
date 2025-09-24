@@ -31,7 +31,4 @@ public class Interfaz {
         opc=sc.nextByte();
         return opc;
     }
-    public static void mensaje(){
-        JOptionPane.showMessageDialog(null,"SE HA REGISTRADO CORRECTAMENTE");
-    }
 }
