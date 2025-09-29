@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package GUI;
 import javax.swing.*;
 import java.awt.event.*;
@@ -11,6 +7,8 @@ import java.awt.event.*;
  */
 public class IniciodeSesion extends JFrame implements ActionListener{
     JLabel field1;
+    JButton InSesion;
+    JTextField IUser;
     public IniciodeSesion(){
         setTitle("Inicio de Sesion");
         setLayout(null);
@@ -24,7 +22,7 @@ public class IniciodeSesion extends JFrame implements ActionListener{
         User.setBounds(20, 20, 50, 20);
         add(User);
         
-        JTextField IUser = new JTextField();
+        IUser = new JTextField();
         IUser.setBounds(20, 45, 200, 30);
         add(IUser);
         
@@ -36,13 +34,17 @@ public class IniciodeSesion extends JFrame implements ActionListener{
         IPassword.setBounds(20, 105, 200, 30);
         add(IPassword);
         
-        JButton InSesion = new JButton("Iniciar Sesion");
+        InSesion = new JButton("Iniciar Sesion");
         InSesion.setBounds(100, 350, 150, 30);
         add(InSesion);      
+        InSesion.addActionListener(this);
     }
     
     public void actionPerformed(ActionEvent evento){
-        
+        if(evento.getSource()== InSesion){
+            String user=IUser.getText();
+            System.out.println(user);
+        }
     }
     public static void main(String args[]){
         IniciodeSesion uno = new IniciodeSesion();
