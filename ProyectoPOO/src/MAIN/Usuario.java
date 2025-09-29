@@ -11,7 +11,8 @@ abstract class Usuario {
         this.Contrasenia=contrasenia;
         this.Usuario=usuario;
     }
-    public void Consultar(Items[] inventario){
+    static public Items Consultar(Items[] inventario){
+        Items item=new Items();
         Scanner sc=new Scanner(System.in);
         byte encontrado=0;
         if(inventario[0]!=null){
@@ -21,6 +22,7 @@ abstract class Usuario {
                 if(inventario[i]!=null && nombre.equals(inventario[i].NombreProd)){
                     System.out.println("ENCONTRADO");
                     encontrado++;
+                    item=inventario[i];
                     break;
                 }
             }
@@ -29,7 +31,9 @@ abstract class Usuario {
             }
         }else{
             System.out.println("NO HAY PRODUCTOS");
+            item=null;
         }
+        return item;
     }
     public Items Agregar(){
         Scanner sc=new Scanner(System.in);
@@ -37,5 +41,7 @@ abstract class Usuario {
         System.out.println("CUAL ES EL NOMBRE DEL PRODUCTO");
         articulo.NombreProd=sc.nextLine();
         return articulo;
+    }
+    public void Eliminar(Items []inventario){
     }
 }

@@ -14,6 +14,8 @@ public class ProyectoPOO {
         
         System.out.println("DESEA INICIAR SESION? (1/0)");
         opc=in.nextByte();
+        
+        
         if(opc==1){
             user=new Administrador("ADMIN","12345");
             inicio.iniciarSesion(user.Usuario,user.Contrasenia);
@@ -21,6 +23,8 @@ public class ProyectoPOO {
             user=new Cliente(null,null);//es un cliente default
         }
         Items[] almacen=new Items[50];
+        Items item=new Items();
+        
         while(opc!=3){
             opc=inicio.menu();
             switch(opc){
@@ -29,7 +33,7 @@ public class ProyectoPOO {
                     cont++;
                     break;
                 case 2:
-                    user.Consultar(almacen);
+                    item=user.Consultar(almacen);
                     break;
             }
         }

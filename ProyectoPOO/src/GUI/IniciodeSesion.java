@@ -4,11 +4,12 @@
  */
 package GUI;
 import javax.swing.*;
+import java.awt.event.*;
 /**
  *
  * @author fabri
  */
-public class IniciodeSesion extends JFrame{
+public class IniciodeSesion extends JFrame implements ActionListener{
     JLabel field1;
     public IniciodeSesion(){
         setTitle("Inicio de Sesion");
@@ -37,8 +38,11 @@ public class IniciodeSesion extends JFrame{
         
         JButton InSesion = new JButton("Iniciar Sesion");
         InSesion.setBounds(100, 350, 150, 30);
-        add(InSesion);
-          
+        add(InSesion);      
+    }
+    
+    public void actionPerformed(ActionEvent evento){
+        
     }
     public static void main(String args[]){
         IniciodeSesion uno = new IniciodeSesion();
