@@ -1,3 +1,4 @@
+package GUI;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -6,6 +7,7 @@ public class IniciodeSesion extends JFrame implements ActionListener{
     Color AzulB = new Color(1, 61, 90);
     Color LionB = new Color(252, 243, 227);
     JButton btnLogin;
+    JButton btnSignup;
     JTextField txtUser;
     JTextField txtPass;
     public IniciodeSesion() {
@@ -68,10 +70,11 @@ public class IniciodeSesion extends JFrame implements ActionListener{
         lblText.setFont(new Font("Arial", Font.PLAIN, 14));
         lblText.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton btnSignup = new JButton("REGISTRARSE");
+        btnSignup = new JButton("REGISTRARSE");
         btnSignup.setBackground(LionB);
         btnSignup.setForeground(AzulB);
         btnSignup.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnSignup.addActionListener(this);
 
         innerPanel.add(lblWelcome);
         innerPanel.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -92,6 +95,10 @@ public class IniciodeSesion extends JFrame implements ActionListener{
             System.out.println(User);
             String Psw = txtPass.getText();
             System.out.println(Psw);
+        }
+        if(Eventos.getSource()==btnSignup){
+            Registro reg=new Registro();
+            reg.setVisible(true);
         }
     }
 
