@@ -1,15 +1,18 @@
+package GUI;
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class IniciodeSesion extends JFrame implements ActionListener{
+public class Registro extends JFrame implements ActionListener{
     Color AzulB = new Color(1, 61, 90);
     Color LionB = new Color(252, 243, 227);
     JButton btnLogin;
     JTextField txtUser;
     JTextField txtPass;
-    public IniciodeSesion() {
-        setTitle("Inicio de Sesión");
+    JTextField txtName;
+    public Registro() {
+        setTitle("Registro");
         setSize(700, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -19,58 +22,56 @@ public class IniciodeSesion extends JFrame implements ActionListener{
         // Panel Izquierdo (Login)
         JPanel loginPanel = new JPanel();
         loginPanel.setLayout(null);
-        loginPanel.setBackground(LionB);
+        loginPanel.setBackground(AzulB);
 
-        JLabel lblLogin = new JLabel("Inicio de Sesion");
-        lblLogin.setForeground(AzulB);
+        JLabel lblLogin = new JLabel("Registro");
+        lblLogin.setForeground(LionB);
         lblLogin.setFont(new Font("Arial", Font.BOLD, 16));
         lblLogin.setBounds(60, 30, 200, 30);
         loginPanel.add(lblLogin);
 
+        txtName = new JTextField("Ingresa tu(s) nombre(s)");
+        txtName.setBounds(60, 80, 250, 35);
+        loginPanel.add(txtName);
+
         txtUser = new JTextField("Ingresa tu Usuario");
-        txtUser.setBounds(60, 80, 250, 35);
+        txtUser.setBounds(60, 130, 250, 35);
         loginPanel.add(txtUser);
 
         txtPass = new JTextField("Ingresa la Contraseña");
-        txtPass.setBounds(60, 130, 250, 35);
+        txtPass.setBounds(60, 180, 250, 35);
         loginPanel.add(txtPass);
 
-        JCheckBox chkRemember = new JCheckBox("Recuerdame");
-        chkRemember.setForeground(AzulB);
-        chkRemember.setBounds(60, 180, 120, 30);
-        chkRemember.setBackground(LionB);
-        loginPanel.add(chkRemember);
-
-        btnLogin = new JButton("Iniciar Sesion");
+        btnLogin = new JButton("Registrarse");
         btnLogin.setBounds(110, 230, 150, 40);
-        btnLogin.setBackground(AzulB);
-        btnLogin.setForeground(LionB);
+        btnLogin.setBackground(LionB);
+        btnLogin.setForeground(AzulB);
         loginPanel.add(btnLogin);
         btnLogin.addActionListener(this);
 
         // Panel Derecho (Bienvenida)
         JPanel rightPanel = new JPanel();
-        rightPanel.setBackground(AzulB);
+        rightPanel.setBackground(LionB);
         rightPanel.setLayout(new GridBagLayout());
 
         JPanel innerPanel = new JPanel();
         innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.Y_AXIS));
-        innerPanel.setBackground(AzulB);
+        innerPanel.setBackground(LionB);
 
-        JLabel lblWelcome = new JLabel("Bienvenido!");
-        lblWelcome.setForeground(LionB);
+        JLabel lblWelcome = new JLabel("¿Ya tienes cuenta?");
+        lblWelcome.setForeground(AzulB);
         lblWelcome.setFont(new Font("Arial", Font.BOLD, 22));
-        lblWelcome.setBackground(AzulB);
+        lblWelcome.setBackground(LionB);
         lblWelcome.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel lblText = new JLabel("Ingresa tus datos para comenzar");
-        lblText.setForeground(LionB);
+        JLabel lblText = new JLabel("Continuar con tu cuenta");
+        lblText.setForeground(AzulB);
         lblText.setFont(new Font("Arial", Font.PLAIN, 14));
         lblText.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton btnSignup = new JButton("REGISTRARSE");
-        btnSignup.setBackground(LionB);
-        btnSignup.setForeground(AzulB);
+        JButton btnSignup = new JButton("Iniciar Sesion");
+        btnSignup.setBackground(AzulB);
+        btnSignup.setForeground(LionB);
         btnSignup.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         innerPanel.add(lblWelcome);
@@ -92,10 +93,14 @@ public class IniciodeSesion extends JFrame implements ActionListener{
             System.out.println(User);
             String Psw = txtPass.getText();
             System.out.println(Psw);
+            String Names = txtName.getText();
+            System.out.println(Names);
         }
     }
 
     public static void main(String[] args) {
-       new IniciodeSesion().setVisible(true);
+        SwingUtilities.invokeLater(() -> {
+            new Registro().setVisible(true);
+        });
     }
 }
