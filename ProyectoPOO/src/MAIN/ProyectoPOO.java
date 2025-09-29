@@ -34,6 +34,7 @@ public class ProyectoPOO {
                     break;
                 case 2:
                     item=user.Consultar(almacen);
+                    item=null;
                     break;
             }
         }

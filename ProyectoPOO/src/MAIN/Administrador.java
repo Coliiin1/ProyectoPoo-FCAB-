@@ -9,6 +9,17 @@ public class Administrador extends Usuario{
         super(usuario,contrasenia);
     }
     public void Eliminar(Items []inventario){
-        Consultar(inventario);
+        Items encontrado=new Items();
+        Items apu=new Items();
+        Items apur=new Items();
+        encontrado=Consultar(inventario);
+        if(encontrado==null){
+            
+        }
+        for(int i = 0; i < inventario.length; i++){
+            if(inventario[i].equals(encontrado)){
+                
+            }
+        }
     }
 }

@@ -28,6 +28,7 @@ abstract class Usuario {
             }
             if(encontrado==0){
                 System.out.println("NO HAY REGISTROS");
+                item=null;
             }
         }else{
             System.out.println("NO HAY PRODUCTOS");
