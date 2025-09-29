@@ -10,4 +10,11 @@ public class Items {
     public String CodigoProd;
     public float Oferta;
     public String DirImagen;
+    public void MostrarInfo(){
+        System.out.println("NombreProd = " + NombreProd);
+        System.out.println("Marca = " + Marca);
+        System.out.println("Precio = " + Precio);
+        System.out.println("Cantidad = " + Cantidad);
+        System.out.println("Talla = " + Talla);
+    }
 }

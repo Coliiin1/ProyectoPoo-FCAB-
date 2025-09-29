@@ -96,10 +96,6 @@ public class IniciodeSesion extends JFrame implements ActionListener{
             String Psw = txtPass.getText();
             System.out.println(Psw);
         }
-        if(Eventos.getSource()==btnSignup){
-            Registro reg=new Registro();
-            reg.setVisible(true);
-        }
     }
 
     public static void main(String[] args) {

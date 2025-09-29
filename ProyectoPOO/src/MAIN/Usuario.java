@@ -21,6 +21,7 @@ abstract class Usuario {
                 for (int i = 0; i < 50; i++) {
                 if(inventario[i]!=null && nombre.equals(inventario[i].NombreProd)){
                     System.out.println("ENCONTRADO");
+                    inventario[i].MostrarInfo();
                     encontrado++;
                     item=inventario[i];
                     break;
@@ -41,6 +42,14 @@ abstract class Usuario {
         Items articulo=new Items();
         System.out.println("CUAL ES EL NOMBRE DEL PRODUCTO");
         articulo.NombreProd=sc.nextLine();
+        System.out.println("Marca = ");
+        articulo.Marca=sc.nextLine();
+        System.out.println("Talla = ");
+        articulo.Talla=sc.nextLine();
+        System.out.println("Precio = ");
+        articulo.Precio=sc.nextFloat();
+        System.out.println("Cantidad = ");
+        articulo.Cantidad=sc.nextShort();
         return articulo;
     }
     public void Eliminar(Items []inventario){

@@ -8,6 +8,7 @@ public class Registro extends JFrame implements ActionListener{
     Color AzulB = new Color(1, 61, 90);
     Color LionB = new Color(252, 243, 227);
     JButton btnLogin;
+    JButton btnSignup;
     JTextField txtUser;
     JTextField txtPass;
     JTextField txtName;
@@ -69,10 +70,11 @@ public class Registro extends JFrame implements ActionListener{
         lblText.setFont(new Font("Arial", Font.PLAIN, 14));
         lblText.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton btnSignup = new JButton("Iniciar Sesion");
+        btnSignup = new JButton("Iniciar Sesion");
         btnSignup.setBackground(AzulB);
         btnSignup.setForeground(LionB);
         btnSignup.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnSignup.addActionListener(this);
 
         innerPanel.add(lblWelcome);
         innerPanel.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -95,6 +97,10 @@ public class Registro extends JFrame implements ActionListener{
             System.out.println(Psw);
             String Names = txtName.getText();
             System.out.println(Names);
+        }
+        if(Eventos.getSource()==btnSignup){
+            IniciodeSesion ini=new IniciodeSesion();
+            ini.setVisible(rootPaneCheckingEnabled);
         }
     }
 
