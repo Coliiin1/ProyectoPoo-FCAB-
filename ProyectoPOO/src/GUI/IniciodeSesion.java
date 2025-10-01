@@ -1,4 +1,5 @@
 package GUI;
+import MAIN.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -10,6 +11,7 @@ public class IniciodeSesion extends JFrame implements ActionListener{
     JButton btnSignup;
     JTextField txtUser;
     JTextField txtPass;
+    static Administrador user=new Administrador("ADMIN","12345");
     public IniciodeSesion() {
         setTitle("Inicio de Sesión");
         setSize(700, 400);
@@ -91,10 +93,13 @@ public class IniciodeSesion extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent Eventos){
         if (Eventos.getSource() == btnLogin){
-            String User = txtUser.getText();
-            System.out.println(User);
-            String Psw = txtPass.getText();
-            System.out.println(Psw);
+            if((user.Usuario).equals(txtUser.getText()) && (user.Contrasenia).equals(txtPass.getText())){
+                MenuPrincipal men=new MenuPrincipal();
+                men.Contenedor();
+                men.setVisible(rootPaneCheckingEnabled);
+            }else{
+                System.out.println("USUARIO O CONTRASEÑA INCORRECTO");
+            }
         }
     }
 
