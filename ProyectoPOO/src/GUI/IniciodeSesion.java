@@ -9,6 +9,9 @@ public class IniciodeSesion extends JFrame implements ActionListener{
     Color LionB = new Color(252, 243, 227);
     JButton btnLogin;
     JButton btnSignup;
+    
+    JButton borrar;
+    JButton borrar2;
     JTextField txtUser;
     JTextField txtPass;
     static Administrador user=new Administrador("ADMIN","12345");
@@ -30,11 +33,21 @@ public class IniciodeSesion extends JFrame implements ActionListener{
         lblLogin.setFont(new Font("Arial", Font.BOLD, 16));
         lblLogin.setBounds(60, 30, 200, 30);
         loginPanel.add(lblLogin);
-
+        
         txtUser = new JTextField("Ingresa tu Usuario");
         txtUser.setBounds(60, 80, 250, 35);
         loginPanel.add(txtUser);
 
+        borrar = new JButton("x");
+        borrar.setBounds(320, 80, 20, 35);
+        loginPanel.add(borrar);
+        borrar.addActionListener(this);
+        
+        borrar2 = new JButton("x");
+        borrar2.setBounds(320, 130, 20, 35);
+        loginPanel.add(borrar2);
+        borrar2.addActionListener(this);
+                
         txtPass = new JTextField("Ingresa la Contraseña");
         txtPass.setBounds(60, 130, 250, 35);
         loginPanel.add(txtPass);
@@ -60,7 +73,7 @@ public class IniciodeSesion extends JFrame implements ActionListener{
         JPanel innerPanel = new JPanel();
         innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.Y_AXIS));
         innerPanel.setBackground(AzulB);
-
+        
         JLabel lblWelcome = new JLabel("Bienvenido!");
         lblWelcome.setForeground(LionB);
         lblWelcome.setFont(new Font("Arial", Font.BOLD, 22));
@@ -92,6 +105,12 @@ public class IniciodeSesion extends JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent Eventos){
+        if (Eventos.getSource() == borrar){
+            txtUser.setText("");
+        }
+        if (Eventos.getSource() == borrar2){
+            txtPass.setText("");
+        }
         if (Eventos.getSource() == btnLogin){
             if((user.Usuario).equals(txtUser.getText()) && (user.Contrasenia).equals(txtPass.getText())){
                 MenuPrincipal men=new MenuPrincipal();
