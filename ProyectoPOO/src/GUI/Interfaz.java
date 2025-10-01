@@ -27,7 +27,8 @@ public class Interfaz {
         System.out.println("QUE DESEA HACER");
         System.out.println("1: AGREGAR PRODUCTO");
         System.out.println("2: CONSULTAR PRODUCTO");
-        System.out.println("3: SALIR");
+        System.out.println("3: ELIMINAR");
+        System.out.println("4: SALIR");
         opc=sc.nextByte();
         return opc;
     }

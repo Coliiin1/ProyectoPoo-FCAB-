@@ -25,7 +25,7 @@ public class ProyectoPOO {
         Items[] almacen=new Items[50];
         Items item=new Items();
         
-        while(opc!=3){
+        while(opc!=4){
             opc=inicio.menu();
             switch(opc){
                 case 1:
@@ -36,6 +36,8 @@ public class ProyectoPOO {
                     item=user.Consultar(almacen);
                     item=null;
                     break;
+                case 3:    
+                    user.Eliminar(almacen);
             }
         }
     }
