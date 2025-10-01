@@ -17,4 +17,7 @@ public class Cliente extends Usuario{
         System.out.println("NO PUEDES AGREGAR");
         return null;
     }
+    public void Eliminar(Items []inventario){
+        System.out.println("NO PUEDES ELIMINAR");
+    }
 }
