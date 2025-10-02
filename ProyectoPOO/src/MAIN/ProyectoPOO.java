@@ -1,5 +1,5 @@
 package MAIN;
-import GUI.Interfaz;
+import GUI.*;
 import java.util.Scanner;
 
 
@@ -11,7 +11,8 @@ public class ProyectoPOO {
         byte cont=0;
         Scanner in=new Scanner(System.in);
         Interfaz inicio=new Interfaz();
-        
+        IniciodeSesion init=new IniciodeSesion();
+        init.setVisible(true);
         System.out.println("DESEA INICIAR SESION? (1/0)");
         opc=in.nextByte();
         
