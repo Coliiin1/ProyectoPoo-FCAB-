@@ -8,12 +8,16 @@ public class IniciodeSesion extends JFrame implements ActionListener{
     Color AzulB = new Color(1, 61, 90);
     Color LionB = new Color(252, 243, 227);
     JButton btnLogin;
-    JButton btnSignup;
+    public JButton btnSignup;
     
     JButton borrar;
     JButton borrar2;
+    
     JTextField txtUser;
     JTextField txtPass;
+    
+    JLabel error;
+    public static ActionEvent Eventos;
     static Administrador user=new Administrador("ADMIN","12345");
     public IniciodeSesion() {
         setTitle("Inicio de Sesión");
@@ -64,6 +68,11 @@ public class IniciodeSesion extends JFrame implements ActionListener{
         btnLogin.setForeground(LionB);
         loginPanel.add(btnLogin);
         btnLogin.addActionListener(this);
+        
+        error=new JLabel("");
+        error.setBounds(110, 200, 150, 40);
+        error.setForeground(new Color(250,0,0));
+        loginPanel.add(error);
 
         // Panel Derecho (Bienvenida)
         JPanel rightPanel = new JPanel();
@@ -117,11 +126,13 @@ public class IniciodeSesion extends JFrame implements ActionListener{
                 men.Contenedor();
                 men.setVisible(rootPaneCheckingEnabled);
             }else{
-                System.out.println("USUARIO O CONTRASEÑA INCORRECTO");
+                error.setText("ERROR AL INICIAR SESION");
             }
         }
-    }
-    public static void main(String[] args) {
-       new IniciodeSesion().setVisible(true);
+        if (Eventos.getSource() == btnSignup){
+            Registro reg=new Registro();
+            reg.setVisible(true);
+            getContentPane().setVisible(false);
+        }
     }
 }
