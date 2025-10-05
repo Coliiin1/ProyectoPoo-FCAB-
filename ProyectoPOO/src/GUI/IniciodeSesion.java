@@ -4,17 +4,17 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class IniciodeSesion extends JFrame implements ActionListener{
+public class IniciodeSesion extends JFrame /*implements ActionListener*/{
     Color AzulB = new Color(1, 61, 90);
     Color LionB = new Color(252, 243, 227);
-    JButton btnLogin;
+    public JButton btnLogin;
     public JButton btnSignup;
     
-    JButton borrar;
-    JButton borrar2;
+    private JButton borrar;
+    private JButton borrar2;
     
-    JTextField txtUser;
-    JTextField txtPass;
+    public JTextField txtUser;
+    public JTextField txtPass;
     
     JLabel error;
     public static ActionEvent Eventos;
@@ -45,12 +45,12 @@ public class IniciodeSesion extends JFrame implements ActionListener{
         borrar = new JButton("x");
         borrar.setBounds(320, 80, 20, 35);
         loginPanel.add(borrar);
-        borrar.addActionListener(this);
+        //borrar.addActionListener(this);
         
         borrar2 = new JButton("x");
         borrar2.setBounds(320, 130, 20, 35);
         loginPanel.add(borrar2);
-        borrar2.addActionListener(this);
+        //borrar2.addActionListener(this);
                 
         txtPass = new JTextField("Ingresa la Contraseña");
         txtPass.setBounds(60, 130, 250, 35);
@@ -67,7 +67,7 @@ public class IniciodeSesion extends JFrame implements ActionListener{
         btnLogin.setBackground(AzulB);
         btnLogin.setForeground(LionB);
         loginPanel.add(btnLogin);
-        btnLogin.addActionListener(this);
+        //btnLogin.addActionListener(this);
         
         error=new JLabel("");
         error.setBounds(110, 200, 150, 40);
@@ -98,7 +98,7 @@ public class IniciodeSesion extends JFrame implements ActionListener{
         btnSignup.setBackground(LionB);
         btnSignup.setForeground(AzulB);
         btnSignup.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnSignup.addActionListener(this);
+        //btnSignup.addActionListener(this);
 
         innerPanel.add(lblWelcome);
         innerPanel.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -113,7 +113,7 @@ public class IniciodeSesion extends JFrame implements ActionListener{
         add(rightPanel);
     }
 
-    public void actionPerformed(ActionEvent Eventos){
+    /*public void actionPerformed(ActionEvent Eventos){
         if (Eventos.getSource() == borrar){
             txtUser.setText("");
         }
@@ -129,10 +129,5 @@ public class IniciodeSesion extends JFrame implements ActionListener{
                 error.setText("ERROR AL INICIAR SESION");
             }
         }
-        if (Eventos.getSource() == btnSignup){
-            Registro reg=new Registro();
-            reg.setVisible(true);
-            getContentPane().setVisible(false);
-        }
-    }
+    }*/
 }
