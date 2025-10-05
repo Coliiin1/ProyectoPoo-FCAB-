@@ -19,7 +19,9 @@ public class Registro extends JFrame implements ActionListener{
         setLocationRelativeTo(null);
         setResizable(false);
         setLayout(new GridLayout(1, 2)); // dos paneles lado a lado
-
+    }
+    
+    public void Contenedor(){
         // Panel Izquierdo (Login)
         JPanel loginPanel = new JPanel();
         loginPanel.setLayout(null);
@@ -74,22 +76,14 @@ public class Registro extends JFrame implements ActionListener{
         btnSignup.setBackground(AzulB);
         btnSignup.setForeground(LionB);
         btnSignup.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnSignup.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "¡Botón presionado!");
-            }
-        });
-
+        
         innerPanel.add(lblWelcome);
         innerPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         innerPanel.add(lblText);
         innerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         innerPanel.add(btnSignup);
-
         rightPanel.add(innerPanel);
 
-        // Agregar paneles al frame
         add(loginPanel);
         add(rightPanel);
     }
@@ -110,8 +104,8 @@ public class Registro extends JFrame implements ActionListener{
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new Registro().setVisible(true);
-        });
+        Registro Reg = new Registro();
+        Reg.Contenedor();
+        Reg.setVisible(true);
     }
 }

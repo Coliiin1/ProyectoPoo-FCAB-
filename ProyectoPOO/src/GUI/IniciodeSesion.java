@@ -26,7 +26,9 @@ public class IniciodeSesion extends JFrame /*implements ActionListener*/{
         setLocationRelativeTo(null);
         setResizable(false);
         setLayout(new GridLayout(1, 2)); // dos paneles lado a lado
-
+    }
+    
+    public void Contenedor(){
         // Panel Izquierdo (Login)
         JPanel loginPanel = new JPanel();
         loginPanel.setLayout(null);
@@ -112,22 +114,27 @@ public class IniciodeSesion extends JFrame /*implements ActionListener*/{
         add(loginPanel);
         add(rightPanel);
     }
-
-    /*public void actionPerformed(ActionEvent Eventos){
-        if (Eventos.getSource() == borrar){
-            txtUser.setText("");
-        }
-        if (Eventos.getSource() == borrar2){
-            txtPass.setText("");
-        }
-        if (Eventos.getSource() == btnLogin){
-            if((user.Usuario).equals(txtUser.getText()) && (user.Contrasenia).equals(txtPass.getText())){
-                MenuPrincipal men=new MenuPrincipal();
-                men.Contenedor();
-                men.setVisible(rootPaneCheckingEnabled);
-            }else{
-                error.setText("ERROR AL INICIAR SESION");
-            }
-        }
-    }*/
+    
+    public static void main(String[] args) {
+        IniciodeSesion Ini = new IniciodeSesion();
+        Ini.Contenedor();
+        Ini.setVisible(true);
+    }
+//    public void actionPerformed(ActionEvent Eventos){
+//        if (Eventos.getSource() == borrar){
+//            txtUser.setText("");
+//        }
+//        if (Eventos.getSource() == borrar2){
+//            txtPass.setText("");
+//        }
+//        if (Eventos.getSource() == btnLogin){
+//            if((user.Usuario).equals(txtUser.getText()) && (user.Contrasenia).equals(txtPass.getText())){
+//                MenuPrincipal men=new MenuPrincipal();
+//                men.Contenedor();
+//                men.setVisible(rootPaneCheckingEnabled);
+//            }else{
+//                error.setText("ERROR AL INICIAR SESION");
+//            }
+//        }
+//    }
 }
