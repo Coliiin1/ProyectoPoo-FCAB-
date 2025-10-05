@@ -74,7 +74,12 @@ public class Registro extends JFrame implements ActionListener{
         btnSignup.setBackground(AzulB);
         btnSignup.setForeground(LionB);
         btnSignup.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnSignup.addActionListener(this);
+        btnSignup.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "¡Botón presionado!");
+            }
+        });
 
         innerPanel.add(lblWelcome);
         innerPanel.add(Box.createRigidArea(new Dimension(0, 10)));

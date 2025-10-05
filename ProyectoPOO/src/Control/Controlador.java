@@ -10,6 +10,6 @@ public class Controlador {
         Items[] inventario=new Items[50];
         
         IniciodeSesion inicio=new IniciodeSesion();
-        inicio.setVisible(true);
+        inicio.setVisible(true);  
     }
 }
