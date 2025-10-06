@@ -9,14 +9,15 @@ public class IniciodeSesion extends JFrame /*implements ActionListener*/{
     Color LionB = new Color(252, 243, 227);
     public JButton btnLogin;
     public JButton btnSignup;
+    public JButton btnIgnore;
     
-    private JButton borrar;
-    private JButton borrar2;
+    public JButton borrar;
+    public JButton borrar2;
     
     public JTextField txtUser;
     public JTextField txtPass;
     
-    JLabel error;
+    public JLabel error;
     public static ActionEvent Eventos;
     static Administrador user=new Administrador("ADMIN","12345");
     public IniciodeSesion() {
@@ -101,12 +102,18 @@ public class IniciodeSesion extends JFrame /*implements ActionListener*/{
         btnSignup.setForeground(AzulB);
         btnSignup.setAlignmentX(Component.CENTER_ALIGNMENT);
         //btnSignup.addActionListener(this);
-
+        
+        btnIgnore = new JButton("INICIAR LUEGO");
+        btnIgnore.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnIgnore.setBackground(LionB);
+        btnSignup.setForeground(AzulB);
+        
         innerPanel.add(lblWelcome);
         innerPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         innerPanel.add(lblText);
         innerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         innerPanel.add(btnSignup);
+        innerPanel.add(btnIgnore);
 
         rightPanel.add(innerPanel);
 
