@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
  */
 public class Controlador implements ActionListener{
     IniciodeSesion inicio;
-    Registro reg;
     Administrador user=new Administrador("ADMIN","12345");
     static MenuPrincipal men;
     public Controlador(){
@@ -19,7 +18,6 @@ public class Controlador implements ActionListener{
         this.inicio.btnLogin.addActionListener(this);
         this.inicio.borrar.addActionListener(this);
         this.inicio.borrar2.addActionListener(this);
-        this.inicio.btnSignup.addActionListener(this);
         this.inicio.btnIgnore.addActionListener(this);
     }
     public static void main(String args[]){
@@ -32,11 +30,7 @@ public class Controlador implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         Object evento= e.getSource();
-        if (evento== inicio.btnSignup) {
-            reg=new Registro();
-            reg.setVisible(true);
-            inicio.hide();
-        }
+        
         if (evento == inicio.borrar){
             inicio.txtUser.setText("");
         }
@@ -47,6 +41,7 @@ public class Controlador implements ActionListener{
             if((user.Usuario).equals(inicio.txtUser.getText()) && (user.Contrasenia).equals(inicio.txtPass.getText())){
                 men.Contenedor(1);
                 men.setVisible(true);
+                inicio.hide();
             }else{
                 inicio.error.setText("ERROR AL INICIAR SESION");
             }

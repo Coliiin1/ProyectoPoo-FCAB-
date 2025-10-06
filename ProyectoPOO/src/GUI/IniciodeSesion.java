@@ -96,23 +96,15 @@ public class IniciodeSesion extends JFrame /*implements ActionListener*/{
         lblText.setForeground(LionB);
         lblText.setFont(new Font("Arial", Font.PLAIN, 14));
         lblText.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        btnSignup = new JButton("REGISTRARSE");
-        btnSignup.setBackground(LionB);
-        btnSignup.setForeground(AzulB);
-        btnSignup.setAlignmentX(Component.CENTER_ALIGNMENT);
-        //btnSignup.addActionListener(this);
         
         btnIgnore = new JButton("INICIAR LUEGO");
         btnIgnore.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnIgnore.setBackground(LionB);
-        btnSignup.setForeground(AzulB);
         
         innerPanel.add(lblWelcome);
         innerPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         innerPanel.add(lblText);
         innerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-        innerPanel.add(btnSignup);
         innerPanel.add(btnIgnore);
 
         rightPanel.add(innerPanel);
