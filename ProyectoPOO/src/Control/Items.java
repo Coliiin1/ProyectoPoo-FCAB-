@@ -1,4 +1,4 @@
-package MAIN;
+package Control;
 
 public class Items {
     public String NombreProd, Marca;

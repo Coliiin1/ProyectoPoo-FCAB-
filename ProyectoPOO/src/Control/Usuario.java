@@ -1,6 +1,6 @@
-package MAIN;
+package Control;
 import java.util.Scanner;
-abstract class Usuario {
+public abstract class Usuario {
     public String Usuario;
     public String Nombres, APaterno, AMaterno;
     public byte Dia, Mes;

@@ -1,4 +1,5 @@
 package GUI;
+import Control.Administrador;
 import MAIN.*;
 import java.awt.*;
 import javax.swing.*;

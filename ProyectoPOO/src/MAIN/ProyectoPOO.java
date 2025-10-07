@@ -1,4 +1,8 @@
 package MAIN;
+import Control.Items;
+import Control.Administrador;
+import Control.Cliente;
+import Control.Usuario;
 import GUI.*;
 import java.util.Scanner;
 
