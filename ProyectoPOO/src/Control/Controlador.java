@@ -14,6 +14,12 @@ public class Controlador implements ActionListener{
     
     
     public Controlador(){
+        Items[] ropa=new Items[50];
+        Items[] calzado=new Items[50];
+        Items[] productosB=new Items[50];
+        Items[] productosH=new Items[50];
+        Items[] accesorios =new Items[50];
+        
         inicio=new IniciodeSesion();
         inicio.Contenedor();
         inicio.setVisible(true);
@@ -28,7 +34,7 @@ public class Controlador implements ActionListener{
         Items[] inventario=new Items[50];
         Controlador control=new Controlador();
 
-        System.out.println("Ash nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk agh burzum-ishi krimpatul");
+        System.out.println("\nAsh nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk agh burzum-ishi krimpatul");
     }
 
     @Override
