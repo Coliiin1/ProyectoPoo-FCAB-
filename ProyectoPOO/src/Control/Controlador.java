@@ -9,20 +9,25 @@ import java.awt.event.ActionListener;
 public class Controlador implements ActionListener{
     IniciodeSesion inicio;
     Administrador user=new Administrador("ADMIN","12345");
-    static MenuPrincipal men;
+    
+    MenuPrincipal men;
+    
+    
     public Controlador(){
         inicio=new IniciodeSesion();
         inicio.Contenedor();
         inicio.setVisible(true);
+        men=new MenuPrincipal();
         this.inicio.btnLogin.addActionListener(this);
         this.inicio.borrar.addActionListener(this);
         this.inicio.borrar2.addActionListener(this);
         this.inicio.btnIgnore.addActionListener(this);
+        
     }
     public static void main(String args[]){
         Items[] inventario=new Items[50];
         Controlador control=new Controlador();
-        men=new MenuPrincipal();
+
         System.out.println("Ash nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk agh burzum-ishi krimpatul");
     }
 
@@ -41,6 +46,7 @@ public class Controlador implements ActionListener{
                 men.Contenedor(1);
                 men.setVisible(true);
                 inicio.hide();
+                this.men.Anadir.addActionListener(this);
             }else{
                 inicio.error.setText("ERROR AL INICIAR SESION");
             }
@@ -48,6 +54,10 @@ public class Controlador implements ActionListener{
         if (evento == inicio.btnIgnore){
             men.Contenedor(0);
             men.setVisible(true);
+        }
+        if (evento == men.Anadir) {
+            Agregar agreg=new Agregar();
+            agreg.setVisible(true);
         }
     }
 }

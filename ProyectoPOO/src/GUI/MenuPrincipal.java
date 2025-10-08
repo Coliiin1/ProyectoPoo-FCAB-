@@ -9,7 +9,8 @@ public class MenuPrincipal extends JFrame {
     Color Blanco = new Color(242, 242, 242);
     Color Gris = new Color(196, 196, 196);
     Color AzulItems = new Color(122, 133, 157);
-
+    public JButton Anadir;
+    
     public MenuPrincipal() {
         setTitle("Inicio");
         setLayout(null);
@@ -27,7 +28,7 @@ public class MenuPrincipal extends JFrame {
         JButton itemBellezaH = new JButton("Productos de belleza");
         JButton itemHogarH = new JButton("Productos para el hogar");
         JButton itemAccesoriosH = new JButton("Accesorios");
-        JButton Anadir = new JButton("Añadir");
+        Anadir = new JButton("Añadir");
         JButton Admin = new JButton("Admin");
         JButton[] itemsuuser = {itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH};
         JButton[] itemsadmin = {itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, Anadir, Admin};
