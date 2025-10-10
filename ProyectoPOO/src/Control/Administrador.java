@@ -1,4 +1,5 @@
 package Control;
+import GUI.AgregarUI;
 
 /**
  *
@@ -7,6 +8,14 @@ package Control;
 public class Administrador extends Usuario{ 
     public Administrador(String usuario,String contrasenia){
         super(usuario,contrasenia);
+    }
+    public Items Agregar(AgregarUI agreg){
+        Items articulo=new Items();
+        articulo.NombreProd=agreg.txtNombre.getText();
+        System.out.println("Talla = ");
+        System.out.println("Precio = ");
+        System.out.println("Cantidad = ");
+        return articulo;
     }
     public void Eliminar(Items []inventario){
         Items encontrado=new Items();

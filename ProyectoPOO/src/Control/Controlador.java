@@ -9,16 +9,33 @@ import java.awt.event.ActionListener;
 public class Controlador implements ActionListener{
     IniciodeSesion inicio;
     Administrador user=new Administrador("ADMIN","12345");
-    
+    AgregarUI agreg;
     MenuPrincipal men;
+    controlInterfaz interfaz;
     
+    Items[] ropa;
+    Items[] calzado;
+    Items[] productosB;
+    Items[] productosH;
+    Items[] accesorios;
     
+    byte vr;
+    byte vc;
+    byte vpb;
+    byte vph;
+    byte va;
     public Controlador(){
-        Items[] ropa=new Items[50];
-        Items[] calzado=new Items[50];
-        Items[] productosB=new Items[50];
-        Items[] productosH=new Items[50];
-        Items[] accesorios =new Items[50];
+        ropa=new Items[50];
+        calzado=new Items[50];
+        productosB=new Items[50];
+        productosH=new Items[50];
+        accesorios =new Items[50];
+        
+        vr=0;
+        vc=0;
+        vpb=0;
+        vph=0;
+        va=0;
         
         inicio=new IniciodeSesion();
         inicio.Contenedor();
@@ -28,12 +45,11 @@ public class Controlador implements ActionListener{
         this.inicio.borrar.addActionListener(this);
         this.inicio.borrar2.addActionListener(this);
         this.inicio.btnIgnore.addActionListener(this);
-        
+        interfaz=new controlInterfaz();
     }
     public static void main(String args[]){
-        Items[] inventario=new Items[50];
         Controlador control=new Controlador();
-
+        
         System.out.println("\nAsh nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk agh burzum-ishi krimpatul");
     }
 
@@ -62,8 +78,19 @@ public class Controlador implements ActionListener{
             men.setVisible(true);
         }
         if (evento == men.Anadir) {
-            Agregar agreg=new Agregar();
+            agreg=new AgregarUI();
+            agreg.contenedor();
             agreg.setVisible(true);
+            agreg.btnEnviar.addActionListener(interfaz);
+        }
+    }
+    private class controlInterfaz implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            Object evento=e.getSource();
+            if(evento==agreg.btnEnviar){
+                System.out.println(agreg.txtNombre.getText());
+                user.Agregar(agreg);
+            }
         }
     }
 }

@@ -20,4 +20,7 @@ public class Cliente extends Usuario{
     public void Eliminar(Items []inventario){
         System.out.println("NO PUEDES ELIMINAR");
     }
+    public void Modificar(Items []inventario){
+        System.out.println("NO PUEDES MODIFICAR");
+    }
 }

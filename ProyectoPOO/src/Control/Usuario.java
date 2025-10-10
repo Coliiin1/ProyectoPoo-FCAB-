@@ -38,20 +38,10 @@ public abstract class Usuario {
         return item;
     }
     public Items Agregar(){
-        Scanner sc=new Scanner(System.in);
-        Items articulo=new Items();
-        System.out.println("CUAL ES EL NOMBRE DEL PRODUCTO");
-        articulo.NombreProd=sc.nextLine();
-        System.out.println("Marca = ");
-        articulo.Marca=sc.nextLine();
-        System.out.println("Talla = ");
-        articulo.Talla=sc.nextLine();
-        System.out.println("Precio = ");
-        articulo.Precio=sc.nextFloat();
-        System.out.println("Cantidad = ");
-        articulo.Cantidad=sc.nextShort();
-        return articulo;
+        return null;
     }
     public void Eliminar(Items []inventario){
+    }
+    public void Modificar(Items []inventario){
     }
 }
