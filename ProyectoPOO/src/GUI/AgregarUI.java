@@ -7,31 +7,36 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class AgregarUI extends JFrame{
     public JButton btnEnviar;
-    public JTextField txtNombre;
     public JButton btnAgregar;
-    //esto no lo toques paput :v
-    JComboBox<String> comboCategorias;
-    JComboBox<String> comboTalla;
-    JComboBox<String> comboSexo;
+    public JTextField txtNombre;
+    //esto no lo toques paptu :v
+    public JTextField campoPrecio;
+    public JTextField campoMarca;
+    public JTextField campoProveedor;
+    public JTextField campoCodigo;
+    public JTextField campoCaracteristicas;
+    public JComboBox<String> comboCategorias;
+    public JComboBox<String> comboTalla;
+    public JComboBox<String> comboSexo;
     private JLabel etiquetaRutaImagen;
     private JLabel etiquetaVistaPrevia;
+    public String rutaImagenSeleccionada = null;
+
     Color AzulB = new Color(1, 61, 90);
     Color LionB = new Color(252, 243, 227);
-    public JTextField campoCaracteristicas;
-    
-    public AgregarUI(){    
-    setTitle("Agregar");
-    // Usamos BorderLayout y paneles internos para centrar el formulario
-    setLayout(new BorderLayout());
-    setDefaultCloseOperation(EXIT_ON_CLOSE);
-    setSize(520, 820);
-    setResizable(true);
-    setLocationRelativeTo(null);
-    setLayout(null);
-    getContentPane().setBackground(LionB);
-    }
-    public void contenedor(){
 
+    public AgregarUI(){    
+        setTitle("Agregar");
+        setLayout(new BorderLayout());
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(520, 820);
+        setResizable(true);
+        setLocationRelativeTo(null);
+        setLayout(null);
+        getContentPane().setBackground(LionB);
+    }
+
+    public void contenedor(){
         int xEtiqueta = 20;
         int xCampo = 200;
         int anchoEtiqueta = 170;
@@ -40,7 +45,7 @@ public class AgregarUI extends JFrame{
         int posY = 10;
         int separacion = 48;
 
-        // Nombre (campo de texto en vez de combo)
+        // Nombre
         JLabel etiquetaNombre = new JLabel("Nombre:");
         etiquetaNombre.setBounds(xEtiqueta, posY, anchoEtiqueta, alto);
         etiquetaNombre.setForeground(AzulB);
@@ -96,51 +101,51 @@ public class AgregarUI extends JFrame{
         comboSexo.setBounds(xCampo, posY, anchoCampo, alto);
         add(comboSexo);
 
-        // Precio (campo de texto en vez de combo)
+        // Precio
         posY += separacion;
         JLabel etiquetaPrecio = new JLabel("Precio:");
         etiquetaPrecio.setForeground(AzulB);
         etiquetaPrecio.setFont(new Font("Arial", Font.BOLD, 16));
         etiquetaPrecio.setBounds(xEtiqueta, posY, anchoEtiqueta, alto);
         add(etiquetaPrecio);
-        JTextField campoPrecio = new JTextField();
+        campoPrecio = new JTextField();
         campoPrecio.setBounds(xCampo, posY, anchoCampo, alto);
         add(campoPrecio);
 
-        // Marca (campo de texto)
+        // Marca
         posY += separacion;
         JLabel etiquetaMarca = new JLabel("Marca:");
         etiquetaMarca.setForeground(AzulB);
         etiquetaMarca.setFont(new Font("Arial", Font.BOLD, 16));
         etiquetaMarca.setBounds(xEtiqueta, posY, anchoEtiqueta, alto);
         add(etiquetaMarca);
-        JTextField campoMarca = new JTextField();
+        campoMarca = new JTextField();
         campoMarca.setBounds(xCampo, posY, anchoCampo, alto);
         add(campoMarca);
 
-        // Proveedor (campo de texto)
+        // Proveedor
         posY += separacion;
         JLabel etiquetaProveedor = new JLabel("Proveedor:");
         etiquetaProveedor.setForeground(AzulB);
         etiquetaProveedor.setFont(new Font("Arial", Font.BOLD, 16));
         etiquetaProveedor.setBounds(xEtiqueta, posY, anchoEtiqueta, alto);
         add(etiquetaProveedor);
-        JTextField campoProveedor = new JTextField();
+        campoProveedor = new JTextField();
         campoProveedor.setBounds(xCampo, posY, anchoCampo, alto);
         add(campoProveedor);
 
-        // Codigo del producto (campo de texto)
+        // Codigo del producto
         posY += separacion;
         JLabel etiquetaCodigoProducto = new JLabel("Codigo del Producto:");
         etiquetaCodigoProducto.setForeground(AzulB);
         etiquetaCodigoProducto.setFont(new Font("Arial", Font.BOLD, 16));
         etiquetaCodigoProducto.setBounds(xEtiqueta, posY, anchoEtiqueta, alto);
         add(etiquetaCodigoProducto);
-        JTextField campoCodigo = new JTextField();
+        campoCodigo = new JTextField();
         campoCodigo.setBounds(xCampo, posY, anchoCampo, alto);
         add(campoCodigo);
 
-        // Caracteristicas (campo de texto)
+        // Caracteristicas
         posY += separacion;
         JLabel etiquetaCaracteristicas = new JLabel("Caracteristicas del Producto:");
         etiquetaCaracteristicas.setForeground(AzulB);
@@ -188,6 +193,7 @@ public class AgregarUI extends JFrame{
                     String name = f.getName().toLowerCase();
                     if (name.endsWith(".jpg") || name.endsWith(".jpeg") || name.endsWith(".png") || name.endsWith(".gif") || name.endsWith(".bmp")) {
                         etiquetaRutaImagen.setText(f.getName());
+                        rutaImagenSeleccionada = f.getAbsolutePath(); //Guarda la ruta seleccionada
                         ImageIcon ico = new ImageIcon(f.getAbsolutePath());
                         Image img = ico.getImage().getScaledInstance(etiquetaVistaPrevia.getWidth(), etiquetaVistaPrevia.getHeight(), Image.SCALE_SMOOTH);
                         etiquetaVistaPrevia.setIcon(new ImageIcon(img));
@@ -200,7 +206,6 @@ public class AgregarUI extends JFrame{
 
         // Botón agregar al final
         btnAgregar = new JButton("Agregar");
-        btnAgregar.setBorder(UIManager.getBorder("Button.border"));
         btnAgregar.setBounds((xCampo + xEtiqueta + anchoEtiqueta) / 2, posY + 200, 120, 30);
         add(btnAgregar);
     }
