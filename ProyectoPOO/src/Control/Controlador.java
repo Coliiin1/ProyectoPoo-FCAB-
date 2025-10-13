@@ -81,15 +81,14 @@ public class Controlador implements ActionListener{
             agreg=new AgregarUI();
             agreg.contenedor();
             agreg.setVisible(true);
-            agreg.btnEnviar.addActionListener(interfaz);
+            agreg.btnAgregar.addActionListener(interfaz);
         }
     }
     private class controlInterfaz implements ActionListener{
+        @Override
         public void actionPerformed(ActionEvent e){
             Object evento=e.getSource();
-            if(evento==agreg.btnEnviar){
-                System.out.println(agreg.txtNombre.getText());
-                user.Agregar(agreg);
+            if(evento==agreg.btnAgregar){
             }
         }
     }

@@ -8,7 +8,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class AgregarUI extends JFrame{
     public JButton btnEnviar;
     public JTextField txtNombre;
-    private JLabel lblnombre;
+    public JButton btnAgregar;
     //esto no lo toques paput :v
     JComboBox<String> comboCategorias;
     private JLabel etiquetaRutaImagen;
@@ -183,7 +183,7 @@ public class AgregarUI extends JFrame{
         // Botón agregar al final
         restricciones.gridy++;
         restricciones.gridx = 0; restricciones.gridwidth = 2; restricciones.anchor = GridBagConstraints.CENTER;
-        JButton btnAgregar = new JButton("Agregar");
+        btnAgregar = new JButton("Agregar");
         panelFormulario.add(btnAgregar, restricciones);
 
         // Añadimos panelFormulario al panelContenedor para centrar y luego al centro del frame
