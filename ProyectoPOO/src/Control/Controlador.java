@@ -89,6 +89,9 @@ public class Controlador implements ActionListener{
         public void actionPerformed(ActionEvent e){
             Object evento=e.getSource();
             if(evento==agreg.btnAgregar){
+                if(agreg.campoCaracteristicas!=null){
+                    System.out.println("ok");
+                }
             }
         }
     }

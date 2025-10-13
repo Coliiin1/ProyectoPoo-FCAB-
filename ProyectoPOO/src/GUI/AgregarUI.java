@@ -13,6 +13,9 @@ public class AgregarUI extends JFrame{
     JComboBox<String> comboCategorias;
     private JLabel etiquetaRutaImagen;
     private JLabel etiquetaVistaPrevia;
+    
+    
+    public JTextField campoCaracteristicas;
     public AgregarUI(){
         setTitle("Agregar");
         // Usamos BorderLayout y paneles internos para centrar el formulario
@@ -134,7 +137,7 @@ public class AgregarUI extends JFrame{
         JLabel etiquetaCaracteristicas = new JLabel("Caracteristicas del Producto:");
         restricciones.gridx = 0; restricciones.weightx = 0.0;
         panelFormulario.add(etiquetaCaracteristicas, restricciones);
-        JTextField campoCaracteristicas = new JTextField();
+        campoCaracteristicas = new JTextField();
         restricciones.gridx = 1; restricciones.weightx = 1.0;
         panelFormulario.add(campoCaracteristicas, restricciones);
 
