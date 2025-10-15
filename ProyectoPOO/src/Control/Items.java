@@ -1,4 +1,5 @@
 package Control;
+import java.io.*;
 
 public class Items {
     public String NombreProd, Marca;
@@ -9,7 +10,7 @@ public class Items {
     public String Proveedor;
     public String CodigoProd;
     public float Oferta;
-    public String DirImagen;
+    public File DirImagen;
     public void MostrarInfo(){
         System.out.println("NombreProd = " + NombreProd);
         System.out.println("Marca = " + Marca);

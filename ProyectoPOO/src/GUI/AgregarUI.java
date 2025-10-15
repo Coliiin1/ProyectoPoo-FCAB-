@@ -208,6 +208,7 @@ public class AgregarUI extends JFrame{
         btnAgregar = new JButton("Agregar");
         btnAgregar.setBounds((xCampo + xEtiqueta + anchoEtiqueta) / 2, posY + 200, 120, 30);
         add(btnAgregar);
+        
     }
     
     public static void main(String[] args) {

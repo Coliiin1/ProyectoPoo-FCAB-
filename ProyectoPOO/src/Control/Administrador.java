@@ -17,6 +17,9 @@ public class Administrador extends Usuario{
         System.out.println("Cantidad = ");
         return articulo;
     }
+    public Items Modificar(Items item){
+        return item;
+    }
     public void Eliminar(Items []inventario){
         Items encontrado=new Items();
         Items apu=new Items();

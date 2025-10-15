@@ -2,6 +2,7 @@ package Control;
 import GUI.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 /**
  *
  * @author fabri
@@ -82,6 +83,7 @@ public class Controlador implements ActionListener{
             agreg.contenedor();
             agreg.setVisible(true);
             agreg.btnAgregar.addActionListener(interfaz);
+            agreg.comboCategorias.addActionListener(interfaz);
         }
     }
     private class controlInterfaz implements ActionListener{
@@ -89,7 +91,11 @@ public class Controlador implements ActionListener{
         public void actionPerformed(ActionEvent e){
             Object evento=e.getSource();
             if(evento==agreg.btnAgregar){
-                if(agreg.campoCaracteristicas!=null){
+                if("".equals(agreg.campoCaracteristicas.getText())|| "".equals(agreg.campoCodigo.getText())||"".equals(agreg.campoMarca.getText())
+                        ||"".equals(agreg.campoPrecio.getText())||"".equals(agreg.campoProveedor.getText())||agreg.comboCategorias.getSelectedItem()=="Seleccione"
+                        ||agreg.comboSexo.getSelectedItem()=="Seleccione"|| agreg.comboTalla.getSelectedItem()=="Seleccione talla"){
+                    JOptionPane.showMessageDialog(agreg,"DEBES LLENAR EL REGISTRO");
+                }else{
                     System.out.println("ok");
                 }
             }
