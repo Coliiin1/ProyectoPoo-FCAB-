@@ -11,10 +11,12 @@ public class Administrador extends Usuario{
     }
     public Items Agregar(AgregarUI agreg){
         Items articulo=new Items();
+        String talla=(String)agreg.comboTalla.getSelectedItem();
+        String sex=(String)agreg.comboSexo.getSelectedItem();
         articulo.NombreProd=agreg.txtNombre.getText();
-        System.out.println("Talla = ");
-        System.out.println("Precio = ");
-        System.out.println("Cantidad = ");
+        articulo.CodigoProd=agreg.campoCodigo.getText();
+        articulo.Talla=talla;
+        articulo.Sexo=sex;
         return articulo;
     }
     public Items Modificar(Items item){

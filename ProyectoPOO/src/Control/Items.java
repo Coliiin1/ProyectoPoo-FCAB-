@@ -3,6 +3,7 @@ import java.io.*;
 
 public class Items {
     public String NombreProd, Marca;
+    public String Categoria;
     public float Precio;
     public short Cantidad;
     public String Talla;

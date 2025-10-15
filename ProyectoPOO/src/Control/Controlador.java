@@ -91,11 +91,26 @@ public class Controlador implements ActionListener{
         public void actionPerformed(ActionEvent e){
             Object evento=e.getSource();
             if(evento==agreg.btnAgregar){
-                if("".equals(agreg.campoCaracteristicas.getText())|| "".equals(agreg.campoCodigo.getText())||"".equals(agreg.campoMarca.getText())
+                if("".equals(agreg.txtNombre.getText())||"".equals(agreg.campoCaracteristicas.getText())|| "".equals(agreg.campoCodigo.getText())||"".equals(agreg.campoMarca.getText())
                         ||"".equals(agreg.campoPrecio.getText())||"".equals(agreg.campoProveedor.getText())||agreg.comboCategorias.getSelectedItem()=="Seleccione"
                         ||agreg.comboSexo.getSelectedItem()=="Seleccione"|| agreg.comboTalla.getSelectedItem()=="Seleccione talla"){
                     JOptionPane.showMessageDialog(agreg,"DEBES LLENAR EL REGISTRO");
                 }else{
+                            String cat=(String)agreg.comboCategorias.getSelectedItem();
+                    switch(cat){
+                        case "Zapateria":
+                            if(vc>=50){
+                                JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
+                            }else{
+                                calzado[vc]=user.Agregar(agreg);
+                                calzado[vc].Categoria="Zapateria";
+                                calzado[vc].MostrarInfo();
+                                vc++;
+                                JOptionPane.showMessageDialog(agreg, "AGREGADO EXITOSAMENTE");
+                            }
+                            break;
+                        default: System.out.println("thats great");
+                    }
                     System.out.println("ok");
                 }
             }
