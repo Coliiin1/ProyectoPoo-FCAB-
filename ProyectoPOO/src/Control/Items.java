@@ -14,9 +14,14 @@ public class Items {
     public File DirImagen;
     public void MostrarInfo(){
         System.out.println("NombreProd = " + NombreProd);
-        System.out.println("Marca = " + Marca);
-        System.out.println("Precio = " + Precio);
-        System.out.println("Cantidad = " + Cantidad);
+        System.out.println("Categoria = " + Categoria);
         System.out.println("Talla = " + Talla);
+        System.out.println("Sexo = " + Sexo);
+        System.out.println("Precio = " + Precio);
+        System.out.println("Marca = " + Marca);
+        System.out.println("Proveedor = " + Proveedor);
+        System.out.println("CodigoProd = " + CodigoProd);
+        System.out.println("Cantidad = " + Cantidad);
+        
     }
 }

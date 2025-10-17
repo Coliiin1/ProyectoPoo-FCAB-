@@ -1,4 +1,4 @@
-package Control;
+ package Control;
 import java.util.Scanner;
 public abstract class Usuario {
     public String Usuario;

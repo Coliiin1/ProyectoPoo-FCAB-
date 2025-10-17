@@ -95,7 +95,7 @@ public class Controlador implements ActionListener{
                         ||"".equals(agreg.campoPrecio.getText())||"".equals(agreg.campoProveedor.getText())||agreg.comboCategorias.getSelectedItem()=="Seleccione"
                         ||agreg.comboSexo.getSelectedItem()=="Seleccione"|| agreg.comboTalla.getSelectedItem()=="Seleccione talla"){
                     JOptionPane.showMessageDialog(agreg,"DEBES LLENAR EL REGISTRO");
-                }else{
+                }else if(true){
                             String cat=(String)agreg.comboCategorias.getSelectedItem();
                     switch(cat){
                         case "Zapateria":
@@ -106,6 +106,17 @@ public class Controlador implements ActionListener{
                                 calzado[vc].Categoria="Zapateria";
                                 calzado[vc].MostrarInfo();
                                 vc++;
+                                JOptionPane.showMessageDialog(agreg, "AGREGADO EXITOSAMENTE");
+                            }
+                            break;
+                        case "Ropa":
+                            if(vr>=50){
+                                JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
+                            }else{
+                                ropa[vr]=user.Agregar(agreg);
+                                ropa[vr].Categoria="Ropa";
+                                ropa[vr].MostrarInfo();
+                                vr++;
                                 JOptionPane.showMessageDialog(agreg, "AGREGADO EXITOSAMENTE");
                             }
                             break;
