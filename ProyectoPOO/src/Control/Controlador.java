@@ -12,6 +12,7 @@ public class Controlador implements ActionListener{
     Administrador user=new Administrador("ADMIN","12345");
     AgregarUI agreg;
     MenuPrincipal men;
+    BuscarUI bus;
     controlInterfaz interfaz;
     
     Items[] ropa;
@@ -70,6 +71,14 @@ public class Controlador implements ActionListener{
                 men.setVisible(true);
                 inicio.hide();
                 this.men.Anadir.addActionListener(this);
+                this.men.Buscar.addActionListener(this);
+                agreg=new AgregarUI();
+                agreg.contenedor();
+                bus=new BuscarUI();
+                bus.contenedor();
+                agreg.btnAgregar.addActionListener(interfaz);
+                agreg.comboCategorias.addActionListener(interfaz);
+                bus.btnBuscar.addActionListener(interfaz);
             }else{
                 inicio.error.setText("ERROR AL INICIAR SESION");
             }
@@ -79,11 +88,10 @@ public class Controlador implements ActionListener{
             men.setVisible(true);
         }
         if (evento == men.Anadir) {
-            agreg=new AgregarUI();
-            agreg.contenedor();
             agreg.setVisible(true);
-            agreg.btnAgregar.addActionListener(interfaz);
-            agreg.comboCategorias.addActionListener(interfaz);
+        }
+        if (evento==men.Buscar) {
+            bus.setVisible(true); 
         }
     }
     private class controlInterfaz implements ActionListener{
@@ -125,6 +133,13 @@ public class Controlador implements ActionListener{
                     System.out.println("ok");
                 }
             }
+            if (evento==bus.btnBuscar) {
+                if (bus.txtnombre.getText().equals("")||bus.txtnombre.getText().equals("")) {
+                    JOptionPane.showMessageDialog(bus, "HOLA");
+                    System.out.println("dwhfeugf");
+                }
+            }
+    
         }
     }
 }

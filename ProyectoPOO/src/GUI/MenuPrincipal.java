@@ -10,6 +10,7 @@ public class MenuPrincipal extends JFrame {
     Color Gris = new Color(196, 196, 196);
     Color AzulItems = new Color(122, 133, 157);
     public JButton Anadir;
+    public JButton Buscar;
     
     public MenuPrincipal() {
         setTitle("Inicio");
@@ -29,9 +30,10 @@ public class MenuPrincipal extends JFrame {
         JButton itemHogarH = new JButton("Productos para el hogar");
         JButton itemAccesoriosH = new JButton("Accesorios");
         Anadir = new JButton("Añadir");
+        Buscar = new JButton("Buscar");
         JButton Admin = new JButton("Admin");
         JButton[] itemsuuser = {itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH};
-        JButton[] itemsadmin = {itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, Anadir, Admin};
+        JButton[] itemsadmin = {itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, Anadir, Buscar, Admin};
         // Panel que contendrá los botones
         JPanel ABotones = new JPanel();
         ABotones.setBounds(0, 5, 1920, 60);
