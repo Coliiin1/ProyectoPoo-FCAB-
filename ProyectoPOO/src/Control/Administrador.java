@@ -13,8 +13,10 @@ public class Administrador extends Usuario{
         Items articulo=new Items();
         String talla=(String)agreg.comboTalla.getSelectedItem();
         String sex=(String)agreg.comboSexo.getSelectedItem();
+        
         articulo.NombreProd=agreg.txtNombre.getText();
         articulo.CodigoProd=agreg.campoCodigo.getText();
+        articulo.Precio=Float.parseFloat(agreg.campoPrecio.getText());
         articulo.Talla=talla;
         articulo.Sexo=sex;
         return articulo;

@@ -12,16 +12,17 @@ public class Items {
     public String CodigoProd;
     public float Oferta;
     public File DirImagen;
-    public void MostrarInfo(){
-        System.out.println("NombreProd = " + NombreProd);
-        System.out.println("Categoria = " + Categoria);
-        System.out.println("Talla = " + Talla);
-        System.out.println("Sexo = " + Sexo);
-        System.out.println("Precio = " + Precio);
-        System.out.println("Marca = " + Marca);
-        System.out.println("Proveedor = " + Proveedor);
-        System.out.println("CodigoProd = " + CodigoProd);
-        System.out.println("Cantidad = " + Cantidad);
-        
+    public String MostrarInfo(){
+        String info=
+        "NombreProd = " + NombreProd+"\n"+
+        "Categoria = " + Categoria+"\n"+
+        "Talla = " + Talla+"\n"+
+        "Sexo = " + Sexo+"\n"+
+        "Precio = " + Precio+"\n"+
+        "Marca = " + Marca+"\n"+
+        "Proveedor = " + Proveedor+"\n"+
+        "CodigoProd = " + CodigoProd+"\n"+
+        "Cantidad = " + Cantidad;
+        return info;
     }
 }

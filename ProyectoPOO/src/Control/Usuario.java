@@ -1,5 +1,6 @@
  package Control;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 public abstract class Usuario {
     public String Usuario;
     public String Nombres, APaterno, AMaterno;
@@ -11,7 +12,7 @@ public abstract class Usuario {
         this.Contrasenia=contrasenia;
         this.Usuario=usuario;
     }
-    static public Items Consultar(Items[] inventario){
+    public Items Consultar(Items[] inventario){
         Items item=new Items();
         Scanner sc=new Scanner(System.in);
         byte encontrado=0;
@@ -37,6 +38,50 @@ public abstract class Usuario {
         }
         return item;
     }
+    
+    //SOBRECARGA DE METOSOS
+    public Items Consultar(Items[] inventario,String nombre){
+        Items item=new Items();
+        byte encontrado=0;
+        if(inventario[0]!=null){
+                for (int i = 0; i < 50; i++) {
+                if(inventario[i]!=null && nombre.equals(inventario[i].NombreProd)){
+                    System.out.println("ENCONTRADO");
+                    inventario[i].MostrarInfo();
+                    encontrado++;
+                    item=inventario[i];
+                    break;
+                }
+            }
+            if(encontrado==0){
+                item=null;
+            }
+        }else{
+            item=null;
+        }
+        return item;
+    } 
+    
+    public Items Consultar(Items[] inventario,int codigo){
+        Items item=new Items();
+        byte encontrado=0;
+        if(inventario[0]!=null){
+                for (int i = 0; i < 50; i++) {
+                if(inventario[i]!=null && codigo==Integer.parseInt(inventario[i].CodigoProd)){
+                    encontrado++;
+                    item=inventario[i];
+                    break;
+                }
+            }
+            if(encontrado==0){
+                item=null;
+            }
+        }else{
+            item=null;
+        }
+        return item;
+    }
+    
     public Items Agregar(){
         return null;
     }
