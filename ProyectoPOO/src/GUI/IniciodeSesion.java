@@ -60,12 +60,6 @@ public class IniciodeSesion extends JFrame /*implements ActionListener*/{
         txtPass.setBounds(60, 130, 250, 35);
         loginPanel.add(txtPass);
 
-        JCheckBox chkRemember = new JCheckBox("Recuerdame");
-        chkRemember.setForeground(AzulB);
-        chkRemember.setBounds(60, 180, 120, 30);
-        chkRemember.setBackground(LionB);
-        loginPanel.add(chkRemember);
-
         btnLogin = new JButton("Iniciar Sesion");
         btnLogin.setBounds(110, 230, 150, 40);
         btnLogin.setBackground(AzulB);
@@ -87,18 +81,18 @@ public class IniciodeSesion extends JFrame /*implements ActionListener*/{
         innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.Y_AXIS));
         innerPanel.setBackground(AzulB);
         
-        JLabel lblWelcome = new JLabel("Bienvenido!");
+        JLabel lblWelcome = new JLabel("Bienvenido Usuario!");
         lblWelcome.setForeground(LionB);
         lblWelcome.setFont(new Font("Arial", Font.BOLD, 22));
         lblWelcome.setBackground(AzulB);
         lblWelcome.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel lblText = new JLabel("Ingresa tus datos para comenzar");
+        JLabel lblText = new JLabel("Da clic para comenzar");
         lblText.setForeground(LionB);
         lblText.setFont(new Font("Arial", Font.PLAIN, 14));
         lblText.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        btnIgnore = new JButton("INICIAR LUEGO");
+        btnIgnore = new JButton("INICIAR ");
         btnIgnore.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnIgnore.setBackground(LionB);
         

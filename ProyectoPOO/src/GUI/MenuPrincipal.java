@@ -6,8 +6,6 @@ import javax.swing.border.EmptyBorder;
 public class MenuPrincipal extends JFrame {
     Color AzulB = new Color(64, 79, 104);
     Color LionB = new Color(252, 243, 227);
-    Color Blanco = new Color(242, 242, 242);
-    Color Gris = new Color(196, 196, 196);
     Color AzulItems = new Color(122, 133, 157);
     public JButton Anadir;
     public JButton Buscar;
@@ -18,7 +16,7 @@ public class MenuPrincipal extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1920, 1080);
         setResizable(true);
-        getContentPane().setBackground(Blanco); // Aplica el color de fondo
+        getContentPane().setBackground(LionB); // Aplica el color de fondo
     }
 
     public void Contenedor(int x) {
@@ -36,31 +34,31 @@ public class MenuPrincipal extends JFrame {
         JButton[] itemsadmin = {itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, Anadir, Buscar, Admin};
         // Panel que contendrá los botones
         JPanel ABotones = new JPanel();
-        ABotones.setBounds(0, 5, 1920, 60);
+        ABotones.setBounds(0, 0, 1920, 60);
         ABotones.setBackground(AzulB);
         if(x == 1){//si es admin agrega los botones respectivos
             ABotones.setLayout(new GridLayout(1, 7));
             for (JButton item : itemsadmin) {
-                item.setBackground(LionB);
-                item.setForeground(AzulB);
+                item.setBackground(AzulB);
+                item.setForeground(LionB);
                 ABotones.add(item);
             }
             add(ABotones);
         } else {//si el user es comun solo agrega los principales
             ABotones.setLayout(new GridLayout(1, 5));
             for (JButton item : itemsuuser) {
-                item.setBackground(LionB);
-                item.setForeground(AzulB);
+                item.setBackground(AzulB);
+                item.setForeground(LionB);
                 ABotones.add(item);
             }
             add(ABotones);
         } 
 
         JPanel PanelP = new JPanel();
-        PanelP.setBounds(0, 70, 1920, 880);
-        PanelP.setBackground(Gris);
+        PanelP.setBounds(0, 90, 1920, 880);
+        PanelP.setBackground(LionB);
         PanelP.setLayout(new GridLayout(2, 5, 20, 20)); // 20px de separación entre items
-        PanelP.setBorder(new EmptyBorder(20, 20, 20, 20)); // <-- 20px de separación interna en todos los lados
+        PanelP.setBorder(new EmptyBorder(20, 20, 20, 20)); // 20px de separación interna en todos los lados
         add(PanelP);
         int ejex = 20, ejey = 90, contador = 0;
         JPanel Item1 = new JPanel();
