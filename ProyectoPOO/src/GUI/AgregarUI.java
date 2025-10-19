@@ -15,6 +15,7 @@ public class AgregarUI extends JFrame{
     public JTextField campoProveedor;
     public JTextField campoCodigo;
     public JTextField campoCaracteristicas;
+    public JTextField campoCantidad; 
     public JComboBox<String> comboCategorias;
     public JComboBox<String> comboTalla;
     public JComboBox<String> comboSexo;
@@ -29,7 +30,7 @@ public class AgregarUI extends JFrame{
         setTitle("Agregar");
         setLayout(new BorderLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(520, 820);
+        setSize(520, 800); 
         setResizable(true);
         setLocationRelativeTo(null);
         setLayout(null);
@@ -155,6 +156,17 @@ public class AgregarUI extends JFrame{
         campoCaracteristicas = new JTextField();
         campoCaracteristicas.setBounds(xCampo, posY, anchoCampo, alto);
         add(campoCaracteristicas);
+
+        // Cantidad (nuevo)
+        posY += separacion;
+        JLabel etiquetaCantidad = new JLabel("Cantidad:");
+        etiquetaCantidad.setForeground(AzulB);
+        etiquetaCantidad.setFont(new Font("Arial", Font.BOLD, 16));
+        etiquetaCantidad.setBounds(xEtiqueta, posY, anchoEtiqueta, alto);
+        add(etiquetaCantidad);
+        campoCantidad = new JTextField();
+        campoCantidad.setBounds(xCampo, posY, anchoCampo, alto);
+        add(campoCantidad);
 
         // Imagen: botón para seleccionar archivo + label con nombre + preview
         posY += separacion;
