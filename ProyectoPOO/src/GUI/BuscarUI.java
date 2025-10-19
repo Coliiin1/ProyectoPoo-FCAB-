@@ -13,8 +13,9 @@ public class BuscarUI extends JFrame{
     public JButton btnBuscar;
     public JTextField txtnombre;
     public JTextField txtcodigo;
-    public JLabel txtdescripcion;
-    
+    public JTextArea txtdescripcion;
+    public JPanel Imagen;
+            
     private JLabel nombre;
     private JLabel codigo;
     Color AzulB = new Color(1, 61, 90);
@@ -53,11 +54,17 @@ public class BuscarUI extends JFrame{
         btnBuscar.setBackground(AzulB);
         btnBuscar.setForeground(LionB);
         add(btnBuscar);
-       
-        txtdescripcion=new JLabel("");
+        
+        //Para mostrar la Imagen
+        ImageIcon Img = new ImageIcon("C:\Users\danie\Downloads\zapato.png");
+        Imagen = new JPanel();
+        
+        txtdescripcion=new JTextArea();
         txtdescripcion.setBounds(10,100,480,200);
         txtdescripcion.setForeground(AzulB);
         txtdescripcion.setFont(new Font("Arial", Font.BOLD, 16));
+        txtdescripcion.setBackground(LionB);
+        txtdescripcion.setEditable(false);
         add(txtdescripcion);
     }
     public static void main(String args[]){
