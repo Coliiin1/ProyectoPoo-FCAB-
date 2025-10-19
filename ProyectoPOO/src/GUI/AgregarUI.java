@@ -23,6 +23,7 @@ public class AgregarUI extends JFrame{
     private JLabel etiquetaVistaPrevia;
     public String rutaImagenSeleccionada = null;
 
+    public JButton btnSeleccionarArchivo;
     Color AzulB = new Color(1, 61, 90);
     Color LionB = new Color(252, 243, 227);
 
@@ -176,10 +177,11 @@ public class AgregarUI extends JFrame{
         etiquetaImagen.setBounds(xEtiqueta, posY, anchoEtiqueta, alto);
         add(etiquetaImagen);
 
-        JButton btnSeleccionarArchivo = new JButton("Seleccionar archivo...");
+        btnSeleccionarArchivo = new JButton("Seleccionar archivo...");
         btnSeleccionarArchivo.setBorder(UIManager.getBorder("Button.border"));
         btnSeleccionarArchivo.setBounds(xCampo, posY, 160, alto);
         add(btnSeleccionarArchivo);
+        
         etiquetaRutaImagen = new JLabel("Ninguno");
         etiquetaRutaImagen.setForeground(AzulB);
         etiquetaRutaImagen.setFont(new Font("Arial", Font.BOLD, 16));
