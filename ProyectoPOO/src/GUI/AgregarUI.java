@@ -22,6 +22,7 @@ public class AgregarUI extends JFrame{
     private JLabel etiquetaRutaImagen;
     private JLabel etiquetaVistaPrevia;
     public String rutaImagenSeleccionada = null;
+    public int posY;
 
     public JButton btnSeleccionarArchivo;
     Color AzulB = new Color(1, 61, 90);
@@ -44,7 +45,7 @@ public class AgregarUI extends JFrame{
         int anchoEtiqueta = 170;
         int anchoCampo = 260;
         int alto = 28;
-        int posY = 10;
+        posY = 10;
         int separacion = 48;
 
         // Nombre
@@ -60,6 +61,7 @@ public class AgregarUI extends JFrame{
         String[] categoriasArray = {"Seleccione", "Zapateria", "Ropa", "Productos de Belleza", "Productos del Hogar", "Accesorios"};
 
         // Categoria
+
         posY += separacion;
         JLabel etiquetaCategoria = new JLabel("Categoria:");
         etiquetaCategoria.setForeground(AzulB);
@@ -74,6 +76,7 @@ public class AgregarUI extends JFrame{
         add(comboCategorias);
 
         // Talla
+        
         posY += separacion;
         JLabel etiquetaTalla = new JLabel("Talla:");
         etiquetaTalla.setForeground(AzulB);
@@ -82,11 +85,32 @@ public class AgregarUI extends JFrame{
         add(etiquetaTalla);
         comboTalla = new JComboBox<>();
         String[] tallas = {"Seleccione talla", "XS", "S", "M", "L", "XL"};
-        for (String talla : tallas) {
-            comboTalla.addItem(talla);
-        }
         comboTalla.setBounds(xCampo, posY, anchoCampo, alto);
         add(comboTalla);
+        
+        comboCategorias.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+            String[] tallas2 = {"Seleccione talla", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27"};
+            String[] ctallas2;
+            if (comboCategorias.getSelectedItem().equals("Zapateria") ){
+                //comboCategorias.setSelectedItem(tallas2);
+                comboTalla.removeAllItems();
+                    for (String talla : tallas2) {
+                        comboTalla.addItem(talla);
+                    } 
+                add(comboTalla);
+                } else if(comboCategorias.getSelectedItem().equals("Ropa")){
+                    comboTalla.removeAllItems();
+                    for (String talla : tallas) {
+                        comboTalla.addItem(talla);
+                    }
+                } else {
+                    comboTalla.removeAllItems();
+                }
+            
+            add(comboTalla);}
+        });
+
 
         // Sexo
         posY += separacion;
