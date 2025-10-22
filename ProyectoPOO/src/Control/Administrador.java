@@ -41,7 +41,7 @@ public class Administrador extends Usuario{
                         inventario[j] = inventario[j+i];
                         System.out.println("j = " + j);
                     }
-                    inventario[fin-1]=null;
+                    inventario[fin]=null;
                 break;
                 }
             }

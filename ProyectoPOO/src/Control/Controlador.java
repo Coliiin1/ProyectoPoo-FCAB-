@@ -152,11 +152,6 @@ public class Controlador implements ActionListener{
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
                                 }else{
                                     vc=validar(calzado,vc,"Zapateria",user,agreg);
-                                    /*calzado[vc]=user.Agregar(agreg);
-                                    calzado[vc].Categoria="Zapateria";
-                                    calzado[vc].MostrarInfo();
-                                    vc++;
-                                    JOptionPane.showMessageDialog(agreg, "AGREGADO EXITOSAMENTE");*/
                                 }
                                 break;
                             
@@ -164,11 +159,7 @@ public class Controlador implements ActionListener{
                                 if(vr>=50){
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
                                 }else{
-                                    ropa[vr]=user.Agregar(agreg);
-                                    ropa[vr].Categoria="Ropa";
-                                    ropa[vr].MostrarInfo();
-                                    vr++;
-                                    JOptionPane.showMessageDialog(agreg, "AGREGADO EXITOSAMENTE");
+                                    vr=validar(ropa,vr,"Ropa",user,agreg);
                                 }
                                 break;
                             
@@ -176,11 +167,7 @@ public class Controlador implements ActionListener{
                                 if(vpb>=50){
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
                                 }else{
-                                    ropa[vpb]=user.Agregar(agreg);
-                                    ropa[vpb].Categoria="Ropa";
-                                    ropa[vpb].MostrarInfo();
-                                    vpb++;
-                                    JOptionPane.showMessageDialog(agreg, "AGREGADO EXITOSAMENTE");
+                                    vpb = validar(productosB, vpb, "Prodcutos de Belleza", user, agreg);
                                 }
                                 break;
                                 
@@ -188,11 +175,7 @@ public class Controlador implements ActionListener{
                                 if(vph>=50){
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
                                 }else{
-                                    ropa[vph]=user.Agregar(agreg);
-                                    ropa[vph].Categoria="Ropa";
-                                    ropa[vph].MostrarInfo();
-                                    vph++;
-                                    JOptionPane.showMessageDialog(agreg, "AGREGADO EXITOSAMENTE");
+                                    vph = validar(productosH, vph, "Productos del Hogar", user, agreg);
                                 }
                                 break;
                                 
@@ -200,11 +183,7 @@ public class Controlador implements ActionListener{
                                 if(vac>=50){
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
                                 }else{
-                                    ropa[vac]=user.Agregar(agreg);
-                                    ropa[vac].Categoria="Ropa";
-                                    ropa[vac].MostrarInfo();
-                                    vac++;
-                                    JOptionPane.showMessageDialog(agreg, "AGREGADO EXITOSAMENTE");
+                                    vac = validar(accesorios, vac, "Accesorios", user, agreg);
                                 }
                                 break;
                                 
