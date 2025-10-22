@@ -1,5 +1,6 @@
 package Control;
 import GUI.AgregarUI;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,28 +20,34 @@ public class Administrador extends Usuario{
         articulo.Precio=Float.parseFloat(agreg.campoPrecio.getText());
         articulo.Talla=talla;
         articulo.Sexo=sex;
+        articulo.Precio=Float.parseFloat(agreg.campoPrecio.getText());
+        articulo.Marca=agreg.campoMarca.getText();
+        articulo.Proveedor=agreg.campoProveedor.getText();
+        articulo.Cantidad=Short.parseShort(agreg.campoCantidad.getText());
         return articulo;
     }
     public Items Modificar(Items item){
         return item;
     }
-    public void Eliminar(Items []inventario){
+    public Items[] Eliminar(Items []inventario,int codigo,byte fin){
         Items encontrado=new Items();
-        Items apu=new Items();
-        encontrado=Consultar(inventario);
+        encontrado=Consultar(inventario,codigo);
         if(encontrado==null){
-            System.out.println("No se pudo eliminar");
+            JOptionPane.showMessageDialog(null, "NO SE PUDO ELIMINAR");
         } else {
-            for (int i = 0; i < inventario.length; i++) {
-                if (inventario[i].equals(encontrado)){
-                    for (int j = i; j < inventario.length-1; j++) {
-                        apu = inventario[j+i];
-                        inventario[j] = apu;
+            for (int i = 0; i < fin; i++) {
+                if (inventario[i].CodigoProd==encontrado.CodigoProd){
+                    for (int j = i; j < fin-1; j++) {
+                        inventario[j] = inventario[j+i];
+                        System.out.println("j = " + j);
                     }
+                    inventario[fin-1]=null;
                 break;
                 }
             }
-            System.out.println("Se borro correctamente :)");
+            JOptionPane.showMessageDialog(null, "ELIMINADO EXITOSAMENTE");
         }
+        return inventario;
     }
+    
 }

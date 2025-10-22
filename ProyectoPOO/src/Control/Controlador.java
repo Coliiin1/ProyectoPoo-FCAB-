@@ -10,10 +10,12 @@ import javax.swing.JOptionPane;
 public class Controlador implements ActionListener{
     IniciodeSesion inicio;
     Administrador user=new Administrador("ADMIN","12345");
+    
     AgregarUI agreg;
     MenuPrincipal men;
     BuscarUI bus;
     controlInterfaz interfaz;
+    EliminarUI elim;
     
     Items itemtemp;
     
@@ -23,6 +25,8 @@ public class Controlador implements ActionListener{
     Items[] productosH;
     Items[] accesorios;
     
+    
+    Items[][] matriz={ropa,calzado,productosH,productosB,accesorios};
     byte vr;
     byte vc;
     byte vpb;
@@ -53,7 +57,6 @@ public class Controlador implements ActionListener{
     }
     public static void main(String args[]){
         Controlador control=new Controlador();
-        
         System.out.println("\nAsh nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk agh burzum-ishi krimpatul");
     }
 
@@ -61,10 +64,8 @@ public class Controlador implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         Object evento= e.getSource();
         
-        if (evento == inicio.borrar){
+        if (evento == inicio.borrar||evento==inicio.borrar2){
             inicio.txtUser.setText("");
-        }
-        if (evento == inicio.borrar2){
             inicio.txtPass.setText("");
         }
         if (evento == inicio.btnLogin){
@@ -74,13 +75,22 @@ public class Controlador implements ActionListener{
                 inicio.hide();
                 this.men.Anadir.addActionListener(this);
                 this.men.Buscar.addActionListener(this);
+                this.men.Eliminar.addActionListener(this);
                 agreg=new AgregarUI();
                 agreg.contenedor();
+                
                 bus=new BuscarUI();
                 bus.contenedor();
+                
+                elim=new EliminarUI();
+                elim.contenedor();
+                
                 agreg.btnAgregar.addActionListener(interfaz);
                 agreg.comboCategorias.addActionListener(interfaz);
                 bus.btnBuscar.addActionListener(interfaz);
+                elim.btnbuscar.addActionListener(interfaz);
+                elim.btneliminar.addActionListener(interfaz);
+                
             }else{
                 inicio.error.setText("ERROR AL INICIAR SESION");
             }
@@ -95,9 +105,24 @@ public class Controlador implements ActionListener{
         if (evento==men.Buscar) {
             bus.setVisible(true); 
         }
+        if (evento==men.Eliminar){
+            elim.setVisible(true);
+            System.out.println("HOLA");
+        }
+    }
+
+    public static byte validar(Items [] arreglo, byte contador, String cat, Administrador admin, AgregarUI agreg){
+        arreglo[contador]=admin.Agregar(agreg);
+        arreglo[contador].Categoria=cat;
+        contador++;
+        JOptionPane.showMessageDialog(agreg, "AGREGADO EXITOSAMENTE");
+        return contador;
     }
     private class controlInterfaz implements ActionListener{
         Items[][] matriz={ropa,calzado,productosH,productosB,accesorios};
+
+        String catego;
+        
         @Override
         public void actionPerformed(ActionEvent e){
             Object evento=e.getSource();
@@ -126,11 +151,12 @@ public class Controlador implements ActionListener{
                                 if(vc>=50){
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
                                 }else{
-                                    calzado[vc]=user.Agregar(agreg);
+                                    vc=validar(calzado,vc,"Zapateria",user,agreg);
+                                    /*calzado[vc]=user.Agregar(agreg);
                                     calzado[vc].Categoria="Zapateria";
                                     calzado[vc].MostrarInfo();
                                     vc++;
-                                    JOptionPane.showMessageDialog(agreg, "AGREGADO EXITOSAMENTE");
+                                    JOptionPane.showMessageDialog(agreg, "AGREGADO EXITOSAMENTE");*/
                                 }
                                 break;
                             
@@ -184,6 +210,13 @@ public class Controlador implements ActionListener{
                                 
                             default: System.out.println("thats great");
                         }
+                        agreg.txtNombre.setText("");
+                        agreg.campoPrecio.setText("");
+                        agreg.campoMarca.setText("");
+                        agreg.campoProveedor.setText("");
+                        agreg.campoCodigo.setText("");
+                        agreg.campoCaracteristicas.setText("");
+                        agreg.campoCantidad.setText("");
                         System.out.println("ok");
                     }
                 }
@@ -214,7 +247,57 @@ public class Controlador implements ActionListener{
                     }
                 }
             }
-    
+            //si evento es igual a liminar
+            if (evento==elim.btnbuscar) {
+                if (elim.txtcodigo.getText().equals("")){
+                    JOptionPane.showMessageDialog(elim, "INGRESE UN CAMPO AL MENOS");
+                }else{
+                    itemtemp=null;
+                    for (int i = 0; i < 5; i++) {
+                        itemtemp=user.Consultar(matriz[i], Integer.parseInt(elim.txtcodigo.getText()));
+                        if (itemtemp!=null) {
+                            elim.txtdescripcion.setText(itemtemp.MostrarInfo());
+                            elim.add(elim.btneliminar);
+                            elim.repaint();
+                            catego=itemtemp.Categoria;
+                            break;
+                        }
+                    }
+                    if (itemtemp==null) {
+                        JOptionPane.showMessageDialog(elim, "NO SE ENCONTRO EL ITEM");
+                    }
+                }
+            }
+            if (evento==elim.btneliminar) {
+                int x=Integer.parseInt(elim.txtcodigo.getText());
+                switch(catego){
+                    case "Zapateria":
+                        calzado=user.Eliminar(calzado,x,vc);
+                        vc--;
+                        break;
+
+                    case "Ropa":
+                        ropa=user.Eliminar(ropa,x,vr);
+                        vr--;
+                        break;
+
+                    case "Productos de Belleza":
+                        productosB=user.Eliminar(productosB,x,vpb);
+                        vpb--;
+                        break;
+
+                    case "Productos del Hogar":
+                        productosH=user.Eliminar(productosH,x,vph);
+                        vph--;
+                        break;
+
+                    case "Accesorios":
+                        accesorios=user.Eliminar(accesorios,x,vac);
+                        vac--;
+                        break;
+                    default: System.out.println("thats great");
+                }
+            }
         }
     }
 }
