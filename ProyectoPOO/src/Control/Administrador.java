@@ -37,7 +37,7 @@ public class Administrador extends Usuario{
         } else {
             for (int i = 0; i < fin; i++) {
                 if (inventario[i].CodigoProd==encontrado.CodigoProd){
-                    for (int j = i; j < fin-1; j++) {
+                    for (int j = i; j < inventario.length-1; j++) {
                         inventario[j] = inventario[j+i];
                         System.out.println("j = " + j);
                     }
