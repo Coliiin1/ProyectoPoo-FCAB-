@@ -26,7 +26,7 @@ public class Controlador implements ActionListener{
     Items[] accesorios;
     
     
-    Items[][] matriz={ropa,calzado,productosH,productosB,accesorios};
+
     byte vr;
     byte vc;
     byte vpb;
@@ -120,7 +120,7 @@ public class Controlador implements ActionListener{
     }
     private class controlInterfaz implements ActionListener{
         Items[][] matriz={ropa,calzado,productosH,productosB,accesorios};
-
+        String vacio="";
         String catego;
         
         @Override
@@ -189,19 +189,20 @@ public class Controlador implements ActionListener{
                                 
                             default: System.out.println("thats great");
                         }
-                        agreg.txtNombre.setText("");
-                        agreg.campoPrecio.setText("");
-                        agreg.campoMarca.setText("");
-                        agreg.campoProveedor.setText("");
-                        agreg.campoCodigo.setText("");
-                        agreg.campoCaracteristicas.setText("");
-                        agreg.campoCantidad.setText("");
+//                        agreg.txtNombre.setText("");
+//                        agreg.campoPrecio.setText("");
+//                        agreg.campoMarca.setText("");
+//                        agreg.campoProveedor.setText("");
+//                        agreg.campoCodigo.setText("");
+//                        agreg.campoCaracteristicas.setText("");
+//                        agreg.campoCantidad.setText("");
                         System.out.println("ok");
                     }
                 }
             }
             //acciones del evento buscar
             if (evento==bus.btnBuscar) {
+                bus.txtdescripcion.setText(vacio);
                 if (bus.txtnombre.getText().equals("")&&bus.txtnombre.getText().equals("")) {
                     JOptionPane.showMessageDialog(bus, "INGTRESE UN CAMPO AL MENOS");
                 }else{
@@ -228,6 +229,7 @@ public class Controlador implements ActionListener{
             }
             //si evento es igual a liminar
             if (evento==elim.btnbuscar) {
+                elim.txtdescripcion.setText(vacio);
                 if (elim.txtcodigo.getText().equals("")){
                     JOptionPane.showMessageDialog(elim, "INGRESE UN CAMPO AL MENOS");
                 }else{
@@ -251,27 +253,28 @@ public class Controlador implements ActionListener{
                 int x=Integer.parseInt(elim.txtcodigo.getText());
                 switch(catego){
                     case "Zapateria":
-                        calzado=user.Eliminar(calzado,x,vc);
-                        vc--;
+                        if(user.Eliminar(calzado,x,vc)){
+                            vc--;
+                        }
                         break;
 
                     case "Ropa":
-                        ropa=user.Eliminar(ropa,x,vr);
+                        //ropa=user.Eliminar(ropa,x,vr);
                         vr--;
                         break;
 
                     case "Productos de Belleza":
-                        productosB=user.Eliminar(productosB,x,vpb);
+                        //productosB=user.Eliminar(productosB,x,vpb);
                         vpb--;
                         break;
 
                     case "Productos del Hogar":
-                        productosH=user.Eliminar(productosH,x,vph);
+                        //productosH=user.Eliminar(productosH,x,vph);
                         vph--;
                         break;
 
                     case "Accesorios":
-                        accesorios=user.Eliminar(accesorios,x,vac);
+                        //accesorios=user.Eliminar(accesorios,x,vac);
                         vac--;
                         break;
                     default: System.out.println("thats great");

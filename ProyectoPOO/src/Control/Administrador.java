@@ -29,25 +29,26 @@ public class Administrador extends Usuario{
     public Items Modificar(Items item){
         return item;
     }
-    public Items[] Eliminar(Items []inventario,int codigo,byte fin){
+    public boolean Eliminar(Items []inventario,int codigo,byte fin){
         Items encontrado=new Items();
+        byte temp;
+        boolean eliminado=false;
         encontrado=Consultar(inventario,codigo);
         if(encontrado==null){
             JOptionPane.showMessageDialog(null, "NO SE PUDO ELIMINAR");
         } else {
-            for (int i = 0; i < fin; i++) {
-                if (inventario[i].CodigoProd==encontrado.CodigoProd){
-                    for (int j = i; j < inventario.length-1; j++) {
-                        inventario[j] = inventario[j+i];
-                        System.out.println("j = " + j);
+            for (byte i = 0; i < fin; i++) {
+                if (inventario[i].equals(encontrado)){
+                    for (int k = 0; k < inventario.length-1; k++) {
+                        inventario[k]=inventario[k+1];
                     }
                     inventario[fin]=null;
-                break;
+                    eliminado=true;
+                    JOptionPane.showMessageDialog(null, "ELIMINADO EXITOSAMENTE");
+                    break;
                 }
             }
-            JOptionPane.showMessageDialog(null, "ELIMINADO EXITOSAMENTE");
         }
-        return inventario;
+        return eliminado;
     }
-    
 }
