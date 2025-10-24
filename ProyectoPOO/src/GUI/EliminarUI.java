@@ -15,9 +15,11 @@ public class EliminarUI extends JFrame{
     public JComboBox box;
     
     private JLabel labelcodigo;
+    private JLabel labelbcodigo;
     public JTextArea txtdescripcion;
     
-    Color rojo=new Color(205,50,50);
+    Color rojo=new Color(114,47,55);
+    Color RWhite = new Color(239, 223, 187);
     public EliminarUI(){
         setTitle("Eliminar Producto");
         setLayout(null);
@@ -25,32 +27,45 @@ public class EliminarUI extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(true);
         setLocationRelativeTo(null);
-        getContentPane().setBackground(rojo);
+        getContentPane().setBackground(RWhite);
     }
     public void contenedor(){
-        labelcodigo=new JLabel("CODIGO:");
-        labelcodigo.setBounds(20, 20, 100, 20);
+        labelcodigo=new JLabel("INGRESAR CODIGO:");
+        labelcodigo.setForeground(rojo);
+        labelcodigo.setBounds(20, 20, 150, 20);
         add(labelcodigo);
         
         txtcodigo=new JTextField("");
-        txtcodigo.setBounds(140, 20, 100, 20);
+        txtcodigo.setBounds(160, 20, 100, 20);
         add(txtcodigo);
         
         txtdescripcion = new JTextArea();
         txtdescripcion.setBounds(150, 310, 200, 200);
+        txtdescripcion.setBackground(RWhite);
+        txtdescripcion.setForeground(rojo);
         txtdescripcion.setFont(new Font("Arial", Font.BOLD, 16));
         txtdescripcion.setEditable(false);
         add(txtdescripcion);
         
         btnbuscar=new JButton("Buscar");
-        btnbuscar.setBounds(260, 20, 100, 20);
+        btnbuscar.setBounds(300, 20, 100, 20);
+        btnbuscar.setBackground(rojo);
+        btnbuscar.setForeground(RWhite);
         add(btnbuscar);
         
+        
+        labelbcodigo=new JLabel("CATALOGO DE CODIGOS");
+        labelbcodigo.setForeground(rojo);
+        labelbcodigo.setBounds(20, 100, 150, 20);
+        add(labelbcodigo);
+        
         box=new JComboBox();
-        box.setBounds(110, 100, 100, 20);
+        box.setBounds(160, 100, 100, 20);
         add(box); 
         
         btneliminar=new JButton("Eliminar");
+        btneliminar.setBackground(rojo);
+        btneliminar.setForeground(RWhite);
         btneliminar.setBounds(110, 700, 300, 20);
         
     }

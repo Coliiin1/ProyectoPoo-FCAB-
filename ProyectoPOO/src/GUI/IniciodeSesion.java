@@ -8,6 +8,7 @@ import java.awt.event.*;
 public class IniciodeSesion extends JFrame /*implements ActionListener*/{
     Color AzulB = new Color(1, 61, 90);
     Color LionB = new Color(252, 243, 227);
+    Color Azulbr = new Color(83, 104, 120);
     public JButton btnLogin;
     public JButton btnSignup;
     public JButton btnIgnore;
@@ -46,16 +47,18 @@ public class IniciodeSesion extends JFrame /*implements ActionListener*/{
         txtUser.setBounds(60, 80, 250, 35);
         loginPanel.add(txtUser);
 
-        borrar = new JButton("x");
-        borrar.setBounds(320, 80, 20, 35);
+        borrar = new JButton("Limpiar Campos");
+        borrar.setBounds(60, 180, 130, 20);
+        borrar.setBackground(Azulbr);
+        borrar.setForeground(LionB);
         loginPanel.add(borrar);
         //borrar.addActionListener(this);
-        
+        /*
         borrar2 = new JButton("x");
         borrar2.setBounds(320, 130, 20, 35);
         loginPanel.add(borrar2);
         //borrar2.addActionListener(this);
-                
+        */        
         txtPass = new JTextField("Ingresa la Contraseña");
         txtPass.setBounds(60, 130, 250, 35);
         loginPanel.add(txtPass);
