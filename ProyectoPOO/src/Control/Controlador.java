@@ -27,11 +27,11 @@ public class Controlador implements ActionListener{
     
     
 
-    byte vr;
-    byte vc;
-    byte vpb;
-    byte vph;
-    byte vac;
+    int vr;
+    int vc;
+    int vpb;
+    int vph;
+    int vac;
     public Controlador(){
         ropa=new Items[50];
         calzado=new Items[50];
@@ -107,11 +107,10 @@ public class Controlador implements ActionListener{
         }
         if (evento==men.Eliminar){
             elim.setVisible(true);
-            System.out.println("HOLA");
         }
     }
 
-    public static byte validar(Items [] arreglo, byte contador, String cat, Administrador admin, AgregarUI agreg){
+    public static int validar(Items [] arreglo, int contador, String cat, Administrador admin, AgregarUI agreg){
         arreglo[contador]=admin.Agregar(agreg);
         arreglo[contador].Categoria=cat;
         contador++;
@@ -229,7 +228,16 @@ public class Controlador implements ActionListener{
             }
             //si evento es igual a liminar
             if (evento==elim.btnbuscar) {
+                String code;
                 elim.txtdescripcion.setText(vacio);
+                for (int i = 0; i < 5; i++) {
+                    for (int j = 0; j < 50; j++) {
+                        if(matriz[i][j]!=null){
+                            code=matriz[i][j].CodigoProd;
+                            elim.box.addItem(code);
+                        }
+                    }
+                }
                 if (elim.txtcodigo.getText().equals("")){
                     JOptionPane.showMessageDialog(elim, "INGRESE UN CAMPO AL MENOS");
                 }else{

@@ -12,6 +12,7 @@ public class EliminarUI extends JFrame{
     public JButton btneliminar;
     public JButton btnbuscar;
     public JTextField txtcodigo;
+    public JComboBox box;
     
     private JLabel labelcodigo;
     public JTextArea txtdescripcion;
@@ -45,6 +46,9 @@ public class EliminarUI extends JFrame{
         btnbuscar.setBounds(260, 20, 100, 20);
         add(btnbuscar);
         
+        box=new JComboBox();
+        box.setBounds(110, 100, 100, 20);
+        add(box); 
         
         btneliminar=new JButton("Eliminar");
         btneliminar.setBounds(110, 700, 300, 20);
