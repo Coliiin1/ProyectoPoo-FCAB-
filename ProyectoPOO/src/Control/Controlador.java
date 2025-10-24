@@ -230,6 +230,7 @@ public class Controlador implements ActionListener{
             if (evento==elim.btnbuscar) {
                 String code;
                 elim.txtdescripcion.setText(vacio);
+                elim.box.removeAllItems();
                 for (int i = 0; i < 5; i++) {
                     for (int j = 0; j < 50; j++) {
                         if(matriz[i][j]!=null){
