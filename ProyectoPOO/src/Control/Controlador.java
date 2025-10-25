@@ -18,6 +18,7 @@ public class Controlador implements ActionListener{
     EliminarUI elim;
     
     Items itemtemp;
+    Items itemtemp1;
     
     Items[] ropa;
     Items[] calzado;
@@ -51,7 +52,6 @@ public class Controlador implements ActionListener{
         men=new MenuPrincipal();
         this.inicio.btnLogin.addActionListener(this);
         this.inicio.borrar.addActionListener(this);
-        this.inicio.borrar2.addActionListener(this);
         this.inicio.btnIgnore.addActionListener(this);
         interfaz=new controlInterfaz();
     }
@@ -64,7 +64,7 @@ public class Controlador implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         Object evento= e.getSource();
         
-        if (evento == inicio.borrar||evento==inicio.borrar2){
+        if (evento == inicio.borrar){
             inicio.txtUser.setText("");
             inicio.txtPass.setText("");
         }
@@ -135,12 +135,13 @@ public class Controlador implements ActionListener{
                 }else {
                     for (int i = 0; i < 5; i++) {
                         itemtemp=user.Consultar(matriz[i], agreg.txtNombre.getText());
-                        if (itemtemp!=null) {
-                            break;
+                        itemtemp1=user.Consultar(matriz[i], Integer.parseInt(agreg.campoCodigo.getText()));
+                        if (itemtemp!=null||itemtemp1!=null) {
+                            break; 
                         }
                     }
                     //si es que elk item a agregar ya esta dentor de alguna categoria entonces no deja agregarlo
-                    if (itemtemp!=null) {
+                    if (itemtemp!=null||itemtemp1!=null) {
                         JOptionPane.showMessageDialog(agreg, "NO PUEDES AGREGAR EL ITEM POR QUE YA UNO CON EL MISMO NOMBRE");
                     }else{
                         String cat=(String)agreg.comboCategorias.getSelectedItem();
@@ -227,8 +228,7 @@ public class Controlador implements ActionListener{
                 }
             }
             //si evento es igual a liminar
-            if (evento==elim.btnbuscar) {
-                String code;
+            String code;
                 elim.txtdescripcion.setText(vacio);
                 elim.box.removeAllItems();
                 for (int i = 0; i < 5; i++) {
@@ -239,6 +239,8 @@ public class Controlador implements ActionListener{
                         }
                     }
                 }
+            if (evento==elim.btnbuscar) {
+                
                 if (elim.txtcodigo.getText().equals("")){
                     JOptionPane.showMessageDialog(elim, "INGRESE UN CAMPO AL MENOS");
                 }else{

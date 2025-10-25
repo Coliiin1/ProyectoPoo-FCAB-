@@ -14,7 +14,6 @@ public class IniciodeSesion extends JFrame /*implements ActionListener*/{
     public JButton btnIgnore;
     
     public JButton borrar;
-    public JButton borrar2;
     
     public JTextField txtUser;
     public JTextField txtPass;
