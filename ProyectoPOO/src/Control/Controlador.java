@@ -16,6 +16,7 @@ public class Controlador implements ActionListener{
     BuscarUI bus;
     controlInterfaz interfaz;
     EliminarUI elim;
+    ModificarUI modi;
     
     Items itemtemp;
     Items itemtemp1;
@@ -85,6 +86,16 @@ public class Controlador implements ActionListener{
                 elim=new EliminarUI();
                 elim.contenedor();
                 
+                modi=new ModificarUI();
+                modi.contenedormodi();
+                modi.btnbuscar.addActionListener(new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        if (e.getSource()==modi.btnbuscar) {
+                            modi.contenedor();
+                        }
+                    }
+                });
+                
                 agreg.btnAgregar.addActionListener(interfaz);
                 agreg.comboCategorias.addActionListener(interfaz);
                 bus.btnBuscar.addActionListener(interfaz);
@@ -148,7 +159,7 @@ public class Controlador implements ActionListener{
                         switch(cat){
                             //se podria simplificar en una fncion que reciba unicamente el contador y el vector 
                             case "Zapateria":
-                                if(vc>=50){
+                                if(vc>=calzado.length){
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
                                 }else{
                                     vc=validar(calzado,vc,"Zapateria",user,agreg);
@@ -189,13 +200,6 @@ public class Controlador implements ActionListener{
                                 
                             default: System.out.println("thats great");
                         }
-//                        agreg.txtNombre.setText("");
-//                        agreg.campoPrecio.setText("");
-//                        agreg.campoMarca.setText("");
-//                        agreg.campoProveedor.setText("");
-//                        agreg.campoCodigo.setText("");
-//                        agreg.campoCaracteristicas.setText("");
-//                        agreg.campoCantidad.setText("");
                         System.out.println("ok");
                     }
                 }
@@ -232,7 +236,7 @@ public class Controlador implements ActionListener{
                 elim.txtdescripcion.setText(vacio);
                 elim.box.removeAllItems();
                 for (int i = 0; i < 5; i++) {
-                    for (int j = 0; j < 50; j++) {
+                    for (int j = 0; j < matriz[i].length; j++) {
                         if(matriz[i][j]!=null){
                             code=matriz[i][j].CodigoProd;
                             elim.box.addItem(code);
@@ -268,25 +272,27 @@ public class Controlador implements ActionListener{
                             vc--;
                         }
                         break;
-
                     case "Ropa":
-                        //ropa=user.Eliminar(ropa,x,vr);
+                        if(user.Eliminar(ropa,x,vr)){
                         vr--;
+                        }
                         break;
 
                     case "Productos de Belleza":
-                        //productosB=user.Eliminar(productosB,x,vpb);
+                        if(user.Eliminar(productosB,x,vpb)){
                         vpb--;
+                        }
                         break;
 
                     case "Productos del Hogar":
-                        //productosH=user.Eliminar(productosH,x,vph);
+                        if(user.Eliminar(productosH,x,vph)){
                         vph--;
+                        }
                         break;
-
                     case "Accesorios":
-                        //accesorios=user.Eliminar(accesorios,x,vac);
+                        if(user.Eliminar(accesorios,x,vac)){
                         vac--;
+                        }
                         break;
                     default: System.out.println("thats great");
                 }

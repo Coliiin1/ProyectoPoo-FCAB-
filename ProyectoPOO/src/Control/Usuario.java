@@ -19,7 +19,7 @@ public abstract class Usuario {
         if(inventario[0]!=null){
             System.out.println("QUE NOMBRE VAS A BUSCAR");
             String nombre=sc.nextLine();
-                for (int i = 0; i < 50; i++) {
+                for (int i = 0; i < inventario.length; i++) {
                 if(inventario[i]!=null && nombre.equals(inventario[i].NombreProd)){
                     System.out.println("ENCONTRADO");
                     inventario[i].MostrarInfo();
@@ -44,7 +44,7 @@ public abstract class Usuario {
         Items item=new Items();
         byte encontrado=0;
         if(inventario[0]!=null){
-                for (int i = 0; i < 50; i++) {
+                for (int i = 0; i < inventario.length; i++) {
                 if(inventario[i]!=null && nombre.equals(inventario[i].NombreProd)){
                     System.out.println("ENCONTRADO");
                     inventario[i].MostrarInfo();
@@ -66,7 +66,7 @@ public abstract class Usuario {
         Items item=new Items();
         byte encontrado=0;
         if(inventario[0]!=null){
-                for (int i = 0; i < 50; i++) {
+                for (int i = 0; i < inventario.length; i++) {
                 if(inventario[i]!=null && codigo==Integer.parseInt(inventario[i].CodigoProd)){
                     encontrado++;
                     item=inventario[i];

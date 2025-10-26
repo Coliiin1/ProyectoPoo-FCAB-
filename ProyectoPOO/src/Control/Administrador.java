@@ -42,12 +42,12 @@ public class Administrador extends Usuario{
                 if (inventario[i].equals(encontrado)){
                     j=i;
                     k=j+1;
-                    while(k<=fin){
+                    while(k<=inventario.length-1){
                         inventario[j]=inventario[k];
                         j++;
                         k++;
                     }
-                    inventario[fin]=null;
+                    inventario[inventario.length-1]=null;
                     eliminado=true;
                     JOptionPane.showMessageDialog(null, "ELIMINADO EXITOSAMENTE");
                     break;
