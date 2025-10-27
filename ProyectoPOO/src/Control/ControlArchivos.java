@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  * @author fabri
  */
 public class ControlArchivos {
-    public static void crearArchivo(String dir){
+    public void crearArchivo(String dir){
         PrintWriter bsalida=null;
         try {
             File arch=new File(dir);
@@ -21,7 +21,28 @@ public class ControlArchivos {
             System.getLogger(ControlArchivos.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
     }
-    public static void main(String args[]){
-        crearArchivo("src\\Archivos\\DATOS.txt");
+    
+    public void guardarDatos(String archivo, Items[][] inventario) {
+        File datos = new File(archivo);
+        try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(datos))) {
+            salida.writeObject(inventario);
+            JOptionPane.showMessageDialog(null, "SE GUARDO CORRECTAMENTE");
+        } catch (IOException e) {
+            e.printStackTrace(System.out);
+        }
+    }
+    
+    public Items[][] leerDatos(String archivo, int filas, int columnas) {
+        File datos = new File(archivo);
+        if (!datos.exists()) {
+            JOptionPane.showMessageDialog(null, "NO SE ENCONTRO EL ARCHIVO");
+            return new Items[filas][columnas];
+        }
+        try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(datos))) {
+            return (Items[][]) entrada.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace(System.out);
+            return new Items[filas][columnas];
+        }
     }
 }
