@@ -15,7 +15,6 @@ public class Controlador implements ActionListener{
     MenuPrincipal men;
     BuscarUI bus;
     controlInterfaz interfaz;
-    ManejadorArchivos man;
     EliminarUI elim;
     ModificarUI modi;
     
@@ -56,7 +55,6 @@ public class Controlador implements ActionListener{
         this.inicio.borrar.addActionListener(this);
         this.inicio.btnIgnore.addActionListener(this);
         interfaz=new controlInterfaz();
-        man=new ManejadorArchivos();
     }
     public static void main(String args[]){
         Controlador control=new Controlador();
@@ -133,20 +131,9 @@ public class Controlador implements ActionListener{
         Items[][] matriz={ropa,calzado,productosH,productosB,accesorios};
         String vacio="";
         String catego;
-        public controlInterfaz(){
-            try{
-                man.guardarDatos("src\\Archivos\\DATOS.txt", matriz);
-            }catch(NullPointerException ex){
-                JOptionPane.showMessageDialog(inicio, "NO SE HA PODIDO LEER");
-            }
-        }
         @Override
         public void actionPerformed(ActionEvent e){
             Object evento=e.getSource();
-            if (evento==men.Guardar) {
-                man.crearDatos("src\\Archivos\\DATOS.txt");
-                man.guardarDatos("src\\Archivos\\DATOS.txt", matriz);
-            }
             //detecta si es que estan llenos todos los campos de la interfaz
             if(evento==agreg.btnAgregar){
                 if("".equals(agreg.txtNombre.getText())||"".equals(agreg.campoCaracteristicas.getText())|| "".equals(agreg.campoCodigo.getText())||"".equals(agreg.campoMarca.getText())
