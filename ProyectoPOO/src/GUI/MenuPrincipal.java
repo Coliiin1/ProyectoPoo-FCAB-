@@ -11,6 +11,7 @@ public class MenuPrincipal extends JFrame {
     public JButton Buscar;
     public JButton Eliminar;
     public JButton Modificar;
+    public JButton Guardar;
     
     public MenuPrincipal() {
         setTitle("Inicio");
@@ -33,9 +34,10 @@ public class MenuPrincipal extends JFrame {
         Buscar = new JButton("Buscar");
         Eliminar=new JButton("Eliminar");
         Modificar=new JButton("Modificar");
+        Guardar=new JButton("Guardar");
         JButton Admin = new JButton("Admin");
         JButton[] itemsuuser = {itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH};
-        JButton[] itemsadmin = {itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, Anadir, Buscar, Eliminar, Modificar, Admin};
+        JButton[] itemsadmin = {itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, Anadir, Buscar, Eliminar, Modificar, Guardar};
         // Panel que contendrá los botones
         JPanel ABotones = new JPanel();
         ABotones.setBounds(0, 0, 1920, 60);

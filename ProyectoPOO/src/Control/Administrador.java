@@ -23,6 +23,7 @@ public class Administrador extends Usuario{
         articulo.Precio=Float.parseFloat(agreg.campoPrecio.getText());
         articulo.Marca=agreg.campoMarca.getText();
         articulo.Proveedor=agreg.campoProveedor.getText();
+        articulo.Caracteristicas=agreg.campoCaracteristicas.getText();
         articulo.Cantidad=Short.parseShort(agreg.campoCantidad.getText());
         return articulo;
     }

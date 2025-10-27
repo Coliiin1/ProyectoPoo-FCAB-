@@ -15,6 +15,7 @@ public class Controlador implements ActionListener{
     MenuPrincipal men;
     BuscarUI bus;
     controlInterfaz interfaz;
+    ManejadorArchivos man;
     EliminarUI elim;
     ModificarUI modi;
     
@@ -55,6 +56,7 @@ public class Controlador implements ActionListener{
         this.inicio.borrar.addActionListener(this);
         this.inicio.btnIgnore.addActionListener(this);
         interfaz=new controlInterfaz();
+        man=new ManejadorArchivos();
     }
     public static void main(String args[]){
         Controlador control=new Controlador();
@@ -77,6 +79,8 @@ public class Controlador implements ActionListener{
                 this.men.Anadir.addActionListener(this);
                 this.men.Buscar.addActionListener(this);
                 this.men.Eliminar.addActionListener(this);
+                this.men.Modificar.addActionListener(this);
+                this.men.Guardar.addActionListener(interfaz);
                 agreg=new AgregarUI();
                 agreg.contenedor();
                 
@@ -88,19 +92,13 @@ public class Controlador implements ActionListener{
                 
                 modi=new ModificarUI();
                 modi.contenedormodi();
-                modi.btnbuscar.addActionListener(new ActionListener(){
-                    public void actionPerformed(ActionEvent e){
-                        if (e.getSource()==modi.btnbuscar) {
-                            modi.contenedor();
-                        }
-                    }
-                });
                 
                 agreg.btnAgregar.addActionListener(interfaz);
                 agreg.comboCategorias.addActionListener(interfaz);
                 bus.btnBuscar.addActionListener(interfaz);
                 elim.btnbuscar.addActionListener(interfaz);
                 elim.btneliminar.addActionListener(interfaz);
+                modi.btnbuscar.addActionListener(interfaz);
                 
             }else{
                 inicio.error.setText("ERROR AL INICIAR SESION");
@@ -119,6 +117,9 @@ public class Controlador implements ActionListener{
         if (evento==men.Eliminar){
             elim.setVisible(true);
         }
+        if (evento==men.Modificar){
+            modi.setVisible(true);
+        }
     }
 
     public static int validar(Items [] arreglo, int contador, String cat, Administrador admin, AgregarUI agreg){
@@ -132,11 +133,20 @@ public class Controlador implements ActionListener{
         Items[][] matriz={ropa,calzado,productosH,productosB,accesorios};
         String vacio="";
         String catego;
-        
+        public controlInterfaz(){
+            try{
+                man.guardarDatos("src\\Archivos\\DATOS.txt", matriz);
+            }catch(NullPointerException ex){
+                JOptionPane.showMessageDialog(inicio, "NO SE HA PODIDO LEER");
+            }
+        }
         @Override
         public void actionPerformed(ActionEvent e){
             Object evento=e.getSource();
-            
+            if (evento==men.Guardar) {
+                man.crearDatos("src\\Archivos\\DATOS.txt");
+                man.guardarDatos("src\\Archivos\\DATOS.txt", matriz);
+            }
             //detecta si es que estan llenos todos los campos de la interfaz
             if(evento==agreg.btnAgregar){
                 if("".equals(agreg.txtNombre.getText())||"".equals(agreg.campoCaracteristicas.getText())|| "".equals(agreg.campoCodigo.getText())||"".equals(agreg.campoMarca.getText())
@@ -295,6 +305,24 @@ public class Controlador implements ActionListener{
                         }
                         break;
                     default: System.out.println("thats great");
+                }
+            }
+            if (evento==modi.btnbuscar&&!modi.txtcodigo.getText().equals("")) {
+                for (int i = 0; i < 5; i++) {
+                    itemtemp=user.Consultar(matriz[i], Integer.parseInt(modi.txtcodigo.getText()));
+                    if (itemtemp!=null) {
+                        modi.modifi(itemtemp.Categoria);
+                        modi.txtNombre.setText(itemtemp.NombreProd);
+                        modi.campoPrecio.setText(Float.toString(itemtemp.Precio));
+                        //modi.campoCaracteristicas.setText(itemtemp);
+                        modi.campoMarca.setText(itemtemp.Marca);
+                        modi.campoProveedor.setText(itemtemp.Proveedor);
+                        modi.campoCodigo.setText(itemtemp.CodigoProd);
+                        modi.campoCaracteristicas.setText(itemtemp.Caracteristicas);
+                        modi.campoCantidad.setText(Short.toString(itemtemp.Cantidad));
+                        modi.txtdescripcion.setText(itemtemp.MostrarInfo());
+                        modi.repaint();
+                    }
                 }
             }
         }

@@ -29,10 +29,11 @@ public class ModificarUI extends AgregarUI{
     private JLabel lcantidad;
     Color rojo=new Color(225,50,50);
     Color LionB = new Color(252, 243, 227);
+
     public ModificarUI(){
         setTitle("Modificar producto");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(340, 400); 
+        setSize(400, 400); 
         setResizable(true);
         setLocationRelativeTo(null);
         setLayout(null);
@@ -52,6 +53,10 @@ public class ModificarUI extends AgregarUI{
         btnbuscar=new JButton("Buscar");
         btnbuscar.setBounds(210, 20, 100, 20);
         add(btnbuscar);
+        
+        txtdescripcion=new JTextArea();
+        txtdescripcion.setBounds(210, 50, 100, 290);
+        add(txtdescripcion);
     }
     public void modifi(String categoria){
         String[] tallas1 = {"Seleccione talla", "XS", "S", "M", "L", "XL"};
@@ -149,6 +154,7 @@ public class ModificarUI extends AgregarUI{
         btnmodificar=new JButton("MODIFICAR");
         btnmodificar.setBounds(x+50, y+30, 200, 20);
         add(btnmodificar);
+        
     }
     public static void main(String args[]){
         ModificarUI ui=new ModificarUI();

@@ -1,7 +1,7 @@
 package Control;
 import java.io.*;
 
-public class Items {
+public class Items implements Serializable{
     public String NombreProd, Marca;
     public String Categoria;
     public float Precio;
@@ -11,6 +11,7 @@ public class Items {
     public String Proveedor;
     public String CodigoProd;
     public float Oferta;
+    public String Caracteristicas;
     public File DirImagen;
     public String MostrarInfo(){
         String info=
@@ -22,6 +23,7 @@ public class Items {
         "Marca = " + Marca+"\n"+
         "Proveedor = " + Proveedor+"\n"+
         "CodigoProd = " + CodigoProd+"\n"+
+        "Caracteristicas = "+ Caracteristicas+"\n"+
         "Cantidad = " + Cantidad;
         return info;
     }
