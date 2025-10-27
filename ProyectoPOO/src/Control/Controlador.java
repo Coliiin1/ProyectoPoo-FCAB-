@@ -54,6 +54,7 @@ public class Controlador implements ActionListener{
         this.inicio.btnLogin.addActionListener(this);
         this.inicio.borrar.addActionListener(this);
         this.inicio.btnIgnore.addActionListener(this);
+        
         interfaz=new controlInterfaz();
     }
     public static void main(String args[]){
@@ -64,6 +65,7 @@ public class Controlador implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         Object evento= e.getSource();
+       
         
         if (evento == inicio.borrar){
             inicio.txtUser.setText("");
@@ -71,7 +73,9 @@ public class Controlador implements ActionListener{
         }
         if (evento == inicio.btnLogin){
             if((user.Usuario).equals(inicio.txtUser.getText()) && (user.Contrasenia).equals(inicio.txtPass.getText())){
+                
                 men.Contenedor(1);
+                men.repaint();
                 men.setVisible(true);
                 inicio.hide();
                 this.men.Anadir.addActionListener(this);
@@ -104,7 +108,12 @@ public class Controlador implements ActionListener{
         }
         if (evento == inicio.btnIgnore){
             men.Contenedor(0);
+            men.InicioSesion.addActionListener(this);
+            men.repaint();
             men.setVisible(true);
+        }
+        if (evento == men.InicioSesion){
+            inicio.setVisible(true);
         }
         if (evento == men.Anadir) {
             agreg.setVisible(true);
@@ -134,6 +143,7 @@ public class Controlador implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e){
             Object evento=e.getSource();
+
             //detecta si es que estan llenos todos los campos de la interfaz
             if(evento==agreg.btnAgregar){
                 if("".equals(agreg.txtNombre.getText())||"".equals(agreg.campoCaracteristicas.getText())|| "".equals(agreg.campoCodigo.getText())||"".equals(agreg.campoMarca.getText())

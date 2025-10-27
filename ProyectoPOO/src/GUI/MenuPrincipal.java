@@ -12,6 +12,7 @@ public class MenuPrincipal extends JFrame {
     public JButton Eliminar;
     public JButton Modificar;
     public JButton Guardar;
+    public JButton InicioSesion;
     
     public MenuPrincipal() {
         setTitle("Inicio");
@@ -35,8 +36,9 @@ public class MenuPrincipal extends JFrame {
         Eliminar=new JButton("Eliminar");
         Modificar=new JButton("Modificar");
         Guardar=new JButton("Guardar");
+        InicioSesion = new JButton("Iniciar Sesion");
         JButton Admin = new JButton("Admin");
-        JButton[] itemsuuser = {itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH};
+        JButton[] itemsuuser = {itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, InicioSesion};
         JButton[] itemsadmin = {itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, Anadir, Buscar, Eliminar, Modificar, Guardar};
         // Panel que contendrá los botones
         JPanel ABotones = new JPanel();
@@ -51,7 +53,7 @@ public class MenuPrincipal extends JFrame {
             }
             add(ABotones);
         } else {//si el user es comun solo agrega los principales
-            ABotones.setLayout(new GridLayout(1, 5));
+            ABotones.setLayout(new GridLayout(1, 6));
             for (JButton item : itemsuuser) {
                 item.setBackground(AzulB);
                 item.setForeground(LionB);
