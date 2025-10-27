@@ -1,7 +1,7 @@
 package Control;
 import java.io.*;
 
-public class Items implements Serializable{
+public class Items {
     public String NombreProd, Marca;
     public String Categoria;
     public float Precio;
