@@ -28,6 +28,7 @@ public class Controlador implements ActionListener{
     Items[] accesorios;
     
     
+    
 
     int vr;
     int vc;
@@ -47,6 +48,7 @@ public class Controlador implements ActionListener{
         vph=0;
         vac=0;
         
+        
         inicio=new IniciodeSesion();
         inicio.Contenedor();
         inicio.setVisible(true);
@@ -58,7 +60,7 @@ public class Controlador implements ActionListener{
     }
     public static void main(String args[]){
         Controlador control=new Controlador();
-        System.out.println("\nAsh nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk agh burzum-ishi krimpatul");
+        //System.out.println("\nAsh nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk agh burzum-ishi krimpatul");
     }
 
     @Override
@@ -73,7 +75,8 @@ public class Controlador implements ActionListener{
             if((user.Usuario).equals(inicio.txtUser.getText()) && (user.Contrasenia).equals(inicio.txtPass.getText())){
                 men.Contenedor(1);
                 men.setVisible(true);
-                inicio.hide();
+                //inicio.hide();
+                inicio.dispose();
                 this.men.Anadir.addActionListener(this);
                 this.men.Buscar.addActionListener(this);
                 this.men.Eliminar.addActionListener(this);
@@ -97,13 +100,13 @@ public class Controlador implements ActionListener{
                 elim.btnbuscar.addActionListener(interfaz);
                 elim.btneliminar.addActionListener(interfaz);
                 modi.btnbuscar.addActionListener(interfaz);
-                
             }else{
                 inicio.error.setText("ERROR AL INICIAR SESION");
             }
         }
         if (evento == inicio.btnIgnore){
             men.Contenedor(0);
+            inicio.hide();
             men.setVisible(true);
         }
         if (evento == men.Anadir) {
@@ -132,10 +135,22 @@ public class Controlador implements ActionListener{
         String vacio="";
         String catego;
         public controlInterfaz(){
-            matriz=con.leerDatos(vacio, matriz.length, matriz[0].length);
+            matriz=con.leerDatos("src/Archivos/DATOS.dat", 5, 50);
+            ropa         = matriz[0];
+            calzado      = matriz[1];
+            productosH   = matriz[2];
+            productosB   = matriz[3];
+            accesorios   = matriz[4];
         }
         @Override
         public void actionPerformed(ActionEvent e){
+            for (int i = 0; i < matriz.length; i++) {
+                for (int j = 0; j < matriz[0].length; j++) {
+                    if(matriz[i][j]!=null){
+                        System.out.println(i+j+matriz[i][j].NombreProd);
+                    }
+                }
+            }
             Object evento=e.getSource();
             //detecta si es que estan llenos todos los campos de la interfaz
             if(evento==agreg.btnAgregar){
@@ -314,6 +329,9 @@ public class Controlador implements ActionListener{
                         modi.repaint();
                     }
                 }
+            }
+            if (evento==men.Guardar) {
+                con.guardarDatos("src\\Archivos\\DATOS.dat", matriz);
             }
         }
     }

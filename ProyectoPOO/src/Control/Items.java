@@ -1,7 +1,8 @@
 package Control;
 import java.io.*;
 
-public class Items {
+public class Items implements Serializable{
+    private static final long serialVersionUID = 1L;
     public String NombreProd, Marca;
     public String Categoria;
     public float Precio;

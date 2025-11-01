@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  * @author fabri
  */
 public class ControlArchivos {
-    public void crearArchivo(String dir){
+    public static void crearArchivo(String dir){
         PrintWriter bsalida=null;
         try {
             File arch=new File(dir);
@@ -36,13 +36,18 @@ public class ControlArchivos {
         File datos = new File(archivo);
         if (!datos.exists()) {
             JOptionPane.showMessageDialog(null, "NO SE ENCONTRO EL ARCHIVO");
+            //MODIFICAR SEGUN
+            crearArchivo("src/Archivos/DATOS.dat");
             return new Items[filas][columnas];
-        }
-        try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(datos))) {
-            return (Items[][]) entrada.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace(System.out);
-            return new Items[filas][columnas];
+        }else{
+            try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(datos))) {
+                System.out.println("HOLA");
+                return (Items[][])entrada.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace(System.out);
+                System.out.println(e);
+                return new Items[filas][columnas];
+            }
         }
     }
 }
