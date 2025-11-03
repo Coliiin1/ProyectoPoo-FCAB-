@@ -55,7 +55,7 @@ public class ModificarUI extends AgregarUI{
         add(btnbuscar);
         
         txtdescripcion=new JTextArea();
-        txtdescripcion.setBounds(210, 50, 100, 290);
+        txtdescripcion.setBounds(210, 50, 100, 260);
         add(txtdescripcion);
     }
     public void modifi(String categoria){
@@ -154,7 +154,6 @@ public class ModificarUI extends AgregarUI{
         btnmodificar=new JButton("MODIFICAR");
         btnmodificar.setBounds(x+50, y+30, 200, 20);
         add(btnmodificar);
-        
     }
     public static void main(String args[]){
         ModificarUI ui=new ModificarUI();

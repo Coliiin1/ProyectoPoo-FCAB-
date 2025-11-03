@@ -1,4 +1,5 @@
  package Control;
+import GUI.ModificarUI;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 public abstract class Usuario {
@@ -87,6 +88,6 @@ public abstract class Usuario {
     }
     public void Eliminar(Items []inventario){
     }
-    public void Modificar(Items []inventario){
+    public void Modificar(Items []inventario,ModificarUI ui){
     }
 }

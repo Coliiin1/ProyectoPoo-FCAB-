@@ -35,6 +35,8 @@ public class Controlador implements ActionListener{
     int vpb;
     int vph;
     int vac;
+    
+    
     public Controlador(){
         ropa=new Items[50];
         calzado=new Items[50];
@@ -130,6 +132,8 @@ public class Controlador implements ActionListener{
         JOptionPane.showMessageDialog(agreg, "AGREGADO EXITOSAMENTE");
         return contador;
     }
+    
+    
     private class controlInterfaz implements ActionListener{
         Items[][] matriz={ropa,calzado,productosH,productosB,accesorios};
         String vacio="";
@@ -319,16 +323,19 @@ public class Controlador implements ActionListener{
                         modi.modifi(itemtemp.Categoria);
                         modi.txtNombre.setText(itemtemp.NombreProd);
                         modi.campoPrecio.setText(Float.toString(itemtemp.Precio));
-                        //modi.campoCaracteristicas.setText(itemtemp);
                         modi.campoMarca.setText(itemtemp.Marca);
                         modi.campoProveedor.setText(itemtemp.Proveedor);
                         modi.campoCodigo.setText(itemtemp.CodigoProd);
                         modi.campoCaracteristicas.setText(itemtemp.Caracteristicas);
                         modi.campoCantidad.setText(Short.toString(itemtemp.Cantidad));
                         modi.txtdescripcion.setText(itemtemp.MostrarInfo());
+                        modi.btnmodificar.addActionListener(this);
                         modi.repaint();
                     }
                 }
+            }
+            if (evento==modi.btnmodificar) {
+                user.Modificar(matriz, modi);
             }
             if (evento==men.Guardar) {
                 con.guardarDatos("src\\Archivos\\DATOS.dat", matriz);

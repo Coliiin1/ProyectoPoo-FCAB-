@@ -1,5 +1,6 @@
 package Control;
 import GUI.AgregarUI;
+import GUI.ModificarUI;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,8 +28,35 @@ public class Administrador extends Usuario{
         articulo.Cantidad=Short.parseShort(agreg.campoCantidad.getText());
         return articulo;
     }
-    public Items Modificar(Items item){
-        return item;
+    public void Modificar(Items[][] inventario,ModificarUI ui){
+        Items tem=new Items();
+        int contador=0;
+        tem.NombreProd=ui.txtNombre.getText();
+        tem.CodigoProd=ui.campoCodigo.getText();
+        tem.Precio=Float.parseFloat(ui.campoPrecio.getText());
+        tem.Talla=(String)ui.comboTalla.getSelectedItem();
+        tem.Sexo=(String)ui.comboSexo.getSelectedItem();
+        tem.Precio=Float.parseFloat(ui.campoPrecio.getText());
+        tem.Marca=ui.campoMarca.getText();
+        tem.Proveedor=ui.campoProveedor.getText();
+        tem.Caracteristicas=ui.campoCaracteristicas.getText();
+        tem.Cantidad=Short.parseShort(ui.campoCantidad.getText());
+        String codigo=ui.txtcodigo.getText();
+        System.out.println(tem.MostrarInfo());
+        for (int i = 0; i < inventario.length; i++) {
+            for (int j = 0; j < inventario[i].length; j++) {
+                if (inventario[i][j]!=null && inventario[i][j].CodigoProd.equals(codigo)) {
+                    tem.Categoria=inventario[i][j].Categoria;
+                    inventario[i][j]=tem;
+                    JOptionPane.showMessageDialog(ui, "SE MODIFICO CORRECTAMENTE");
+                    contador++;
+                    break;
+                }
+            }
+        }
+        if (contador==0) {
+            JOptionPane.showMessageDialog(ui, "NO SE ENCONTRO EL ITEM");
+        }
     }
     public boolean Eliminar(Items []inventario,int codigo,int fin){
         Items encontrado=new Items();
