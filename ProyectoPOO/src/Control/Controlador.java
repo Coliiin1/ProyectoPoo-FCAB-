@@ -27,6 +27,7 @@ public class Controlador implements ActionListener{
     Items[] productosH;
     Items[] accesorios;
     
+    Items[][] matriz={ropa,calzado,productosH,productosB,accesorios};
     
     
 
@@ -44,13 +45,14 @@ public class Controlador implements ActionListener{
         productosH=new Items[50];
         accesorios =new Items[50];
         
+        
         vr=0;
         vc=0;
         vpb=0;
         vph=0;
         vac=0;
         
-        
+        interfaz=new controlInterfaz();
         inicio=new IniciodeSesion();
         inicio.Contenedor();
         inicio.setVisible(true);
@@ -58,11 +60,11 @@ public class Controlador implements ActionListener{
         this.inicio.btnLogin.addActionListener(this);
         this.inicio.borrar.addActionListener(this);
         this.inicio.btnIgnore.addActionListener(this);
-        interfaz=new controlInterfaz();
     }
     public static void main(String args[]){
         Controlador control=new Controlador();
         //System.out.println("\nAsh nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk agh burzum-ishi krimpatul");
+        System.out.println(control.vc);
     }
 
     @Override
@@ -132,10 +134,19 @@ public class Controlador implements ActionListener{
         JOptionPane.showMessageDialog(agreg, "AGREGADO EXITOSAMENTE");
         return contador;
     }
-    
+    public static int validarCont(Items [] inventario){
+        int num=0;
+        for (int i = 0; i < inventario.length; i++) {
+            if (inventario[i]==null) {
+                return num;
+            }else{
+                num++;
+            }
+        }
+        return num;
+    }
     
     private class controlInterfaz implements ActionListener{
-        Items[][] matriz={ropa,calzado,productosH,productosB,accesorios};
         String vacio="";
         String catego;
         public controlInterfaz(){
@@ -145,6 +156,12 @@ public class Controlador implements ActionListener{
             productosH   = matriz[2];
             productosB   = matriz[3];
             accesorios   = matriz[4];
+            
+            vr=validarCont(ropa);
+            vc=validarCont(calzado);
+            vph=validarCont(productosH);
+            vpb=validarCont(productosB);
+            vac=validarCont(accesorios);
         }
         @Override
         public void actionPerformed(ActionEvent e){
@@ -186,7 +203,7 @@ public class Controlador implements ActionListener{
                                 break;
                             
                             case "Ropa":
-                                if(vr>=50){
+                                if(vr>=ropa.length){
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
                                 }else{
                                     vr=validar(ropa,vr,"Ropa",user,agreg);
@@ -194,7 +211,7 @@ public class Controlador implements ActionListener{
                                 break;
                             
                             case "Productos de Belleza":
-                                if(vpb>=50){
+                                if(vpb>=productosB.length){
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
                                 }else{
                                     vpb = validar(productosB, vpb, "Prodcutos de Belleza", user, agreg);
@@ -202,7 +219,7 @@ public class Controlador implements ActionListener{
                                 break;
                                 
                             case "Productos del Hogar":
-                                if(vph>=50){
+                                if(vph>=productosH.length){
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
                                 }else{
                                     vph = validar(productosH, vph, "Productos del Hogar", user, agreg);
@@ -210,7 +227,7 @@ public class Controlador implements ActionListener{
                                 break;
                                 
                             case "Accesorios":
-                                if(vac>=50){
+                                if(vac>=accesorios.length){
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
                                 }else{
                                     vac = validar(accesorios, vac, "Accesorios", user, agreg);
