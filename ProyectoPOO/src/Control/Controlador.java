@@ -78,6 +78,7 @@ public class Controlador implements ActionListener{
         if (evento == inicio.btnLogin){
             if((user.Usuario).equals(inicio.txtUser.getText()) && (user.Contrasenia).equals(inicio.txtPass.getText())){
                 men.Contenedor(1);
+                men.mostrarItems(matriz);
                 men.setVisible(true);
                 //inicio.hide();
                 inicio.dispose();
@@ -110,6 +111,7 @@ public class Controlador implements ActionListener{
         }
         if (evento == inicio.btnIgnore){
             men.Contenedor(0);
+            men.mostrarItems(matriz);
             inicio.hide();
             men.setVisible(true);
         }
@@ -235,6 +237,8 @@ public class Controlador implements ActionListener{
                                 break;
                                 
                             default: System.out.println("thats great");
+                            men.mostrarItems(matriz);
+                            men.repaint();
                         }
                         System.out.println("ok");
                     }

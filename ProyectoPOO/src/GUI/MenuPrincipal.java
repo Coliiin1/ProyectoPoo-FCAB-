@@ -1,9 +1,13 @@
+//menu
+
 package GUI;
+import Control.Items;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import javax.swing.border.EmptyBorder;
 
-public class MenuPrincipal extends JFrame {
+public class MenuPrincipal extends JFrame{
     Color AzulB = new Color(64, 79, 104);
     Color LionB = new Color(252, 243, 227);
     Color AzulItems = new Color(122, 133, 157);
@@ -13,7 +17,11 @@ public class MenuPrincipal extends JFrame {
     public JButton Modificar;
     public JButton Guardar;
     public JButton InicioSesion;
-    
+    public ArrayList <JPanel> Paneles = new ArrayList();
+    public ArrayList <JLabel> Imagenes = new ArrayList();
+    public ArrayList <JTextArea> Descripciones = new ArrayList();
+
+
     public MenuPrincipal() {
         setTitle("Inicio");
         setLayout(null);
@@ -24,7 +32,7 @@ public class MenuPrincipal extends JFrame {
     }
 
     public void Contenedor(int x) {
-        
+
         // Creación de botones
         JButton itemRopaH = new JButton("Ropa");
         JButton itemCalzadoH = new JButton("Calzado");
@@ -60,16 +68,9 @@ public class MenuPrincipal extends JFrame {
                 ABotones.add(item);
             }
             add(ABotones);
-        } 
-
-        JPanel PanelP = new JPanel();
-        PanelP.setBounds(0, 90, 1920, 880);
-        PanelP.setBackground(LionB);
-        PanelP.setLayout(new GridLayout(2, 5, 20, 20)); // 20px de separación entre items
-        PanelP.setBorder(new EmptyBorder(20, 20, 20, 20)); // 20px de separación interna en todos los lados
-        add(PanelP);
-        int ejex = 20, ejey = 90, contador = 0;
-        JPanel Item1 = new JPanel();
+        }
+    }
+        /*JPanel Item1 = new JPanel();
         JPanel Item2 = new JPanel();
         JPanel Item3 = new JPanel();
         JPanel Item4 = new JPanel();
@@ -81,20 +82,42 @@ public class MenuPrincipal extends JFrame {
         JPanel Item9 = new JPanel();
         JPanel Item10 = new JPanel();
         
-        JPanel[] Items= {Item1, Item2, Item3, Item4, Item5, Item6, Item7, Item8, Item9, Item10};
-        for (JPanel item : Items) {
-            PanelP.add(item);
-            item.setBackground(AzulItems);
-            Item1.setBounds(ejex, ejey, 360, 410);
-            ejex += 380;
-            contador++;
-            if (contador == 5) {
-                contador = 0;
-                ejex = 20;
-                ejey = 520;
+        JPanel[] Items= {Item1, Item2, Item3, Item4, Item5, Item6, Item7, Item8, Item9, Item10};*/
+
+    public void mostrarItems(Items[][] matriz){
+        int ContItems = 0;
+        JPanel PanelP = new JPanel();
+        PanelP.setBounds(0, 90, 1920, 880);
+        PanelP.setBackground(LionB);
+        PanelP.setLayout(new GridLayout(2, 5, 20, 20)); // 20px de separación entre items
+        PanelP.setBorder(new EmptyBorder(20, 20, 20, 20)); // 20px de separación interna en todos los lados
+        add(PanelP);
+        int ejex = 20, ejey = 90, contador = 0;
+        for (int i = 0; i < 4; i++) {
+            for(int j = 0; j < matriz[i].length; j++){
+                if (matriz[i][j] != null){
+                    Paneles.add(new JPanel());
+                    Paneles.get(ContItems).setBackground(AzulItems);
+                    Paneles.get(ContItems).setBounds(ejex, ejey, 360, 410);
+                    Descripciones.add(new JTextArea());
+                    Descripciones.get(ContItems).setBounds(ejex, ejey, 360, 410);
+                    ejex += 380;
+                    contador++;
+                    ContItems++;
+                    PanelP.add(Paneles.get(ContItems-1));
+                    if (contador == 5) {
+                        contador = 0;
+                        ejex = 20;
+                        ejey = 520;
+                    }
+                }
             }
         }
     }
+
+
+
+
 
     public static void main(String args[]) {
         int x = 1;//si es user es 0 y admin es 1
