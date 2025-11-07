@@ -180,7 +180,7 @@ public class Controlador implements ActionListener{
             if(evento==agreg.btnAgregar){
                 if("".equals(agreg.txtNombre.getText())||"".equals(agreg.campoCaracteristicas.getText())|| "".equals(agreg.campoCodigo.getText())||"".equals(agreg.campoMarca.getText())
                         ||"".equals(agreg.campoPrecio.getText())||"".equals(agreg.campoProveedor.getText())||"".equals(agreg.campoCantidad.getText())||agreg.comboCategorias.getSelectedItem()=="Seleccione"
-                        ||agreg.comboSexo.getSelectedItem()=="Seleccione"|| agreg.comboTalla.getSelectedItem()=="Seleccione talla"){
+                        ||agreg.comboSexo.getSelectedItem()=="Seleccione"|| agreg.comboTalla.getSelectedItem()=="Seleccione talla"||agreg.rutaImagenSeleccionada==null){
                     JOptionPane.showMessageDialog(agreg,"DEBES LLENAR EL REGISTRO");
                 }else {
                     for (int i = 0; i < 5; i++) {
@@ -196,6 +196,8 @@ public class Controlador implements ActionListener{
                     }else{
                         boolean added = false;
                         String cat=(String)agreg.comboCategorias.getSelectedItem();
+                        ControlArchivos control=new ControlArchivos();
+                        agreg.ruta=control.copiarArchivos(agreg.f);
                         switch(cat){
                             case "Zapateria":
                                 if(vc>=calzado.length){

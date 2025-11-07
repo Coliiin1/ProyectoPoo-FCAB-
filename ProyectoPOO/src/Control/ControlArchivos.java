@@ -50,4 +50,27 @@ public class ControlArchivos {
             }
         }
     }
+    public String copiarArchivos(File original){
+        String rutaAlmacenada=null;
+        File carpetaDestino = new File("src/Imagenes/");
+        carpetaDestino.mkdirs();
+
+        // Creamos el archivo destino con el mismo nombre
+        File archivoDestino = new File(carpetaDestino, original.getName());
+
+        try {
+            java.nio.file.Files.copy(
+                    original.toPath(),
+                    archivoDestino.toPath(),
+                    java.nio.file.StandardCopyOption.REPLACE_EXISTING
+            );
+
+            System.out.println("Imagen copiada correctamente a: " + archivoDestino.getAbsolutePath());
+            // Aquí guardas SOLO el nombre del archivo o una ruta relativa
+            rutaAlmacenada = "src/imagenes_items/" + original.getName();
+        } catch (Exception e) {
+            System.out.println("Error al copiar la imagen: " + e.getMessage());
+        }
+        return rutaAlmacenada;
+    }
 }

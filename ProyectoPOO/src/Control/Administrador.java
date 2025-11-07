@@ -26,6 +26,7 @@ public class Administrador extends Usuario{
         articulo.Proveedor=agreg.campoProveedor.getText();
         articulo.Caracteristicas=agreg.campoCaracteristicas.getText();
         articulo.Cantidad=Short.parseShort(agreg.campoCantidad.getText());
+        articulo.DirImagen=agreg.ruta;
         return articulo;
     }
     public void Modificar(Items[][] inventario,ModificarUI ui){

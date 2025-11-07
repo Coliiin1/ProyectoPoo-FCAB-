@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import javax.swing.filechooser.FileNameExtensionFilter; 
+import Control.ControlArchivos;
 
 public class AgregarUI extends JFrame{
     public JButton btnEnviar;
@@ -23,7 +24,10 @@ public class AgregarUI extends JFrame{
     private JLabel etiquetaVistaPrevia;
     public String rutaImagenSeleccionada = null;
     public int posY;
-
+    
+    public File f;
+    public String ruta;
+    public JFileChooser selector;
     public JButton btnSeleccionarArchivo;
     Color AzulB = new Color(1, 61, 90);
     Color LionB = new Color(252, 243, 227);
@@ -222,12 +226,12 @@ public class AgregarUI extends JFrame{
         // Acción del botón: abrir JFileChooser y validar extensiones
         btnSeleccionarArchivo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JFileChooser selector = new JFileChooser();
+                selector = new JFileChooser();
                 FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imágenes (jpg, jpeg, png, gif, bmp)", "jpg", "jpeg", "png", "gif", "bmp");
                 selector.setFileFilter(filtro);
                 int resultado = selector.showOpenDialog(AgregarUI.this);
                 if (resultado == JFileChooser.APPROVE_OPTION) {
-                    File f = selector.getSelectedFile();
+                    f = selector.getSelectedFile();
                     String name = f.getName().toLowerCase();
                     if (name.endsWith(".jpg") || name.endsWith(".jpeg") || name.endsWith(".png") || name.endsWith(".gif") || name.endsWith(".bmp")) {
                         etiquetaRutaImagen.setText(f.getName());
