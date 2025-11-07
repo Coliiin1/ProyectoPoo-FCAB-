@@ -55,7 +55,7 @@ public class Administrador extends Usuario{
             }
         }
         if (contador==0) {
-            JOptionPane.showMessageDialog(ui, "NO SE ENCONTRO EL ITEM");
+            JOptionPane.showMessageDialog(null, "NO SE PURO HACER", "ERROR", 0);
         }
     }
     public boolean Eliminar(Items []inventario,int codigo,int fin){

@@ -125,6 +125,7 @@ public class Controlador implements ActionListener{
             elim.setVisible(true);
         }
         if (evento==men.Modificar){
+
             modi.setVisible(true);
         }
     }
@@ -356,6 +357,7 @@ public class Controlador implements ActionListener{
                     men.repaint();
                 }
             }
+            //MODIFICA4R
             if (evento==modi.btnbuscar&&!modi.txtcodigo.getText().equals("")) {
                 for (int i = 0; i < 5; i++) {
                     itemtemp=user.Consultar(matriz[i], Integer.parseInt(modi.txtcodigo.getText()));
@@ -369,13 +371,16 @@ public class Controlador implements ActionListener{
                         modi.campoCaracteristicas.setText(itemtemp.Caracteristicas);
                         modi.campoCantidad.setText(Short.toString(itemtemp.Cantidad));
                         modi.txtdescripcion.setText(itemtemp.MostrarInfo());
-                        modi.btnmodificar.addActionListener(this);
+                        modi.btnmodificar.addActionListener(interfaz);
+                        modi.revalidate();
                         modi.repaint();
                     }
                 }
             }
             if (evento==modi.btnmodificar) {
                 user.Modificar(matriz, modi);
+                modi.limpiarCampos();
+                modi.repaint();
                 if (men != null) {
                     men.mostrarItems(matriz);
                     men.revalidate();
