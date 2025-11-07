@@ -24,7 +24,7 @@ public class IniciodeSesion extends JFrame /*implements ActionListener*/{
     public IniciodeSesion() {
         setTitle("Inicio de Sesión");
         setSize(700, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
         setLayout(new GridLayout(1, 2)); // dos paneles lado a lado

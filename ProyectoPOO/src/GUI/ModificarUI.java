@@ -5,6 +5,7 @@
 package GUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import javax.swing.*;
 /**
  *
@@ -32,8 +33,8 @@ public class ModificarUI extends AgregarUI{
 
     public ModificarUI(){
         setTitle("Modificar producto");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(400, 400); 
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
+        setSize(460, 400); 
         setResizable(true);
         setLocationRelativeTo(null);
         setLayout(null);
@@ -55,7 +56,9 @@ public class ModificarUI extends AgregarUI{
         add(btnbuscar);
         
         txtdescripcion=new JTextArea();
-        txtdescripcion.setBounds(210, 50, 100, 260);
+        txtdescripcion.setBounds(210, 50, 260, 200);
+        txtdescripcion.setBackground(LionB);
+        txtdescripcion.setFont(new Font("Arial", Font.BOLD, 16));
         add(txtdescripcion);
     }
     public void modifi(String categoria){

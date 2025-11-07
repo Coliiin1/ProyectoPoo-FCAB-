@@ -18,7 +18,7 @@ public class BuscarUI extends JFrame {
 
     public BuscarUI() {
         setSize(500, 700);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
         setLayout(null);

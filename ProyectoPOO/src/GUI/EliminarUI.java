@@ -24,7 +24,7 @@ public class EliminarUI extends JFrame{
         setTitle("Eliminar Producto");
         setLayout(null);
         setSize(520, 800); 
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
         setResizable(true);
         setLocationRelativeTo(null);
         getContentPane().setBackground(RWhite);

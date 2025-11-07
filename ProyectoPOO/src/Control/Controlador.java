@@ -193,14 +193,15 @@ public class Controlador implements ActionListener{
                     if (itemtemp!=null||itemtemp1!=null) {
                         JOptionPane.showMessageDialog(agreg, "NO PUEDES AGREGAR EL ITEM POR QUE YA UNO CON EL MISMO NOMBRE");
                     }else{
+                        boolean added = false;
                         String cat=(String)agreg.comboCategorias.getSelectedItem();
                         switch(cat){
-                            //se podria simplificar en una fncion que reciba unicamente el contador y el vector 
                             case "Zapateria":
                                 if(vc>=calzado.length){
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
                                 }else{
                                     vc=validar(calzado,vc,"Zapateria",user,agreg);
+                                    added = true;
                                 }
                                 break;
                             
@@ -209,6 +210,7 @@ public class Controlador implements ActionListener{
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
                                 }else{
                                     vr=validar(ropa,vr,"Ropa",user,agreg);
+                                    added = true;
                                 }
                                 break;
                             
@@ -217,6 +219,7 @@ public class Controlador implements ActionListener{
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
                                 }else{
                                     vpb = validar(productosB, vpb, "Prodcutos de Belleza", user, agreg);
+                                    added = true;
                                 }
                                 break;
                                 
@@ -225,6 +228,7 @@ public class Controlador implements ActionListener{
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
                                 }else{
                                     vph = validar(productosH, vph, "Productos del Hogar", user, agreg);
+                                    added = true;
                                 }
                                 break;
                                 
@@ -233,11 +237,15 @@ public class Controlador implements ActionListener{
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
                                 }else{
                                     vac = validar(accesorios, vac, "Accesorios", user, agreg);
+                                    added = true;
                                 }
                                 break;
                                 
                             default: System.out.println("thats great");
+                        }
+                        if (added && men != null) {
                             men.mostrarItems(matriz);
+                            men.revalidate();
                             men.repaint();
                         }
                         System.out.println("ok");
@@ -306,35 +314,46 @@ public class Controlador implements ActionListener{
             }
             if (evento==elim.btneliminar) {
                 int x=Integer.parseInt(elim.txtcodigo.getText());
+                boolean deleted = false;
                 switch(catego){
                     case "Zapateria":
                         if(user.Eliminar(calzado,x,vc)){
                             vc--;
+                            deleted = true;
                         }
                         break;
                     case "Ropa":
                         if(user.Eliminar(ropa,x,vr)){
-                        vr--;
+                            vr--;
+                            deleted = true;
                         }
                         break;
 
                     case "Productos de Belleza":
                         if(user.Eliminar(productosB,x,vpb)){
-                        vpb--;
+                            vpb--;
+                            deleted = true;
                         }
                         break;
 
                     case "Productos del Hogar":
                         if(user.Eliminar(productosH,x,vph)){
-                        vph--;
+                            vph--;
+                            deleted = true;
                         }
                         break;
                     case "Accesorios":
                         if(user.Eliminar(accesorios,x,vac)){
-                        vac--;
+                            vac--;
+                            deleted = true;
                         }
                         break;
                     default: System.out.println("thats great");
+                }
+                if (deleted && men != null) {
+                    men.mostrarItems(matriz);
+                    men.revalidate();
+                    men.repaint();
                 }
             }
             if (evento==modi.btnbuscar&&!modi.txtcodigo.getText().equals("")) {
@@ -357,6 +376,11 @@ public class Controlador implements ActionListener{
             }
             if (evento==modi.btnmodificar) {
                 user.Modificar(matriz, modi);
+                if (men != null) {
+                    men.mostrarItems(matriz);
+                    men.revalidate();
+                    men.repaint();
+                }
             }
             if (evento==men.Guardar) {
                 con.guardarDatos("src\\Archivos\\DATOS.dat", matriz);

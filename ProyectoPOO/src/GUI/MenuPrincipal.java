@@ -70,49 +70,69 @@ public class MenuPrincipal extends JFrame{
             add(ABotones);
         }
     }
-        /*JPanel Item1 = new JPanel();
-        JPanel Item2 = new JPanel();
-        JPanel Item3 = new JPanel();
-        JPanel Item4 = new JPanel();
-        JPanel Item5 = new JPanel();
 
-        JPanel Item6 = new JPanel();
-        JPanel Item7 = new JPanel();
-        JPanel Item8 = new JPanel();
-        JPanel Item9 = new JPanel();
-        JPanel Item10 = new JPanel();
-        
-        JPanel[] Items= {Item1, Item2, Item3, Item4, Item5, Item6, Item7, Item8, Item9, Item10};*/
 
     public void mostrarItems(Items[][] matriz){
-        int ContItems = 0;
-        JPanel PanelP = new JPanel();
-        PanelP.setBounds(0, 90, 1920, 880);
-        PanelP.setBackground(LionB);
-        PanelP.setLayout(new GridLayout(2, 5, 20, 20)); // 20px de separación entre items
-        PanelP.setBorder(new EmptyBorder(20, 20, 20, 20)); // 20px de separación interna en todos los lados
-        add(PanelP);
-        int ejex = 20, ejey = 90, contador = 0;
-        for (int i = 0; i < 4; i++) {
-            for(int j = 0; j < matriz[i].length; j++){
-                if (matriz[i][j] != null){
-                    Paneles.add(new JPanel());
-                    Paneles.get(ContItems).setBackground(AzulItems);
-                    Paneles.get(ContItems).setBounds(ejex, ejey, 360, 410);
-                    Descripciones.add(new JTextArea());
-                    Descripciones.get(ContItems).setBounds(ejex, ejey, 360, 410);
-                    ejex += 380;
-                    contador++;
-                    ContItems++;
-                    PanelP.add(Paneles.get(ContItems-1));
-                    if (contador == 5) {
-                        contador = 0;
-                        ejex = 20;
-                        ejey = 520;
-                    }
+        // limpiar listas previas
+        Paneles.clear();
+        Imagenes.clear();
+        Descripciones.clear();
+
+        // panel contenedor con filas dinámicas y 5 columnas
+        JPanel contentPanel = new JPanel();
+        contentPanel.setBackground(LionB);
+        contentPanel.setLayout(new GridLayout(0, 5, 20, 20));
+        contentPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
+
+        // JScrollPane que contendrá el contentPanel
+        JScrollPane scroll = new JScrollPane(contentPanel,
+        JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setBounds(0, 90, 1920, 880);
+        scroll.getVerticalScrollBar().setUnitIncrement(16); // velocidad de scroll
+        add(scroll);
+
+        // crear cada item (imagen arriba, descripcion abajo)
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                if (matriz[i][j] != null) {
+                    // panel individual del item
+                    JPanel itemPanel = new JPanel();
+                    itemPanel.setBackground(AzulItems);
+                    itemPanel.setLayout(new BorderLayout());
+                    itemPanel.setPreferredSize(new Dimension(360, 410));
+
+                    // etiqueta para imagen (se posiciona arriba)
+                    JLabel imgLabel = new JLabel();
+                    imgLabel.setHorizontalAlignment(JLabel.CENTER);
+                    imgLabel.setVerticalAlignment(JLabel.CENTER);
+                    imgLabel.setPreferredSize(new Dimension(360, 260)); // espacio para la imagen
+                    // imgLabel.setIcon(...) // aquí se puede asignar el icono más tarde
+                    Imagenes.add(imgLabel);
+                    itemPanel.add(imgLabel, BorderLayout.NORTH);
+
+                    // textarea para descripción (debajo de la imagen)
+                    JTextArea desc = new JTextArea();
+                    desc.setText(matriz[i][j].MostrarInfo());
+                    desc.setEditable(false);
+                    desc.setLineWrap(true);
+                    desc.setWrapStyleWord(true);
+                    desc.setBackground(AzulItems);
+                    desc.setBorder(new EmptyBorder(8, 8, 8, 8));
+
+                    Descripciones.add(desc);
+                    itemPanel.add(desc, BorderLayout.CENTER);
+
+                    // almacenar y agregar al panel contenedor
+                    Paneles.add(itemPanel);
+                    contentPanel.add(itemPanel);
                 }
             }
         }
+
+        // forzar revalidar/repaint para que se actualice la vista
+        revalidate();
+        repaint();
     }
 
 
