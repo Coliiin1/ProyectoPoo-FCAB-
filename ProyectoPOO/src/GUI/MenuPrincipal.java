@@ -112,11 +112,12 @@ public class MenuPrincipal extends JFrame{
                     itemPanel.setMaximumSize(itemSize);
 
                     // etiqueta para imagen (se posiciona arriba)
-                    JLabel imgLabel = new JLabel();
+                    ImageIcon Imagen = new ImageIcon(matriz[i][j].DirImagen);
+                    JLabel imgLabel = new JLabel(Imagen);
                     imgLabel.setHorizontalAlignment(JLabel.CENTER);
                     imgLabel.setVerticalAlignment(JLabel.CENTER);
                     imgLabel.setPreferredSize(new Dimension(360, 260)); // espacio para la imagen
-                    // imgLabel.setIcon(...) aquí se puede asignar el icono más tarde
+                    //imgLabel.setIcon();
                     Imagenes.add(imgLabel);
                     itemPanel.add(imgLabel, BorderLayout.NORTH);
 

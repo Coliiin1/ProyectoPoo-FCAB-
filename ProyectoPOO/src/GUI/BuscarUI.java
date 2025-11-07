@@ -60,7 +60,7 @@ public class BuscarUI extends JFrame {
         add(labelImagen);
 
         txtdescripcion = new JTextArea();
-        txtdescripcion.setBounds(150, 310, 200, 200);
+        txtdescripcion.setBounds(150, 310, 200, 300);
         txtdescripcion.setForeground(AzulB);
         txtdescripcion.setFont(new Font("Arial", Font.BOLD, 16));
         txtdescripcion.setBackground(LionB);

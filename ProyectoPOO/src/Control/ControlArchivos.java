@@ -67,7 +67,7 @@ public class ControlArchivos {
 
             System.out.println("Imagen copiada correctamente a: " + archivoDestino.getAbsolutePath());
             // Aquí guardas SOLO el nombre del archivo o una ruta relativa
-            rutaAlmacenada = "src/imagenes_items/" + original.getName();
+            rutaAlmacenada = "src/Imagenes/" + original.getName();
         } catch (Exception e) {
             System.out.println("Error al copiar la imagen: " + e.getMessage());
         }
