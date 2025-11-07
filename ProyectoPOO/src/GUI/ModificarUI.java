@@ -32,6 +32,7 @@ public class ModificarUI extends AgregarUI{
     Color LionB = new Color(252, 243, 227);
 
     public ModificarUI(){
+        btnmodificar=new JButton();
         setTitle("Modificar producto");
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setSize(460, 400); 
@@ -154,9 +155,21 @@ public class ModificarUI extends AgregarUI{
         add(lcantidad);
         add(campoCantidad);
         
-        btnmodificar=new JButton("MODIFICAR");
+        btnmodificar.setText("MODIFICAR");
         btnmodificar.setBounds(x+50, y+30, 200, 20);
         add(btnmodificar);
+    }
+    public void limpiarCampos(){
+        campoCantidad.setText("");
+        campoCaracteristicas.setText("");
+        campoCodigo.setText("");
+        campoProveedor.setText("");
+        campoMarca.setText("");
+        campoPrecio.setText("");
+        comboSexo.setSelectedIndex(0);
+        comboTalla.setSelectedIndex(0);
+        txtNombre.setText("");
+        txtcodigo.setText("");
     }
     public static void main(String args[]){
         ModificarUI ui=new ModificarUI();

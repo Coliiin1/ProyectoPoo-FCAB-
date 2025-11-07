@@ -13,7 +13,7 @@ public class Items implements Serializable{
     public String CodigoProd;
     public float Oferta;
     public String Caracteristicas;
-    public File DirImagen;
+    public String DirImagen;
     public String MostrarInfo(){
         String info=
         "NombreProd = " + NombreProd+"\n"+
@@ -25,7 +25,9 @@ public class Items implements Serializable{
         "Proveedor = " + Proveedor+"\n"+
         "CodigoProd = " + CodigoProd+"\n"+
         "Caracteristicas = "+ Caracteristicas+"\n"+
-        "Cantidad = " + Cantidad;
+        "Cantidad = " + Cantidad+"\n"+
+        "ruta = " + DirImagen;
+        
         return info;
     }
 }

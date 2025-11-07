@@ -26,6 +26,7 @@ public class Administrador extends Usuario{
         articulo.Proveedor=agreg.campoProveedor.getText();
         articulo.Caracteristicas=agreg.campoCaracteristicas.getText();
         articulo.Cantidad=Short.parseShort(agreg.campoCantidad.getText());
+        articulo.DirImagen=agreg.ruta;
         return articulo;
     }
     public void Modificar(Items[][] inventario,ModificarUI ui){
@@ -55,7 +56,7 @@ public class Administrador extends Usuario{
             }
         }
         if (contador==0) {
-            JOptionPane.showMessageDialog(ui, "NO SE ENCONTRO EL ITEM");
+            JOptionPane.showMessageDialog(null, "NO SE PURO HACER", "ERROR", 0);
         }
     }
     public boolean Eliminar(Items []inventario,int codigo,int fin){
