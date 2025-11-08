@@ -1,13 +1,13 @@
-//menu
-
 package GUI;
 import Control.Items;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 import javax.swing.border.EmptyBorder;
 
-public class MenuPrincipal extends JFrame{
+public class MenuPrincipal extends JFrame {
     Color AzulB = new Color(64, 79, 104);
     Color LionB = new Color(252, 243, 227);
     Color AzulItems = new Color(122, 133, 157);
@@ -18,23 +18,41 @@ public class MenuPrincipal extends JFrame{
     public JButton Modificar;
     public JButton Guardar;
     public JButton InicioSesion;
-    public ArrayList <JPanel> Paneles = new ArrayList();
-    public ArrayList <JLabel> Imagenes = new ArrayList();
-    public ArrayList <JTextArea> Descripciones = new ArrayList();
+    public ArrayList<JPanel> Paneles = new ArrayList<>();
+    public ArrayList<JLabel> Imagenes = new ArrayList<>();
+    public ArrayList<JTextArea> Descripciones = new ArrayList<>();
 
+    private JPanel ABotones;
+    private JScrollPane scroll;
+    private JPanel contentPanel;
+    private Items[][] matrizActual;
 
     public MenuPrincipal() {
         setTitle("Inicio");
-        setLayout(null);
+        setLayout(new BorderLayout()); // layout para redimensionar los items si se hace mas grande o pequeña la ventana
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1920, 1080);
-        setResizable(true);
-        getContentPane().setBackground(LionB); // Aplica el color de fondo
+        setMinimumSize(new Dimension(900, 600));
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // inicia maximizada
+        getContentPane().setBackground(LionB);
+
+        //pa ajustar items cuando cambie tamaño
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                if (matrizActual != null) {
+                    mostrarItems(matrizActual); // recalcula el acomodo
+                }
+                ajustarBotones(); // ajusta tamaño de botones
+            }
+        });
     }
 
     public void Contenedor(int x) {
+        ABotones = new JPanel();
+        ABotones.setBackground(AzulB);
+        ABotones.setLayout(new GridLayout(1, 0, 10, 10)); // 🔹 Se adapta al ancho
 
-        // Creación de botones
+        // Crear botones
         JButton itemRopaH = new JButton("Ropa");
         JButton itemCalzadoH = new JButton("Calzado");
         JButton itemBellezaH = new JButton("Productos de belleza");
@@ -43,134 +61,154 @@ public class MenuPrincipal extends JFrame{
         Inicio = new JButton("Inicio");
         Anadir = new JButton("Añadir");
         Buscar = new JButton("Buscar");
-        Eliminar=new JButton("Eliminar");
-        Modificar=new JButton("Modificar");
-        Guardar=new JButton("Guardar");
-        InicioSesion = new JButton("Iniciar Sesion");
-        JButton Admin = new JButton("Admin");
-        JButton[] itemsuuser = {Inicio, itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, InicioSesion};
-        JButton[] itemsadmin = {Inicio, itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, Anadir, Buscar, Eliminar, Modificar, Guardar};
-        // Panel que contendrá los botones
-        JPanel ABotones = new JPanel();
-        ABotones.setBounds(0, 0, 1920, 60);
-        ABotones.setBackground(AzulB);
-        if(x == 1){//si es admin agrega los botones respectivos
-            ABotones.setLayout(new GridLayout(1, 8));
-            for (JButton item : itemsadmin) {
-                item.setBackground(AzulB);
-                item.setForeground(LionB);
+        Eliminar = new JButton("Eliminar");
+        Modificar = new JButton("Modificar");
+        Guardar = new JButton("Guardar");
+        InicioSesion = new JButton("Iniciar Sesión");
+
+        JButton[] itemsUser = {Inicio, itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, InicioSesion};
+        JButton[] itemsAdmin = {Inicio, itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, Anadir, Buscar, Eliminar, Modificar, Guardar};
+
+        if (x == 1) {
+            for (JButton item : itemsAdmin) {
+                estiloBoton(item);
                 ABotones.add(item);
             }
-            add(ABotones);
-        } else {//si el user es comun solo agrega los principales
-            ABotones.setLayout(new GridLayout(1, 7));
-            for (JButton item : itemsuuser) {
-                item.setBackground(AzulB);
-                item.setForeground(LionB);
+        } else {
+            for (JButton item : itemsUser) {
+                estiloBoton(item);
                 ABotones.add(item);
             }
-            add(ABotones);
         }
+
+        add(ABotones, BorderLayout.NORTH); // Arriba, se adapta
     }
 
+    private void estiloBoton(JButton boton) {
+        boton.setBackground(AzulB);
+        boton.setForeground(LionB);
+        boton.setFocusPainted(false);
+        boton.setFont(new Font("Arial", Font.BOLD, 14));
+    }
 
-    public void mostrarItems(Items[][] matriz){
+    private void ajustarBotones() {
+        if (ABotones == null) return;
+        int ancho = getWidth();
+
+        // Cambiar tamaño de letra y márgenes según ancho
+        for (Component c : ABotones.getComponents()) {
+            if (c instanceof JButton boton) {
+                if (ancho < 1000) {
+                    boton.setFont(new Font("Arial", Font.PLAIN, 12));
+                    boton.setMargin(new Insets(3, 6, 3, 6));
+                } else if (ancho < 1400) {
+                    boton.setFont(new Font("Arial", Font.BOLD, 13));
+                    boton.setMargin(new Insets(5, 8, 5, 8));
+                } else {
+                    boton.setFont(new Font("Arial", Font.BOLD, 14));
+                    boton.setMargin(new Insets(8, 12, 8, 12));
+                }
+            }
+        }
+        ABotones.revalidate();
+        ABotones.repaint();
+    }
+
+    public void mostrarItems(Items[][] matriz) {
+        matrizActual = matriz; // guardamos referencia para recalcular
+
         // limpiar listas previas
         Paneles.clear();
         Imagenes.clear();
         Descripciones.clear();
-        String descan;
-        // panel contenedor: filas con FlowLayout para mantener tamaño fijo por item (360x410)
-        JPanel contentPanel = new JPanel();
+
+        if (scroll != null) {
+            remove(scroll);
+        }
+
+        // Panel contenedor principal
+        contentPanel = new JPanel();
         contentPanel.setBackground(LionB);
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         contentPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
 
-        // JScrollPane que contendrá el contentPanel
-        JScrollPane scroll = new JScrollPane(contentPanel,
+        scroll = new JScrollPane(contentPanel,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scroll.setBounds(0, 90, 1920, 880);
-        scroll.getVerticalScrollBar().setUnitIncrement(16); // velocidad de scroll
-        add(scroll);
+        scroll.getVerticalScrollBar().setUnitIncrement(16);
+        add(scroll, BorderLayout.CENTER);
 
-        // crear cada item (imagen arriba, descripcion abajo)
-        JPanel rowPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 20));
-        rowPanel.setBackground(LionB);
-        int cols = 5;
+        int anchoVentana = getWidth();
+        int anchoItem = 400; // ?ancho de cada item con margen
+        int cols = Math.max(1, anchoVentana / anchoItem); // cuantos items caben por fila
         int countInRow = 0;
+
+        JPanel rowPanel = crearFila();
 
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
                 if (matriz[i][j] != null) {
-                    // panel individual del item
-                    JPanel itemPanel = new JPanel();
-                    itemPanel.setBackground(AzulItems);
-                    itemPanel.setLayout(new BorderLayout());
-                    Dimension itemSize = new Dimension(360, 410);
-                    itemPanel.setPreferredSize(itemSize);
-                    itemPanel.setMaximumSize(itemSize);
-
-                    // etiqueta para imagen (se posiciona arriba)
-                    ImageIcon Imagen = new ImageIcon(matriz[i][j].DirImagen);
-                    JLabel imgLabel = new JLabel(Imagen);
-                    imgLabel.setHorizontalAlignment(JLabel.CENTER);
-                    imgLabel.setVerticalAlignment(JLabel.CENTER);
-                    imgLabel.setPreferredSize(new Dimension(360, 260)); // espacio para la imagen
-                    //imgLabel.setIcon();
-                    Imagenes.add(imgLabel);
-                    itemPanel.add(imgLabel, BorderLayout.NORTH);
-
-                    // textarea para descripción (debajo de la imagen)
-                    JTextArea desc = new JTextArea();
-                    desc.setFont(new Font("Arial", Font.BOLD, 16));
-                    descan = (matriz[i][j].NombreProd + "\n" + matriz[i][j].Marca + "\n$" + matriz[i][j].Precio);
-                    desc.setText(descan); //Solo muestra datos necesarios para el usuario
-                    if (matriz[i][j].Categoria.equals("Zapateria") || matriz[i][j].Categoria.equals("Ropa")) {
-                        descan = descan+ "\nTalla: " + matriz[i][j].Talla;
-                        desc.setText(descan); //Solo muestra datos necesarios para el usuario
-                    }
-                    
-                    desc.setEditable(false);
-                    desc.setBackground(AzulItems);
-                    desc.setBorder(new EmptyBorder(8, 8, 8, 8));
-                    desc.setPreferredSize(new Dimension(360, 120));
-
-                    Descripciones.add(desc);
-                    itemPanel.add(desc, BorderLayout.CENTER);
-
-                    // almacenar y agregar al panel de la fila
-                    Paneles.add(itemPanel);
+                    JPanel itemPanel = crearItem(matriz[i][j]);
                     rowPanel.add(itemPanel);
                     countInRow++;
 
-                    // si la fila está completa, agregarla al contenedor y crear una nueva fila
                     if (countInRow >= cols) {
                         contentPanel.add(rowPanel);
-                        rowPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 20));
-                        rowPanel.setBackground(LionB);
+                        rowPanel = crearFila();
                         countInRow = 0;
                     }
                 }
             }
         }
 
-        // agregar la última fila si tiene elementos
-        if (countInRow > 0) {
-            contentPanel.add(rowPanel);
-        }
+        if (countInRow > 0) contentPanel.add(rowPanel);
 
-        // forzar revalidar/repaint para que se actualice la vista
         revalidate();
         repaint();
     }
 
+    private JPanel crearFila() {
+        JPanel fila = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 20));
+        fila.setBackground(LionB);
+        return fila;
+    }
 
+    private JPanel crearItem(Items item) {
+        JPanel itemPanel = new JPanel(new BorderLayout());
+        itemPanel.setBackground(AzulItems);
+        Dimension itemSize = new Dimension(360, 410);
+        itemPanel.setPreferredSize(itemSize);
+        itemPanel.setMaximumSize(itemSize);
 
+        // Imagen
+        ImageIcon imagen = new ImageIcon(item.DirImagen);
+        JLabel imgLabel = new JLabel(imagen);
+        imgLabel.setHorizontalAlignment(JLabel.CENTER);
+        imgLabel.setPreferredSize(new Dimension(360, 260));
+        Imagenes.add(imgLabel);
+        itemPanel.add(imgLabel, BorderLayout.NORTH);
 
+        // Descripción
+        JTextArea desc = new JTextArea();
+        desc.setFont(new Font("Arial", Font.BOLD, 16));
+        String descan = item.NombreProd + "\n" + item.Marca + "\n$" + item.Precio;
+        if (item.Categoria.equals("Zapateria") || item.Categoria.equals("Ropa")) {
+            descan += "\nTalla: " + item.Talla;
+        }
+        desc.setText(descan);
+        desc.setEditable(false);
+        desc.setBackground(AzulItems);
+        desc.setBorder(new EmptyBorder(8, 8, 8, 8));
+        desc.setPreferredSize(new Dimension(360, 120));
+        Descripciones.add(desc);
+        itemPanel.add(desc, BorderLayout.CENTER);
 
-    public static void main(String args[]) {
-        int x = 1;//si es user es 0 y admin es 1
+        Paneles.add(itemPanel);
+        return itemPanel;
+    }
+
+    public static void main(String[] args) {
+        int x = 1; // 0 = usuario, 1 = admin
         MenuPrincipal Menu = new MenuPrincipal();
         Menu.Contenedor(x);
         Menu.setVisible(true);
