@@ -34,7 +34,11 @@ public class MenuPrincipal extends JFrame {
         setMinimumSize(new Dimension(900, 600));
         setExtendedState(JFrame.MAXIMIZED_BOTH); // inicia maximizada
         getContentPane().setBackground(LionB);
-
+        
+        //iconode app(aun no funciona)
+        /*ImageIcon iconoAPP = new ImageIcon(getClass().getResource("src/Imagenes/Logo.png"));
+        setIconImage(iconoAPP.getImage());*/      
+        
         //pa ajustar items cuando cambie tamaño
         addComponentListener(new ComponentAdapter() {
             @Override
@@ -172,7 +176,14 @@ public class MenuPrincipal extends JFrame {
         fila.setBackground(LionB);
         return fila;
     }
-
+    
+    private void AdaptarImagen(JLabel label, String ruta) {
+        ImageIcon icon = new ImageIcon(ruta);
+        Image img = icon.getImage();
+        Image newImg = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
+        label.setIcon(new ImageIcon(newImg));
+    }
+    
     private JPanel crearItem(Items item) {
         JPanel itemPanel = new JPanel(new BorderLayout());
         itemPanel.setBackground(AzulItems);
@@ -181,12 +192,12 @@ public class MenuPrincipal extends JFrame {
         itemPanel.setMaximumSize(itemSize);
 
         // Imagen
-        ImageIcon imagen = new ImageIcon(item.DirImagen);
-        JLabel imgLabel = new JLabel(imagen);
+        JLabel imgLabel = new JLabel();
         imgLabel.setHorizontalAlignment(JLabel.CENTER);
-        imgLabel.setPreferredSize(new Dimension(360, 260));
-        Imagenes.add(imgLabel);
+        imgLabel.setSize(new Dimension(360, 260));
         itemPanel.add(imgLabel, BorderLayout.NORTH);
+        AdaptarImagen(imgLabel, item.DirImagen);
+        Imagenes.add(imgLabel);
 
         // Descripción
         JTextArea desc = new JTextArea();

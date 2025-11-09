@@ -1,7 +1,10 @@
 package Control;
 import GUI.*;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 /**
  *
@@ -149,6 +152,13 @@ public class Controlador implements ActionListener{
         return num;
     }
     
+    private void AdaptarImagen(JLabel label, String ruta) {
+        ImageIcon icon = new ImageIcon(ruta);
+        Image img = icon.getImage();
+        Image newImg = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
+        label.setIcon(new ImageIcon(newImg));
+    }
+    
     private class controlInterfaz implements ActionListener{
         String vacio="";
         String catego;
@@ -266,6 +276,7 @@ public class Controlador implements ActionListener{
                             itemtemp=user.Consultar(matriz[i], bus.txtnombre.getText());
                             if (itemtemp!=null) {
                                 bus.txtdescripcion.setText(itemtemp.MostrarInfo());
+                                AdaptarImagen(bus.labelImagen, itemtemp.DirImagen);
                                 break;
                             }
                         }
@@ -276,6 +287,7 @@ public class Controlador implements ActionListener{
                             itemtemp=user.Consultar(matriz[i], bus.txtcodigo.getText());
                             if (itemtemp!=null) {
                                 bus.txtdescripcion.setText(itemtemp.MostrarInfo());
+                                AdaptarImagen(bus.labelImagen, itemtemp.DirImagen);
                                 break;
                             }
                         }
@@ -304,6 +316,7 @@ public class Controlador implements ActionListener{
                         itemtemp=user.Consultar(matriz[i], Integer.parseInt(elim.txtcodigo.getText()));
                         if (itemtemp!=null) {
                             elim.txtdescripcion.setText(itemtemp.MostrarInfo());
+                            AdaptarImagen(elim.Img, itemtemp.DirImagen);
                             elim.add(elim.btneliminar);
                             elim.repaint();
                             catego=itemtemp.Categoria;

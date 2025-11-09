@@ -13,6 +13,7 @@ public class EliminarUI extends JFrame{
     public JButton btnbuscar;
     public JTextField txtcodigo;
     public JComboBox box;
+    public JLabel Img;
     
     private JLabel labelcodigo;
     private JLabel labelbcodigo;
@@ -39,8 +40,11 @@ public class EliminarUI extends JFrame{
         txtcodigo.setBounds(160, 20, 100, 20);
         add(txtcodigo);
         
+        Img = new JLabel();
+        Img.setBounds(150, 310, 200, 200);
+        
         txtdescripcion = new JTextArea();
-        txtdescripcion.setBounds(150, 310, 200, 200);
+        txtdescripcion.setBounds(150, 510, 200, 300);
         txtdescripcion.setBackground(RWhite);
         txtdescripcion.setForeground(rojo);
         txtdescripcion.setFont(new Font("Arial", Font.BOLD, 16));
