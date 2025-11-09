@@ -6,9 +6,9 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class IniciodeSesion extends JFrame /*implements ActionListener*/{
-    Color AzulB = new Color(1, 61, 90);
-    Color LionB = new Color(252, 243, 227);
-    Color Azulbr = new Color(83, 104, 120);
+    Color AzulB = new Color(102, 136, 255);   // Updated blue color
+    Color LionB = new Color(245, 243, 243); // Updated white color
+    Color Azulbr = new Color(102, 136, 255);  // Updated blue color
     public JButton btnLogin;
     public JButton btnSignup;
     public JButton btnIgnore;

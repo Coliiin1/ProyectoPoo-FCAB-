@@ -19,59 +19,76 @@ public class EliminarUI extends JFrame{
     private JLabel labelbcodigo;
     public JTextArea txtdescripcion;
     
-    Color rojo=new Color(114,47,55);
-    Color RWhite = new Color(239, 223, 187);
+    Color rojo = new Color(102, 136, 255); 
+    Color RWhite = new Color(245, 243, 243);
+    
     public EliminarUI(){
         setTitle("Eliminar Producto");
         setLayout(null);
-        setSize(520, 800); 
+        setSize(520, 700); 
         setDefaultCloseOperation(HIDE_ON_CLOSE);
-        setResizable(true);
+        setResizable(false);
         setLocationRelativeTo(null);
         getContentPane().setBackground(RWhite);
     }
+
     public void contenedor(){
-        labelcodigo=new JLabel("INGRESAR CODIGO:");
+        labelcodigo = new JLabel("Ingresar código:");
         labelcodigo.setForeground(rojo);
-        labelcodigo.setBounds(20, 20, 150, 20);
+        labelcodigo.setFont(new Font("Arial", Font.BOLD, 16));
+        labelcodigo.setBounds(30, 20, 180, 24);
         add(labelcodigo);
         
-        txtcodigo=new JTextField("");
-        txtcodigo.setBounds(160, 20, 100, 20);
+        txtcodigo = new JTextField();
+        txtcodigo.setBounds(30, 50, 220, 34);
+        txtcodigo.setFont(new Font("Arial", Font.PLAIN, 14));
         add(txtcodigo);
         
-        Img = new JLabel();
-        Img.setBounds(150, 310, 200, 200);
-        
-        txtdescripcion = new JTextArea();
-        txtdescripcion.setBounds(150, 510, 200, 300);
-        txtdescripcion.setBackground(RWhite);
-        txtdescripcion.setForeground(rojo);
-        txtdescripcion.setFont(new Font("Arial", Font.BOLD, 16));
-        txtdescripcion.setEditable(false);
-        add(txtdescripcion);
-        
-        btnbuscar=new JButton("Buscar");
-        btnbuscar.setBounds(300, 20, 100, 20);
+        btnbuscar = new JButton("Buscar");
+        btnbuscar.setBounds(260, 50, 100, 34);
         btnbuscar.setBackground(rojo);
         btnbuscar.setForeground(RWhite);
+        btnbuscar.setFocusPainted(false);
         add(btnbuscar);
         
-        
-        labelbcodigo=new JLabel("CATALOGO DE CODIGOS");
+        labelbcodigo = new JLabel("Catálogo de códigos:");
         labelbcodigo.setForeground(rojo);
-        labelbcodigo.setBounds(20, 100, 150, 20);
+        labelbcodigo.setFont(new Font("Arial", Font.BOLD, 14));
+        labelbcodigo.setBounds(30, 100, 200, 20);
         add(labelbcodigo);
         
-        box=new JComboBox();
-        box.setBounds(160, 100, 100, 20);
+        box = new JComboBox();
+        box.setBounds(30, 125, 220, 30);
         add(box); 
         
-        btneliminar=new JButton("Eliminar");
+        Img = new JLabel();
+        Img.setBounds(320, 110, 160, 160);
+        Img.setOpaque(true);
+        Img.setBackground(new Color(230,230,230));
+        Img.setBorder(BorderFactory.createLineBorder(rojo, 2));
+        Img.setHorizontalAlignment(SwingConstants.CENTER);
+        Img.setText("Previsualización");
+        Img.setFont(new Font("Arial", Font.PLAIN, 12));
+        add(Img);
+        
+        txtdescripcion = new JTextArea();
+        txtdescripcion.setLineWrap(true);
+        txtdescripcion.setWrapStyleWord(true);
+        txtdescripcion.setBackground(RWhite);
+        txtdescripcion.setForeground(rojo);
+        txtdescripcion.setFont(new Font("Arial", Font.PLAIN, 14));
+        txtdescripcion.setEditable(false);
+        JScrollPane scroll = new JScrollPane(txtdescripcion);
+        scroll.setBounds(30, 175, 450, 300);
+        scroll.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(rojo), "Descripción"));
+        add(scroll);
+        
+        btneliminar = new JButton("Eliminar");
         btneliminar.setBackground(rojo);
         btneliminar.setForeground(RWhite);
-        btneliminar.setBounds(110, 700, 300, 20);
-        
+        btneliminar.setBounds(160, 495, 200, 40);
+        btneliminar.setFocusPainted(false);
+        add(btneliminar);
     }
     public static void main(String args[]){
         EliminarUI ui=new EliminarUI();

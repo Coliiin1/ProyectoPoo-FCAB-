@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import javax.swing.border.EmptyBorder;
 
 public class MenuPrincipal extends JFrame {
-    Color AzulB = new Color(64, 79, 104);
-    Color LionB = new Color(252, 243, 227);
-    Color AzulItems = new Color(122, 133, 157);
+    Color AzulB = new Color(102, 136, 255);   // Updated blue color
+    Color LionB = new Color(245, 243, 243); // Updated white color
+    Color AzulItems = new Color(102, 136, 255);  // Updated blue color
     public JButton Inicio;
     public JButton Anadir;
     public JButton Buscar;
@@ -211,6 +211,7 @@ public class MenuPrincipal extends JFrame {
         desc.setBackground(AzulItems);
         desc.setBorder(new EmptyBorder(8, 8, 8, 8));
         desc.setPreferredSize(new Dimension(360, 120));
+        desc.setForeground(LionB);
         Descripciones.add(desc);
         itemPanel.add(desc, BorderLayout.CENTER);
 

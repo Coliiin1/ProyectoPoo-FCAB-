@@ -28,8 +28,8 @@ public class ModificarUI extends AgregarUI{
     private JLabel lcodigo;
     private JLabel lcaracteristicas;
     private JLabel lcantidad;
-    Color rojo=new Color(225,50,50);
-    Color LionB = new Color(252, 243, 227);
+    Color rojo= new Color(102, 136, 255); 
+    Color LionB = new Color(245, 243, 243); // Updated white color
 
     public ModificarUI(){
         btnmodificar=new JButton();

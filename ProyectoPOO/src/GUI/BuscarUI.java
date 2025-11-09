@@ -13,8 +13,8 @@ public class BuscarUI extends JFrame {
 
     private JLabel nombre;
     private JLabel codigo;
-    Color AzulB = new Color(1, 61, 90);
-    Color LionB = new Color(252, 243, 227);
+    Color AzulB = new Color(102, 136, 255); 
+    Color LionB = new Color(245, 243, 243); 
 
     public BuscarUI() {
         setSize(500, 700);
@@ -54,13 +54,13 @@ public class BuscarUI extends JFrame {
 
         //Para mostrar la Imagen
         labelImagen = new JLabel();
-        labelImagen.setBounds(150, 100, 200, 200); // posición y tamaño donde se mostrará la imagen
+        labelImagen.setBounds(150, 150, 200, 200); // posición y tamaño donde se mostrará la imagen
         labelImagen.setBackground(Color.GRAY); // opcional, color de fondo si no hay imagen
         labelImagen.setOpaque(true); // para que se vea el fondo
         add(labelImagen);
 
         txtdescripcion = new JTextArea();
-        txtdescripcion.setBounds(150, 310, 200, 300);
+        txtdescripcion.setBounds(150, 360, 200, 300);
         txtdescripcion.setForeground(AzulB);
         txtdescripcion.setFont(new Font("Arial", Font.BOLD, 16));
         txtdescripcion.setBackground(LionB);

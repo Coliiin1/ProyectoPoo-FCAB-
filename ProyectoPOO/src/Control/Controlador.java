@@ -316,10 +316,11 @@ public class Controlador implements ActionListener{
                         itemtemp=user.Consultar(matriz[i], Integer.parseInt(elim.txtcodigo.getText()));
                         if (itemtemp!=null) {
                             elim.txtdescripcion.setText(itemtemp.MostrarInfo());
-                            AdaptarImagen(elim.Img, itemtemp.DirImagen);
+                            //AdaptarImagen(elim.Img, itemtemp.DirImagen);
                             elim.add(elim.btneliminar);
                             elim.repaint();
                             catego=itemtemp.Categoria;
+                            AdaptarImagen(elim.Img, itemtemp.DirImagen);
                             break;
                         }
                     }

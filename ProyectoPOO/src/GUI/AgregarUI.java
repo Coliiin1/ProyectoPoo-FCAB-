@@ -29,8 +29,8 @@ public class AgregarUI extends JFrame{
     public String ruta;
     public JFileChooser selector;
     public JButton btnSeleccionarArchivo;
-    Color AzulB = new Color(1, 61, 90);
-    Color LionB = new Color(252, 243, 227);
+    Color AzulB = new Color(25, 68, 241);  // Updated blue color
+    Color LionB = new Color(245, 243, 243); // Updated white color
 
     public AgregarUI(){    
         setTitle("Agregar");
