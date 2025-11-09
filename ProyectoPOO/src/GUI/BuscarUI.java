@@ -13,11 +13,11 @@ public class BuscarUI extends JFrame {
 
     private JLabel nombre;
     private JLabel codigo;
-    Color AzulB = new Color(102, 136, 255); 
+    Color AzulB = new Color(25, 68, 241); 
     Color LionB = new Color(245, 243, 243); 
 
     public BuscarUI() {
-        setSize(500, 700);
+        setSize(520, 600);
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -27,45 +27,58 @@ public class BuscarUI extends JFrame {
     }
 
     public void contenedor() {
-        int c = 30;
+        
         nombre = new JLabel("NOMBRE:");
-        codigo = new JLabel("CODIGO:");
-        JLabel[] Txtos = {nombre, codigo};
-        for (JLabel texto : Txtos) {
-            texto.setBounds(100, c, 100, 20);
-            add(texto);
-            c += 40;
-            texto.setForeground(AzulB);
-            texto.setFont(new Font("Arial", Font.BOLD, 16));
-        }
+        nombre.setForeground(AzulB);
+        nombre.setFont(new Font("Arial", Font.BOLD, 16));
+        nombre.setBounds(30, 20, 180, 24);
+        add(nombre);
 
         txtnombre = new JTextField("");
-        txtnombre.setBounds(250, 30, 100, 20);
+        txtnombre.setBounds(30, 50, 260, 34);
+        txtnombre.setFont(new Font("Arial", Font.PLAIN, 14));
         add(txtnombre);
+
+        codigo = new JLabel("CODIGO:");
+        codigo.setForeground(AzulB);
+        codigo.setFont(new Font("Arial", Font.BOLD, 16));
+        codigo.setBounds(30, 100, 180, 24);
+        add(codigo);
+
         txtcodigo = new JTextField("");
-        txtcodigo.setBounds(250, 70, 100, 20);
+        txtcodigo.setBounds(30, 130, 160, 34);
+        txtcodigo.setFont(new Font("Arial", Font.PLAIN, 14));
         add(txtcodigo);
 
         btnBuscar = new JButton("BUSCAR");
-        btnBuscar.setBounds(200, 600, 100, 20);
+        btnBuscar.setBounds(200, 130, 90, 34);
         btnBuscar.setBackground(AzulB);
         btnBuscar.setForeground(LionB);
+        btnBuscar.setFocusPainted(false);
         add(btnBuscar);
 
-        //Para mostrar la Imagen
         labelImagen = new JLabel();
-        labelImagen.setBounds(150, 150, 200, 200); // posición y tamaño donde se mostrará la imagen
-        labelImagen.setBackground(Color.GRAY); // opcional, color de fondo si no hay imagen
-        labelImagen.setOpaque(true); // para que se vea el fondo
+        labelImagen.setBounds(320, 50, 160, 160);
+        labelImagen.setOpaque(true);
+        labelImagen.setBackground(new Color(230,230,230));
+        labelImagen.setBorder(BorderFactory.createLineBorder(AzulB, 2));
+        labelImagen.setHorizontalAlignment(SwingConstants.CENTER);
+        labelImagen.setText("Previsualización");
+        labelImagen.setFont(new Font("Arial", Font.PLAIN, 12));
         add(labelImagen);
 
         txtdescripcion = new JTextArea();
-        txtdescripcion.setBounds(150, 360, 200, 300);
-        txtdescripcion.setForeground(AzulB);
-        txtdescripcion.setFont(new Font("Arial", Font.BOLD, 16));
+        txtdescripcion.setLineWrap(true);
+        txtdescripcion.setWrapStyleWord(true);
         txtdescripcion.setBackground(LionB);
+        txtdescripcion.setForeground(AzulB);
+        txtdescripcion.setFont(new Font("Arial", Font.PLAIN, 14));
         txtdescripcion.setEditable(false);
-        add(txtdescripcion);
+        JScrollPane scroll = new JScrollPane(txtdescripcion);
+        scroll.setBounds(30, 220, 450, 300);
+        scroll.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(AzulB), "Descripción"));
+        add(scroll);
+
     }
 
     public static void main(String args[]) {
