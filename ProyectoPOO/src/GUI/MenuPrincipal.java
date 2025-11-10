@@ -34,7 +34,7 @@ public class MenuPrincipal extends JFrame {
     private Items[][] matrizActual;
 
         int anchoVentana=0;
-        int anchoItem = 387; // ancho de cada item con margen
+        int anchoItem = 360; // ancho de cada item con margen
         int cols; // cuantos items caben por fila
         int countInRow = 0;
         ImageIcon icon;
@@ -45,11 +45,12 @@ public class MenuPrincipal extends JFrame {
     
     private JScrollPane scroll;
     public MenuPrincipal() {
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // inicia maximizada
+        setMinimumSize(new Dimension(1080, 1000));
         setTitle("Inicio");
         setLayout(new BorderLayout()); // layout para redimensionar los items si se hace mas grande o pequeña la ventana
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(900, 600));
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // inicia maximizada
+
         getContentPane().setBackground(LionB);
         
         //iconode app(aun no funciona)
@@ -57,15 +58,15 @@ public class MenuPrincipal extends JFrame {
         setIconImage(iconoAPP.getImage());*/      
         
         //pa ajustar items cuando cambie tamaño
-        addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                if (matrizActual != null) {
-                    mostrarItems(matrizActual); // recalcula el acomodo
-                }
-                ajustarBotones(); // ajusta tamaño de botones
-            }
-        });
+//        addComponentListener(new ComponentAdapter() {
+//            @Override
+//            public void componentResized(ComponentEvent e) {
+//                if (matrizActual != null) {
+//                    mostrarItems(matrizActual); // recalcula el acomodo
+//                }
+//                ajustarBotones(); // ajusta tamaño de botones
+//            }
+//        });
     }
 
     public void Contenedor(int x) {
@@ -97,7 +98,6 @@ public class MenuPrincipal extends JFrame {
                 ABotones.add(item);
             }
         }
-
         add(ABotones, BorderLayout.NORTH); // Arriba, se adapta
     }
 
@@ -151,13 +151,15 @@ public class MenuPrincipal extends JFrame {
 
         scroll = new JScrollPane(contentPanel,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.getVerticalScrollBar().setUnitIncrement(16);
         add(scroll, BorderLayout.CENTER);
 
         anchoVentana = getWidth();
 //        int anchoItem = 400; // ?ancho de cada item con margen
-        cols = Math.max(1, anchoVentana / anchoItem); // cuantos items caben por fila
+        cols = Math.max(0, anchoVentana / anchoItem); // cuantos items caben por fila
+        System.out.println(anchoVentana +" "+anchoItem);
+        System.out.println(anchoVentana/anchoItem );
         countInRow = 0;
 
         JPanel rowPanel = crearFila();
@@ -214,7 +216,7 @@ public class MenuPrincipal extends JFrame {
         cols = Math.max(1, anchoVentana / anchoItem); // cuantos items caben por fila
         System.out.println(anchoVentana+" "+anchoItem);
         countInRow = 0;
-
+ 
         JPanel rowPanel = crearFila();
 
         for (int j = 0; j < matriz[i].length; j++) {
