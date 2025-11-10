@@ -427,7 +427,7 @@ public class Controlador implements ActionListener{
                         modi.campoCaracteristicas.setText(itemtemp.Caracteristicas);
                         modi.campoCantidad.setText(Short.toString(itemtemp.Cantidad));
                         modi.txtdescripcion.setText(itemtemp.MostrarInfo());
-
+                        AdaptarImagen(modi.vistaImagen, itemtemp.DirImagen);
 //                        modi.limpiarCampos();
                         modi.revalidate();
                         modi.repaint();

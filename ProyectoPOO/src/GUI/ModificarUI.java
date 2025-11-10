@@ -1,29 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package GUI;
-import java.io.*;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-/**
- *
- * @author fabri
- */
+
 public class ModificarUI extends AgregarUI{
-    public File f;
-    public String rutamodi;
     public JButton btnbuscar;
     public JButton btnmodificar;
     
     private JLabel codigo;
     public JTextField txtcodigo;
     public JTextArea txtdescripcion;
+    public JLabel vistaImagen;
     
     private JLabel lnombre;
     private JLabel ltalla;
@@ -34,14 +22,16 @@ public class ModificarUI extends AgregarUI{
     private JLabel lcodigo;
     private JLabel lcaracteristicas;
     private JLabel lcantidad;
-    Color rojo= new Color(102, 136, 255); 
-    Color LionB = new Color(245, 243, 243); // Updated white color
+
+    Color rojo = new Color(25, 68, 241); 
+    Color LionB = new Color(245, 243, 243); 
 
     public ModificarUI(){
-        btnmodificar=new JButton();
+        btnmodificar = new JButton();
         setTitle("Modificar producto");
         setDefaultCloseOperation(HIDE_ON_CLOSE);
-        setSize(460, 700); 
+        
+        setSize(820, 700); 
         setResizable(true);
         setLocationRelativeTo(null);
         setLayout(null);
@@ -50,155 +40,177 @@ public class ModificarUI extends AgregarUI{
     
     public void contenedormodi(){
         
-        codigo= new JLabel("CODIGO:");
-        codigo.setBounds(20, 20, 80, 20);
+        codigo = new JLabel("CODIGO:");
+        codigo.setForeground(rojo);
+        codigo.setFont(new Font("Arial", Font.BOLD, 16));
+        codigo.setBounds(20, 20, 80, 24);
         add(codigo);
         
-        txtcodigo=new JTextField("");
-        txtcodigo.setBounds(100, 20, 100, 20);
+        txtcodigo = new JTextField("");
+        txtcodigo.setBounds(110, 20, 180, 28);
+        txtcodigo.setFont(new Font("Arial", Font.PLAIN, 14));
         add(txtcodigo);
         
-        btnbuscar=new JButton("Buscar");
-        btnbuscar.setBounds(210, 20, 100, 20);
+        btnbuscar = new JButton("Buscar");
+        btnbuscar.setBounds(300, 20, 110, 28);
+        btnbuscar.setBackground(rojo);
+        btnbuscar.setForeground(LionB);
+        btnbuscar.setFocusPainted(false);
         add(btnbuscar);
         
-        txtdescripcion=new JTextArea();
-        txtdescripcion.setBounds(210, 50, 260, 200);
+
+        vistaImagen = new JLabel("Previsualización");
+        vistaImagen.setBounds(520, 60, 240, 180);
+        vistaImagen.setOpaque(true);
+        vistaImagen.setBackground(new Color(230,230,230));
+        vistaImagen.setBorder(BorderFactory.createLineBorder(rojo, 2));
+        vistaImagen.setHorizontalAlignment(SwingConstants.CENTER);
+        vistaImagen.setFont(new Font("Arial", Font.PLAIN, 12));
+        add(vistaImagen);
+        
+
+        txtdescripcion = new JTextArea();
+        txtdescripcion.setLineWrap(true);
+        txtdescripcion.setWrapStyleWord(true);
         txtdescripcion.setBackground(LionB);
-        txtdescripcion.setFont(new Font("Arial", Font.BOLD, 16));
-        add(txtdescripcion);
+        txtdescripcion.setForeground(rojo);
+        txtdescripcion.setFont(new Font("Arial", Font.PLAIN, 14));
+        txtdescripcion.setEditable(false);
+        JScrollPane scroll = new JScrollPane(txtdescripcion);
+        scroll.setBounds(520, 260, 240, 360);
+        scroll.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(rojo), "Descripción"));
+        add(scroll);
     }
     public void modifi(){
-        int x=20;
-        lnombre=new JLabel("NOMBRE");
-        lnombre.setBounds(x, 50, 80, 20);
-        txtNombre=new JTextField();
-        txtNombre.setBounds(x+100, 50, 80, 20);
+
+        int x = 20;
+        int labelW = 120;
+        int fieldX = x + labelW + 10;
+        int fieldW = 360;
+        int y = 70; // start below top search row
+        int gap = 46;
+
+        lnombre = new JLabel("NOMBRE:");
+        lnombre.setForeground(rojo);
+        lnombre.setFont(new Font("Arial", Font.BOLD, 14));
+        lnombre.setBounds(x, y, labelW, 24);
+        txtNombre = new JTextField();
+        txtNombre.setBounds(fieldX, y, fieldW, 30);
         add(lnombre);
         add(txtNombre);
-        int y=80;
-        ltalla=new JLabel("TALLA");
-        ltalla.setBounds(x, y, 80, 20);
+        y += gap;
+
+        ltalla = new JLabel("TALLA:");
+        ltalla.setForeground(rojo);
+        ltalla.setFont(new Font("Arial", Font.BOLD, 14));
+        ltalla.setBounds(x, y, labelW, 24);
+        comboTalla = new JComboBox<>();
+        comboTalla.setBounds(fieldX, y, 180, 30);
+
+        String[] tallas1 = {"Seleccione talla", "XS", "S", "M", "L", "XL"};
+        String[] tallas2 = {"Seleccione talla", "15","16","17","18","19","20","21","22","23","24","25","26","27"};
+        /*
+        switch (categoria){
+            case "Zapateria":
+                for (String talla: tallas2) comboTalla.addItem(talla);
+                add(ltalla);
+                add(comboTalla);
+                break;
+            case "Ropa":
+                for (String talla: tallas1) comboTalla.addItem(talla);
+                add(ltalla);
+                add(comboTalla);
+                break;
+            default:
+        }*/
+        //y+=30;
         comboTalla=new JComboBox();
-        comboTalla.setBounds(x+100, y, 80, 20);
-//        switch (categoria){
-//            case "Zapateria":
-//                add(ltalla);
-//                for (String talla: tallas2) {
-//                    comboTalla.addItem(talla);
-//                }
-//                add(comboTalla);
-//                y+=30;
-//                break;
-//            case "Ropa":
-//                add(ltalla);
-//                for (String talla: tallas1) {
-//                    comboTalla.addItem(talla);
-//                }
-//                add(comboTalla);
-//                y+=30;
-//            default:
-//        }
+        comboTalla.setBounds(fieldX, y, 180, 30);
         add(ltalla);
         add(comboTalla);
-        y+=30;
-        lsexo=new JLabel("SEXO");
-        lsexo.setBounds(x, y, 80, 20);
+
         
+        y += gap;
+        
+
+        lsexo = new JLabel("SEXO:");
+        lsexo.setForeground(rojo);
+        lsexo.setFont(new Font("Arial", Font.BOLD, 14));
+        lsexo.setBounds(x, y, labelW, 24);
         comboSexo = new JComboBox<>();
+        comboSexo.setBounds(fieldX, y, 180, 30);
         String[] sexos = {"Seleccione", "Masculino", "Femenino", "Unisex"};
-        for (String sexo : sexos) {
-            comboSexo.addItem(sexo);
-        }
-        comboSexo.setBounds(x+100, y, 80, 20);
-        y+=30;
+        for (String sexo : sexos) comboSexo.addItem(sexo);
         add(lsexo);
         add(comboSexo);
-        
-        lprecio=new JLabel("PRECIO");
-        lprecio.setBounds(x, y, 80, 20);
-        campoPrecio=new JTextField("");
-        campoPrecio.setBounds(x+100, y, 80, 20);
-        y+=30;
+        y += gap;
+
+        lprecio = new JLabel("PRECIO:");
+        lprecio.setForeground(rojo);
+        lprecio.setFont(new Font("Arial", Font.BOLD, 14));
+        lprecio.setBounds(x, y, labelW, 24);
+        campoPrecio = new JTextField("");
+        campoPrecio.setBounds(fieldX, y, 120, 30);
         add(lprecio);
         add(campoPrecio);
-        
-        lmarca=new JLabel("MARCA");
-        lmarca.setBounds(x, y, 80, 20);
-        campoMarca=new JTextField();
-        campoMarca.setBounds(x+100, y, 80, 20);
-        y+=30;
+        y += gap;
+
+        lmarca = new JLabel("MARCA:");
+        lmarca.setForeground(rojo);
+        lmarca.setFont(new Font("Arial", Font.BOLD, 14));
+        lmarca.setBounds(x, y, labelW, 24);
+        campoMarca = new JTextField();
+        campoMarca.setBounds(fieldX, y, 200, 30);
         add(lmarca);
         add(campoMarca);
-        
-        lproveedor=new JLabel("PROVEEDOR");
-        lproveedor.setBounds(x, y, 80, 20);
-        campoProveedor=new JTextField();
-        campoProveedor.setBounds(x+100, y, 80, 20);
-        y+=30;
+        y += gap;
+
+        lproveedor = new JLabel("PROVEEDOR:");
+        lproveedor.setForeground(rojo);
+        lproveedor.setFont(new Font("Arial", Font.BOLD, 14));
+        lproveedor.setBounds(x, y, labelW, 24);
+        campoProveedor = new JTextField();
+        campoProveedor.setBounds(fieldX, y, 200, 30);
         add(lproveedor);
         add(campoProveedor);
-        
-        lcodigo=new JLabel("CODIGO");
-        lcodigo.setBounds(x, y, 80, 20);
-        campoCodigo=new JTextField();
-        campoCodigo.setBounds(x+100, y, 80, 20);
-        y+=30;
+        y += gap;
+
+        lcodigo = new JLabel("CODIGO:");
+        lcodigo.setForeground(rojo);
+        lcodigo.setFont(new Font("Arial", Font.BOLD, 14));
+        lcodigo.setBounds(x, y, labelW, 24);
+        campoCodigo = new JTextField();
+        campoCodigo.setBounds(fieldX, y, 200, 30);
         add(lcodigo);
         add(campoCodigo);
-        
-        lcaracteristicas=new JLabel("CARACTERISTICAS");
-        lcaracteristicas.setBounds(x, y, 80, 20);
-        campoCaracteristicas=new JTextField();
-        campoCaracteristicas.setBounds(x+100, y, 80, 20);
-        y+=30;
+        y += gap;
+
+        lcaracteristicas = new JLabel("CARACTERISTICAS:");
+        lcaracteristicas.setForeground(rojo);
+        lcaracteristicas.setFont(new Font("Arial", Font.BOLD, 14));
+        lcaracteristicas.setBounds(x, y, labelW, 24);
+        campoCaracteristicas = new JTextField();
+        campoCaracteristicas.setBounds(fieldX, y, fieldW, 30);
         add(lcaracteristicas);
         add(campoCaracteristicas);
-        
-        lcantidad=new JLabel("CANTIDAD");
-        lcantidad.setBounds(x, y, 80, 20);
-        campoCantidad=new JTextField();
-        campoCantidad.setBounds(x+100, y, 80, 20);
-        y+=30;
+        y += gap;
+
+        lcantidad = new JLabel("CANTIDAD:");
+        lcantidad.setForeground(rojo);
+        lcantidad.setFont(new Font("Arial", Font.BOLD, 14));
+        lcantidad.setBounds(x, y, labelW, 24);
+        campoCantidad = new JTextField();
+        campoCantidad.setBounds(fieldX, y, 120, 30);
         add(lcantidad);
         add(campoCantidad);
-        
-        
-        //colin si llegaste aqui mo cambies esto es que no nos va a dar tiempo hacer esta madre de cambiar la imagen jajaja mañana lo hacemos 
-        
-//        etiquetaVistaPrevia = new JLabel();
-//        etiquetaVistaPrevia.setBounds(x, y + 36, 150, 150);
-//        etiquetaVistaPrevia.setForeground(AzulB);
-//        etiquetaVistaPrevia.setFont(new Font("Arial", Font.BOLD, 16));
-//        etiquetaVistaPrevia.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-//        add(etiquetaVistaPrevia);
-//        
-//        btnSeleccionarArchivo = new JButton("Seleccionar archivo...");
-//        btnSeleccionarArchivo.setBounds(x, y, 100, 20);
-//        add(btnSeleccionarArchivo);
-//        btnSeleccionarArchivo.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                selector = new JFileChooser();
-//                FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imágenes (jpg, jpeg, png, gif, bmp)", "jpg", "jpeg", "png", "gif", "bmp");
-//                selector.setFileFilter(filtro);
-//                int resultado = selector.showOpenDialog(ModificarUI.this);
-//                if (resultado == JFileChooser.APPROVE_OPTION) {
-//                    f = selector.getSelectedFile();
-//                    String name = f.getName().toLowerCase();
-//                    if (name.endsWith(".jpg") || name.endsWith(".jpeg") || name.endsWith(".png") || name.endsWith(".gif") || name.endsWith(".bmp")) {
-//                        rutaImagenSeleccionada = f.getAbsolutePath(); //Guarda la ruta seleccionada
-//                        ImageIcon ico = new ImageIcon(f.getAbsolutePath());
-//                        Image img = ico.getImage().getScaledInstance(etiquetaVistaPrevia.getWidth(), etiquetaVistaPrevia.getHeight(), Image.SCALE_SMOOTH);
-//                        etiquetaVistaPrevia.setIcon(new ImageIcon(img));
-//                    } else {
-//                        JOptionPane.showMessageDialog(ModificarUI.this, "Formato no válido. Elija jpg, png, gif o bmp.", "Error", JOptionPane.ERROR_MESSAGE);
-//                    }
-//                }
-//            }
-//        });
-//        y+=180;
+        y += gap;
+
+
         btnmodificar.setText("MODIFICAR");
-        btnmodificar.setBounds(x+50, y+30, 200, 20);
+        btnmodificar.setBounds(140, Math.min(y + 10, 560), 220, 40);
+        btnmodificar.setBackground(rojo);
+        btnmodificar.setForeground(LionB);
+        btnmodificar.setFocusPainted(false);
         add(btnmodificar);
     }
     public void limpiarCampos(){
@@ -208,15 +220,14 @@ public class ModificarUI extends AgregarUI{
         campoProveedor.setText("");
         campoMarca.setText("");
         campoPrecio.setText("");
-        comboSexo.setSelectedIndex(0);
-        comboTalla.setSelectedIndex(0);
+        if (comboSexo!=null) comboSexo.setSelectedIndex(0);
+        if (comboTalla!=null) comboTalla.setSelectedIndex(0);
         txtNombre.setText("");
         txtcodigo.setText("");
     }
     public static void main(String args[]){
         ModificarUI ui=new ModificarUI();
         ui.contenedormodi();
-        ui.modifi();
         ui.setVisible(true);
     }
 }
