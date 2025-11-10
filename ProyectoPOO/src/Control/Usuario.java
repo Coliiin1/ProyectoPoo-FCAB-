@@ -2,11 +2,10 @@
 import GUI.ModificarUI;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+ 
+ 
 public abstract class Usuario {
     public String Usuario;
-    public String Nombres, APaterno, AMaterno;
-    public byte Dia, Mes;
-    public short Anio;
     public String Contrasenia;
     
     public Usuario(String usuario,String contrasenia){
@@ -41,7 +40,7 @@ public abstract class Usuario {
     }
     
     //SOBRECARGA DE METOSOS
-    public Items Consultar(Items[] inventario,String nombre){
+    static public Items Consultar(Items[] inventario,String nombre){
         Items item=new Items();
         byte encontrado=0;
         if(inventario[0]!=null){
@@ -63,7 +62,7 @@ public abstract class Usuario {
         return item;
     } 
     
-    public Items Consultar(Items[] inventario,int codigo){
+    static public Items Consultar(Items[] inventario,int codigo){
         Items item=new Items();
         byte encontrado=0;
         if(inventario[0]!=null){

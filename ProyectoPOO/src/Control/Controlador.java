@@ -13,9 +13,14 @@ import javax.swing.JOptionPane;
 public class Controlador implements ActionListener{
     IniciodeSesion inicio;
     Administrador user=new Administrador("ADMIN","12345");
+    Cliente cliente=new Cliente("","");
+    
+    BuscarUI busCliente;
+    
     ControlArchivos con=new ControlArchivos();
     AgregarUI agreg;
     MenuPrincipal men;
+    MenuPrincipal menCliente;
     BuscarUI bus;
     controlInterfaz interfaz;
     EliminarUI elim;
@@ -55,11 +60,15 @@ public class Controlador implements ActionListener{
         vph=0;
         vac=0;
         
+        busCliente=new BuscarUI();
+        busCliente.contenedor();
+        
         interfaz=new controlInterfaz();
         inicio=new IniciodeSesion();
         inicio.Contenedor();
         inicio.setVisible(true);
         men=new MenuPrincipal();
+        menCliente=new MenuPrincipal();
         this.inicio.btnLogin.addActionListener(this);
         this.inicio.borrar.addActionListener(this);
         this.inicio.btnIgnore.addActionListener(this);
@@ -73,7 +82,6 @@ public class Controlador implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         Object evento= e.getSource();
-        
         if (evento == inicio.borrar){
             inicio.txtUser.setText("");
             inicio.txtPass.setText("");
@@ -115,11 +123,13 @@ public class Controlador implements ActionListener{
             }
         }
         if (evento == inicio.btnIgnore){
-            men.Contenedor(0);
-            men.InicioSesion.addActionListener(this);
-            men.mostrarItems(matriz);
+            menCliente.Contenedor(0);
+            menCliente.InicioSesion.addActionListener(this);
+            menCliente.mostrarItems(matriz);
+            
+            menCliente.Buscar.addActionListener(this);
             inicio.hide();
-            men.setVisible(true);
+            menCliente.setVisible(true);
         }
         if (evento == men.Anadir) {
             agreg.setVisible(true);
@@ -133,9 +143,14 @@ public class Controlador implements ActionListener{
         if (evento==men.Modificar){
             modi.setVisible(true);
         }
-        if (evento==men.InicioSesion) {
+        if (evento==menCliente.InicioSesion) {
             inicio.setVisible(true);
-            
+            menCliente.dispose();
+        }
+        if (evento==menCliente.Buscar) {
+            busCliente.setVisible(true);
+            cliente.iniciar(busCliente, matriz);
+            busCliente.btnBuscar.addActionListener(cliente);
         }
     }
 
@@ -274,7 +289,7 @@ public class Controlador implements ActionListener{
                 }
             }
             //acciones del evento buscar
-            if (evento==bus.btnBuscar) {
+            if (evento==bus.btnBuscar&&user!=null) {
                 bus.txtdescripcion.setText(vacio);
                 if (bus.txtnombre.getText().equals("")&&bus.txtnombre.getText().equals("")) {
                     JOptionPane.showMessageDialog(bus, "INGTRESE UN CAMPO AL MENOS");
@@ -302,6 +317,7 @@ public class Controlador implements ActionListener{
                     }
                 }
             }
+            
             //si evento es igual a liminar
             String code;
                 elim.txtdescripcion.setText(vacio);

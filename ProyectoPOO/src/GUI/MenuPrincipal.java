@@ -71,7 +71,7 @@ public class MenuPrincipal extends JFrame {
         Guardar = new JButton("Guardar");
         InicioSesion = new JButton("Iniciar Sesión");
 
-        JButton[] itemsUser = {Inicio, itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, InicioSesion};
+        JButton[] itemsUser = {Inicio, itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, Buscar, InicioSesion};
         JButton[] itemsAdmin = {Inicio, itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, Anadir, Buscar, Eliminar, Modificar, Guardar};
 
         if (x == 1) {
