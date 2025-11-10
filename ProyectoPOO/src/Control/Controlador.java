@@ -76,7 +76,6 @@ public class Controlador implements ActionListener{
     public static void main(String args[]){
         Controlador control=new Controlador();
         //System.out.println("\nAsh nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk agh burzum-ishi krimpatul");
-        System.out.println(control.vc);
     }
 
     @Override
@@ -98,6 +97,13 @@ public class Controlador implements ActionListener{
                 this.men.Eliminar.addActionListener(this);
                 this.men.Modificar.addActionListener(this);
                 this.men.Guardar.addActionListener(interfaz);
+                
+                men.itemCalzadoH.addActionListener(interfaz);
+                men.itemRopaH.addActionListener(interfaz);
+                men.itemBellezaH.addActionListener(interfaz);
+                men.itemHogarH.addActionListener(interfaz);
+                men.itemAccesoriosH.addActionListener(interfaz);
+                men.Inicio.addActionListener(interfaz);
                 agreg=new AgregarUI();
                 agreg.contenedor();
                 
@@ -204,7 +210,7 @@ public class Controlador implements ActionListener{
             for (int i = 0; i < matriz.length; i++) {
                 for (int j = 0; j < matriz[0].length; j++) {
                     if(matriz[i][j]!=null){
-                        System.out.println(i+j+matriz[i][j].NombreProd);
+                        System.out.println(i+" "+j+matriz[i][j].NombreProd);
                     }
                 }
             }
@@ -284,7 +290,6 @@ public class Controlador implements ActionListener{
                             men.revalidate();
                             men.repaint();
                         }
-                        System.out.println("ok");
                     }
                 }
             }
@@ -463,6 +468,36 @@ public class Controlador implements ActionListener{
             }
             if (evento==men.Guardar) {
                 con.guardarDatos("src\\Archivos\\DATOS.dat", matriz);
+            }
+            if (evento==men.itemCalzadoH) {
+                men.mostrarItems(matriz,1);
+                men.revalidate();
+                men.repaint();
+            }
+            if (evento==men.itemRopaH) {
+                men.mostrarItems(matriz,0);
+                men.revalidate();
+                men.repaint();
+            }
+            if (evento==men.itemBellezaH) {
+                men.mostrarItems(matriz,2);
+                men.revalidate();
+                men.repaint();
+            }
+            if (evento==men.itemHogarH) {
+                men.mostrarItems(matriz,3);
+                men.revalidate();
+                men.repaint();
+            }
+            if (evento==men.itemAccesoriosH) {
+                men.mostrarItems(matriz,4);
+                men.revalidate();
+                men.repaint();
+            }
+            if (evento==men.Inicio) {
+                men.mostrarItems(matriz);
+                men.revalidate();
+                men.repaint();
             }
         }
     }

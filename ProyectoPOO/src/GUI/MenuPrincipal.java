@@ -19,6 +19,12 @@ public class MenuPrincipal extends JFrame {
     public JButton Guardar;
     public JButton InicioSesion;
     
+    public JButton itemRopaH = new JButton("Ropa");
+    public JButton itemCalzadoH = new JButton("Calzado");
+    public JButton itemBellezaH = new JButton("Productos de belleza");
+    public JButton itemHogarH = new JButton("Productos para el hogar");
+    public JButton itemAccesoriosH = new JButton("Accesorios");
+    
     public ArrayList<JPanel> Paneles = new ArrayList<>();
     public ArrayList<JLabel> Imagenes = new ArrayList<>();
     public ArrayList<JTextArea> Descripciones = new ArrayList<>();
@@ -58,11 +64,7 @@ public class MenuPrincipal extends JFrame {
         ABotones.setLayout(new GridLayout(1, 0, 10, 10)); // 🔹 Se adapta al ancho
 
         // Crear botones
-        JButton itemRopaH = new JButton("Ropa");
-        JButton itemCalzadoH = new JButton("Calzado");
-        JButton itemBellezaH = new JButton("Productos de belleza");
-        JButton itemHogarH = new JButton("Productos para el hogar");
-        JButton itemAccesoriosH = new JButton("Accesorios");
+        
         Inicio = new JButton("Inicio");
         Anadir = new JButton("Añadir");
         Buscar = new JButton("Buscar");
@@ -172,6 +174,57 @@ public class MenuPrincipal extends JFrame {
         repaint();
     }
 
+    public void mostrarItems(Items[][] matriz,int i) {
+        matrizActual = matriz; // guardamos referencia para recalcular
+
+        // limpiar listas previas
+        Paneles.clear();
+        Imagenes.clear();
+        Descripciones.clear();
+
+        if (scroll != null) {
+            remove(scroll);
+        }
+
+        // Panel contenedor principal
+        contentPanel = new JPanel();
+        contentPanel.setBackground(LionB);
+        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+        contentPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
+
+        scroll = new JScrollPane(contentPanel,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.getVerticalScrollBar().setUnitIncrement(16);
+        add(scroll, BorderLayout.CENTER);
+
+        int anchoVentana = getWidth();
+        int anchoItem = 400; // ?ancho de cada item con margen
+        int cols = Math.max(1, anchoVentana / anchoItem); // cuantos items caben por fila
+        int countInRow = 0;
+
+        JPanel rowPanel = crearFila();
+
+        for (int j = 0; j < matriz[i].length; j++) {
+            if (matriz[i][j] != null) {
+                JPanel itemPanel = crearItem(matriz[i][j]);
+                rowPanel.add(itemPanel);
+                countInRow++;
+
+                if (countInRow >= cols) {
+                    contentPanel.add(rowPanel);
+                    rowPanel = crearFila();
+                    countInRow = 0;
+                }
+            }
+        }
+
+        if (countInRow > 0) contentPanel.add(rowPanel);
+
+        revalidate();
+        repaint();
+    }
+    
     private JPanel crearFila() {
         JPanel fila = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 20));
         fila.setBackground(LionB);

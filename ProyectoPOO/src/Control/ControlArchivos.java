@@ -41,7 +41,6 @@ public class ControlArchivos {
             return new Items[filas][columnas];
         }else{
             try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(datos))) {
-                System.out.println("HOLA");
                 return (Items[][])entrada.readObject();
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace(System.out);
