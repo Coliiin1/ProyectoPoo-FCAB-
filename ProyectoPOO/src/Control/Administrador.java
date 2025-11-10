@@ -29,7 +29,7 @@ public class Administrador extends Usuario{
         articulo.DirImagen=agreg.ruta;
         return articulo;
     }
-    public void Modificar(Items[][] inventario,ModificarUI ui){
+    public void Modificar(Items[][] inventario,ModificarUI ui,String direccion,String categoria){
         Items tem=new Items();
         int contador=0;
         tem.NombreProd=ui.txtNombre.getText();
@@ -43,6 +43,9 @@ public class Administrador extends Usuario{
         tem.Caracteristicas=ui.campoCaracteristicas.getText();
         tem.Cantidad=Short.parseShort(ui.campoCantidad.getText());
         String codigo=ui.txtcodigo.getText();
+        
+        tem.Categoria=categoria;
+        tem.DirImagen=direccion;
         System.out.println(tem.MostrarInfo());
         for (int i = 0; i < inventario.length; i++) {
             for (int j = 0; j < inventario[i].length; j++) {

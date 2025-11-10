@@ -110,7 +110,6 @@ public class IniciodeSesion extends JFrame /*implements ActionListener*/{
         add(loginPanel);
         add(rightPanel);
     }
-    
     public static void main(String[] args) {
         IniciodeSesion Ini = new IniciodeSesion();
         Ini.Contenedor();

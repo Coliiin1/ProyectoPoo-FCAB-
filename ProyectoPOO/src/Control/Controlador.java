@@ -101,6 +101,7 @@ public class Controlador implements ActionListener{
                 
                 modi=new ModificarUI();
                 modi.contenedormodi();
+                modi.modifi();
                 
                 agreg.btnAgregar.addActionListener(interfaz);
                 agreg.comboCategorias.addActionListener(interfaz);
@@ -108,12 +109,14 @@ public class Controlador implements ActionListener{
                 elim.btnbuscar.addActionListener(interfaz);
                 elim.btneliminar.addActionListener(interfaz);
                 modi.btnbuscar.addActionListener(interfaz);
+                modi.btnmodificar.addActionListener(interfaz);
             }else{
                 inicio.error.setText("ERROR AL INICIAR SESION");
             }
         }
         if (evento == inicio.btnIgnore){
             men.Contenedor(0);
+            men.InicioSesion.addActionListener(this);
             men.mostrarItems(matriz);
             inicio.hide();
             men.setVisible(true);
@@ -128,8 +131,11 @@ public class Controlador implements ActionListener{
             elim.setVisible(true);
         }
         if (evento==men.Modificar){
-
             modi.setVisible(true);
+        }
+        if (evento==men.InicioSesion) {
+            inicio.setVisible(true);
+            
         }
     }
 
@@ -162,6 +168,8 @@ public class Controlador implements ActionListener{
     private class controlInterfaz implements ActionListener{
         String vacio="";
         String catego;
+        final String[] tallas1 = {"Seleccione talla", "XS", "S", "M", "L", "XL"};
+        final String[] tallas2 = {"Seleccione talla", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27"};
         public controlInterfaz(){
             matriz=con.leerDatos("src/Archivos/DATOS.dat", 5, 50);
             ropa         = matriz[0];
@@ -254,7 +262,7 @@ public class Controlador implements ActionListener{
                                 }
                                 break;
                                 
-                            default: System.out.println("thats great");
+                            default: System.out.println("ESTO NO DEBERIA PASAR JAJAJ SALUDOS DESDE MI casa");
                         }
                         if (added && men != null) {
                             men.mostrarItems(matriz);
@@ -378,7 +386,23 @@ public class Controlador implements ActionListener{
                 for (int i = 0; i < 5; i++) {
                     itemtemp=user.Consultar(matriz[i], Integer.parseInt(modi.txtcodigo.getText()));
                     if (itemtemp!=null) {
-                        modi.modifi(itemtemp.Categoria);
+                        if (itemtemp.Categoria.equals("Zapateria") ){
+                        //comboCategorias.setSelectedItem(tallas2);
+                        modi.comboTalla.removeAllItems();
+                            for (String talla : tallas2) {
+                                modi.comboTalla.addItem(talla);
+                            } 
+                        modi.add(modi.comboTalla);
+                        } else if(itemtemp.Categoria.equals("Ropa")){
+                            modi.comboTalla.removeAllItems();
+                            for (String talla : tallas1) {
+                                modi.comboTalla.addItem(talla);
+                            }
+                        } else {
+                            modi.comboTalla.removeAllItems();
+                        }
+                        modi.add(modi.comboTalla);
+                        
                         modi.txtNombre.setText(itemtemp.NombreProd);
                         modi.campoPrecio.setText(Float.toString(itemtemp.Precio));
                         modi.campoMarca.setText(itemtemp.Marca);
@@ -387,20 +411,38 @@ public class Controlador implements ActionListener{
                         modi.campoCaracteristicas.setText(itemtemp.Caracteristicas);
                         modi.campoCantidad.setText(Short.toString(itemtemp.Cantidad));
                         modi.txtdescripcion.setText(itemtemp.MostrarInfo());
-                        modi.btnmodificar.addActionListener(interfaz);
+
+//                        modi.limpiarCampos();
                         modi.revalidate();
                         modi.repaint();
+                        break;
                     }
                 }
+                if (itemtemp==null) {
+                    modi.limpiarCampos();
+                    JOptionPane.showMessageDialog(modi, "NO SE ENCONTRO UN ITEM CON EL CODIGO "+modi.txtcodigo.getText(), "NO SE ENCONTRO", 3);
+                }
             }
+            String categoria="";
+            String direccion="";
             if (evento==modi.btnmodificar) {
-                user.Modificar(matriz, modi);
+                if (modi.comboSexo.getSelectedItem()!="Seleccione" && modi.comboTalla.getSelectedItem()!="Seleccione talla") {
+                    for (int i = 0; i < matriz.length; i++) {
+                    itemtemp=user.Consultar(matriz[i], Integer.parseInt(modi.txtcodigo.getText()));
+                    if (itemtemp!=null) {
+                        direccion=itemtemp.DirImagen; 
+                        categoria=itemtemp.Categoria;
+                    }
+                }
+                user.Modificar(matriz, modi, direccion,categoria);
                 modi.limpiarCampos();
-                modi.repaint();
                 if (men != null) {
                     men.mostrarItems(matriz);
                     men.revalidate();
                     men.repaint();
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(inicio, "DEBES AGREVARLE LA TALLA Y EL SEXO", "NO SELECCIONADO", 2);
                 }
             }
             if (evento==men.Guardar) {

@@ -21,7 +21,7 @@ public class AgregarUI extends JFrame{
     public JComboBox<String> comboTalla;
     public JComboBox<String> comboSexo;
     private JLabel etiquetaRutaImagen;
-    private JLabel etiquetaVistaPrevia;
+    public JLabel etiquetaVistaPrevia;
     public String rutaImagenSeleccionada = null;
     public int posY;
     

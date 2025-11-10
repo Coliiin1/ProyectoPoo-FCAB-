@@ -3,15 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package GUI;
-import java.awt.BorderLayout;
+import java.io.*;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
  * @author fabri
  */
 public class ModificarUI extends AgregarUI{
+    public File f;
+    public String rutamodi;
     public JButton btnbuscar;
     public JButton btnmodificar;
     
@@ -35,7 +41,7 @@ public class ModificarUI extends AgregarUI{
         btnmodificar=new JButton();
         setTitle("Modificar producto");
         setDefaultCloseOperation(HIDE_ON_CLOSE);
-        setSize(460, 400); 
+        setSize(460, 700); 
         setResizable(true);
         setLocationRelativeTo(null);
         setLayout(null);
@@ -62,9 +68,7 @@ public class ModificarUI extends AgregarUI{
         txtdescripcion.setFont(new Font("Arial", Font.BOLD, 16));
         add(txtdescripcion);
     }
-    public void modifi(String categoria){
-        String[] tallas1 = {"Seleccione talla", "XS", "S", "M", "L", "XL"};
-        String[] tallas2 = {"Seleccione talla", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27"};
+    public void modifi(){
         int x=20;
         lnombre=new JLabel("NOMBRE");
         lnombre.setBounds(x, 50, 80, 20);
@@ -77,24 +81,27 @@ public class ModificarUI extends AgregarUI{
         ltalla.setBounds(x, y, 80, 20);
         comboTalla=new JComboBox();
         comboTalla.setBounds(x+100, y, 80, 20);
-        switch (categoria){
-            case "Zapateria":
-                add(ltalla);
-                for (String talla: tallas2) {
-                    comboTalla.addItem(talla);
-                }
-                add(comboTalla);
-                y+=30;
-                break;
-            case "Ropa":
-                add(ltalla);
-                for (String talla: tallas1) {
-                    comboTalla.addItem(talla);
-                }
-                add(comboTalla);
-                y+=30;
-            default:
-        }
+//        switch (categoria){
+//            case "Zapateria":
+//                add(ltalla);
+//                for (String talla: tallas2) {
+//                    comboTalla.addItem(talla);
+//                }
+//                add(comboTalla);
+//                y+=30;
+//                break;
+//            case "Ropa":
+//                add(ltalla);
+//                for (String talla: tallas1) {
+//                    comboTalla.addItem(talla);
+//                }
+//                add(comboTalla);
+//                y+=30;
+//            default:
+//        }
+        add(ltalla);
+        add(comboTalla);
+        y+=30;
         lsexo=new JLabel("SEXO");
         lsexo.setBounds(x, y, 80, 20);
         
@@ -152,9 +159,44 @@ public class ModificarUI extends AgregarUI{
         lcantidad.setBounds(x, y, 80, 20);
         campoCantidad=new JTextField();
         campoCantidad.setBounds(x+100, y, 80, 20);
+        y+=30;
         add(lcantidad);
         add(campoCantidad);
         
+        
+        //colin si llegaste aqui mo cambies esto es que no nos va a dar tiempo hacer esta madre de cambiar la imagen jajaja mañana lo hacemos 
+        
+//        etiquetaVistaPrevia = new JLabel();
+//        etiquetaVistaPrevia.setBounds(x, y + 36, 150, 150);
+//        etiquetaVistaPrevia.setForeground(AzulB);
+//        etiquetaVistaPrevia.setFont(new Font("Arial", Font.BOLD, 16));
+//        etiquetaVistaPrevia.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+//        add(etiquetaVistaPrevia);
+//        
+//        btnSeleccionarArchivo = new JButton("Seleccionar archivo...");
+//        btnSeleccionarArchivo.setBounds(x, y, 100, 20);
+//        add(btnSeleccionarArchivo);
+//        btnSeleccionarArchivo.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                selector = new JFileChooser();
+//                FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imágenes (jpg, jpeg, png, gif, bmp)", "jpg", "jpeg", "png", "gif", "bmp");
+//                selector.setFileFilter(filtro);
+//                int resultado = selector.showOpenDialog(ModificarUI.this);
+//                if (resultado == JFileChooser.APPROVE_OPTION) {
+//                    f = selector.getSelectedFile();
+//                    String name = f.getName().toLowerCase();
+//                    if (name.endsWith(".jpg") || name.endsWith(".jpeg") || name.endsWith(".png") || name.endsWith(".gif") || name.endsWith(".bmp")) {
+//                        rutaImagenSeleccionada = f.getAbsolutePath(); //Guarda la ruta seleccionada
+//                        ImageIcon ico = new ImageIcon(f.getAbsolutePath());
+//                        Image img = ico.getImage().getScaledInstance(etiquetaVistaPrevia.getWidth(), etiquetaVistaPrevia.getHeight(), Image.SCALE_SMOOTH);
+//                        etiquetaVistaPrevia.setIcon(new ImageIcon(img));
+//                    } else {
+//                        JOptionPane.showMessageDialog(ModificarUI.this, "Formato no válido. Elija jpg, png, gif o bmp.", "Error", JOptionPane.ERROR_MESSAGE);
+//                    }
+//                }
+//            }
+//        });
+//        y+=180;
         btnmodificar.setText("MODIFICAR");
         btnmodificar.setBounds(x+50, y+30, 200, 20);
         add(btnmodificar);
@@ -174,7 +216,7 @@ public class ModificarUI extends AgregarUI{
     public static void main(String args[]){
         ModificarUI ui=new ModificarUI();
         ui.contenedormodi();
-        ui.modifi("Zapateria");
+        ui.modifi();
         ui.setVisible(true);
     }
 }

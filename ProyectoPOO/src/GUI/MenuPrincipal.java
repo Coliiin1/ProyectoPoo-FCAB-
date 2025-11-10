@@ -18,6 +18,7 @@ public class MenuPrincipal extends JFrame {
     public JButton Modificar;
     public JButton Guardar;
     public JButton InicioSesion;
+    
     public ArrayList<JPanel> Paneles = new ArrayList<>();
     public ArrayList<JLabel> Imagenes = new ArrayList<>();
     public ArrayList<JTextArea> Descripciones = new ArrayList<>();
