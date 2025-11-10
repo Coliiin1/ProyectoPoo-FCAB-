@@ -30,10 +30,20 @@ public class MenuPrincipal extends JFrame {
     public ArrayList<JTextArea> Descripciones = new ArrayList<>();
 
     private JPanel ABotones;
-    private JScrollPane scroll;
     private JPanel contentPanel;
     private Items[][] matrizActual;
 
+        int anchoVentana=0;
+        int anchoItem = 387; // ancho de cada item con margen
+        int cols; // cuantos items caben por fila
+        int countInRow = 0;
+        ImageIcon icon;
+        Image img;
+        Image newImg;
+        JTextArea desc;
+        String descan;
+    
+    private JScrollPane scroll;
     public MenuPrincipal() {
         setTitle("Inicio");
         setLayout(new BorderLayout()); // layout para redimensionar los items si se hace mas grande o pequeña la ventana
@@ -145,10 +155,10 @@ public class MenuPrincipal extends JFrame {
         scroll.getVerticalScrollBar().setUnitIncrement(16);
         add(scroll, BorderLayout.CENTER);
 
-        int anchoVentana = getWidth();
-        int anchoItem = 400; // ?ancho de cada item con margen
-        int cols = Math.max(1, anchoVentana / anchoItem); // cuantos items caben por fila
-        int countInRow = 0;
+        anchoVentana = getWidth();
+//        int anchoItem = 400; // ?ancho de cada item con margen
+        cols = Math.max(1, anchoVentana / anchoItem); // cuantos items caben por fila
+        countInRow = 0;
 
         JPanel rowPanel = crearFila();
 
@@ -198,10 +208,12 @@ public class MenuPrincipal extends JFrame {
         scroll.getVerticalScrollBar().setUnitIncrement(16);
         add(scroll, BorderLayout.CENTER);
 
-        int anchoVentana = getWidth();
-        int anchoItem = 400; // ?ancho de cada item con margen
-        int cols = Math.max(1, anchoVentana / anchoItem); // cuantos items caben por fila
-        int countInRow = 0;
+//        int anchoVentana = getWidth();
+        anchoVentana=getWidth();
+//        int anchoItem = 400; // ?ancho de cada item con margen
+        cols = Math.max(1, anchoVentana / anchoItem); // cuantos items caben por fila
+        System.out.println(anchoVentana+" "+anchoItem);
+        countInRow = 0;
 
         JPanel rowPanel = crearFila();
 
@@ -232,16 +244,16 @@ public class MenuPrincipal extends JFrame {
     }
     
     private void AdaptarImagen(JLabel label, String ruta) {
-        ImageIcon icon = new ImageIcon(ruta);
-        Image img = icon.getImage();
-        Image newImg = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
+        icon = new ImageIcon(ruta);
+        img = icon.getImage();
+        newImg = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
         label.setIcon(new ImageIcon(newImg));
     }
     
     private JPanel crearItem(Items item) {
         JPanel itemPanel = new JPanel(new BorderLayout());
         itemPanel.setBackground(AzulItems);
-        Dimension itemSize = new Dimension(360, 410);
+        Dimension itemSize = new Dimension(360, 410);//SETEA LAS DIMENSIONES DE LS ITEMS
         itemPanel.setPreferredSize(itemSize);
         itemPanel.setMaximumSize(itemSize);
 
@@ -254,9 +266,9 @@ public class MenuPrincipal extends JFrame {
         Imagenes.add(imgLabel);
 
         // Descripción
-        JTextArea desc = new JTextArea();
+        desc = new JTextArea();
         desc.setFont(new Font("Arial", Font.BOLD, 16));
-        String descan = item.NombreProd + "\n" + item.Marca + "\n$" + item.Precio;
+        descan = item.NombreProd + "\n" + item.Marca + "\n$" + item.Precio;
         if (item.Categoria.equals("Zapateria") || item.Categoria.equals("Ropa")) {
             descan += "\nTalla: " + item.Talla;
         }

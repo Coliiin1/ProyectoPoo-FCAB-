@@ -207,13 +207,13 @@ public class Controlador implements ActionListener{
         }
         @Override
         public void actionPerformed(ActionEvent e){
-            for (int i = 0; i < matriz.length; i++) {
-                for (int j = 0; j < matriz[0].length; j++) {
-                    if(matriz[i][j]!=null){
-                        System.out.println(i+" "+j+matriz[i][j].NombreProd);
-                    }
-                }
-            }
+//            for (int i = 0; i < matriz.length; i++) {
+//                for (int j = 0; j < matriz[0].length; j++) {
+//                    if(matriz[i][j]!=null){
+//                        System.out.println(i+" "+j+matriz[i][j].NombreProd);
+//                    }
+//                }
+//            }
             Object evento=e.getSource();
             //detecta si es que estan llenos todos los campos de la interfaz
             if(evento==agreg.btnAgregar){
@@ -480,12 +480,12 @@ public class Controlador implements ActionListener{
                 men.repaint();
             }
             if (evento==men.itemBellezaH) {
-                men.mostrarItems(matriz,2);
+                men.mostrarItems(matriz,3);
                 men.revalidate();
                 men.repaint();
             }
             if (evento==men.itemHogarH) {
-                men.mostrarItems(matriz,3);
+                men.mostrarItems(matriz,2);
                 men.revalidate();
                 men.repaint();
             }
