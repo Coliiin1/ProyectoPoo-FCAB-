@@ -37,7 +37,7 @@ public class AgregarUI extends JFrame{
         setLayout(new BorderLayout());
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setSize(520, 840); 
-        setResizable(false);
+        setResizable(true);
         setLocationRelativeTo(null);
         setLayout(null);
         getContentPane().setBackground(LionB);
