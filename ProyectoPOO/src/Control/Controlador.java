@@ -23,6 +23,7 @@ public class Controlador implements ActionListener{
     MenuPrincipal menCliente;
     BuscarUI bus;
     controlInterfaz interfaz;
+    ControlUICliente interfazCliente;
     EliminarUI elim;
     ModificarUI modi;
     
@@ -62,13 +63,15 @@ public class Controlador implements ActionListener{
         
         busCliente=new BuscarUI();
         busCliente.contenedor();
+        men=new MenuPrincipal();
+        menCliente=new MenuPrincipal();
         
         interfaz=new controlInterfaz();
+        interfazCliente=new ControlUICliente(busCliente,matriz,cliente,menCliente);
         inicio=new IniciodeSesion();
         inicio.Contenedor();
         inicio.setVisible(true);
-        men=new MenuPrincipal();
-        menCliente=new MenuPrincipal();
+        
         this.inicio.btnLogin.addActionListener(this);
         this.inicio.borrar.addActionListener(this);
         this.inicio.btnIgnore.addActionListener(this);
@@ -123,7 +126,8 @@ public class Controlador implements ActionListener{
                 elim.btnbuscar.addActionListener(interfaz);
                 elim.btneliminar.addActionListener(interfaz);
                 modi.btnbuscar.addActionListener(interfaz);
-                modi.btnmodificar.addActionListener(interfaz);
+                
+                
             }else{
                 inicio.error.setText("ERROR AL INICIAR SESION");
             }
@@ -132,6 +136,13 @@ public class Controlador implements ActionListener{
             menCliente.Contenedor(0);
             menCliente.InicioSesion.addActionListener(this);
             menCliente.mostrarItems(matriz);
+            
+            menCliente.itemCalzadoH.addActionListener(interfazCliente);
+            menCliente.itemRopaH.addActionListener(interfazCliente);
+            menCliente.itemBellezaH.addActionListener(interfazCliente);
+            menCliente.itemHogarH.addActionListener(interfazCliente);
+            menCliente.itemAccesoriosH.addActionListener(interfazCliente);
+            menCliente.Inicio.addActionListener(interfazCliente);
             
             menCliente.Buscar.addActionListener(this);
             inicio.hide();
@@ -155,8 +166,7 @@ public class Controlador implements ActionListener{
         }
         if (evento==menCliente.Buscar) {
             busCliente.setVisible(true);
-            cliente.iniciar(busCliente, matriz);
-            busCliente.btnBuscar.addActionListener(cliente);
+            busCliente.btnBuscar.addActionListener(interfazCliente);
         }
     }
 

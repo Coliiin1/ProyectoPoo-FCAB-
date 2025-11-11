@@ -46,13 +46,13 @@ public class MenuPrincipal extends JFrame {
     private JScrollPane scroll;
     public MenuPrincipal() {
         setExtendedState(JFrame.MAXIMIZED_BOTH); // inicia maximizada
-        setMinimumSize(new Dimension(1080, 1000));
+        
         setTitle("Inicio");
         setLayout(new BorderLayout()); // layout para redimensionar los items si se hace mas grande o pequeña la ventana
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
+        setSize(1920,1080);
         getContentPane().setBackground(LionB);
-        
+        setMinimumSize(new Dimension(820, 700));
         //iconode app(aun no funciona)
         /*ImageIcon iconoAPP = new ImageIcon(getClass().getResource("src/Imagenes/Logo.png"));
         setIconImage(iconoAPP.getImage());*/      
