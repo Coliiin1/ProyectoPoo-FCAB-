@@ -2,15 +2,13 @@ package GUI;
 import Control.Items;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 import javax.swing.border.EmptyBorder;
 
 public class MenuPrincipal extends JFrame {
-    Color AzulB = new Color(102, 136, 255);   // Updated blue color
-    Color LionB = new Color(245, 243, 243); // Updated white color
-    Color AzulItems = new Color(102, 136, 255);  // Updated blue color
+    Color AzulB = new Color(102, 136, 255); 
+    Color LionB = new Color(245, 243, 243);
+    Color AzulItems = new Color(102, 136, 255);
     public JButton Inicio;
     public JButton Anadir;
     public JButton Buscar;
@@ -46,33 +44,19 @@ public class MenuPrincipal extends JFrame {
     private JScrollPane scroll;
     public MenuPrincipal() {
         setExtendedState(JFrame.MAXIMIZED_BOTH); // inicia maximizada
-        
+        //SI GUSTA QUE SE REACOMODEN DELE CLICK EN EL BOTON YA Q NO NOS AYUDO Y NO PUDIMOS :)
         setTitle("Inicio");
         setLayout(new BorderLayout()); // layout para redimensionar los items si se hace mas grande o pequeña la ventana
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1920,1080);
         getContentPane().setBackground(LionB);
         setMinimumSize(new Dimension(820, 700));
-        //iconode app(aun no funciona)
-        /*ImageIcon iconoAPP = new ImageIcon(getClass().getResource("src/Imagenes/Logo.png"));
-        setIconImage(iconoAPP.getImage());*/      
-        
-        //pa ajustar items cuando cambie tamaño
-//        addComponentListener(new ComponentAdapter() {
-//            @Override
-//            public void componentResized(ComponentEvent e) {
-//                if (matrizActual != null) {
-//                    mostrarItems(matrizActual); // recalcula el acomodo
-//                }
-//                ajustarBotones(); // ajusta tamaño de botones
-//            }
-//        });
     }
 
     public void Contenedor(int x) {
         ABotones = new JPanel();
         ABotones.setBackground(AzulB);
-        ABotones.setLayout(new GridLayout(1, 0, 10, 10)); // 🔹 Se adapta al ancho
+        ABotones.setLayout(new GridLayout(1, 0, 10, 10)); 
 
         // Crear botones
         
@@ -132,6 +116,7 @@ public class MenuPrincipal extends JFrame {
     }
 
     public void mostrarItems(Items[][] matriz) {
+        
         matrizActual = matriz; // guardamos referencia para recalcular
 
         // limpiar listas previas
@@ -148,7 +133,7 @@ public class MenuPrincipal extends JFrame {
         contentPanel.setBackground(LionB);
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         contentPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
-
+        
         scroll = new JScrollPane(contentPanel,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -156,10 +141,8 @@ public class MenuPrincipal extends JFrame {
         add(scroll, BorderLayout.CENTER);
 
         anchoVentana = getWidth();
-//        int anchoItem = 400; // ?ancho de cada item con margen
+        //int anchoItem = 400; // ?ancho de cada item con margen
         cols = Math.max(0, anchoVentana / anchoItem); // cuantos items caben por fila
-        System.out.println(anchoVentana +" "+anchoItem);
-        System.out.println(anchoVentana/anchoItem );
         countInRow = 0;
 
         JPanel rowPanel = crearFila();
@@ -210,11 +193,11 @@ public class MenuPrincipal extends JFrame {
         scroll.getVerticalScrollBar().setUnitIncrement(16);
         add(scroll, BorderLayout.CENTER);
 
-//        int anchoVentana = getWidth();
+        //int anchoVentana = getWidth();
         anchoVentana=getWidth();
-//        int anchoItem = 400; // ?ancho de cada item con margen
-        cols = Math.max(1, anchoVentana / anchoItem); // cuantos items caben por fila
-        System.out.println(anchoVentana+" "+anchoItem);
+        //int anchoItem = 400; // ?ancho de cada item con margen
+        cols = Math.max(1, anchoVentana / anchoItem); // cuantos items caben por fila, lo puso netbeans
+        
         countInRow = 0;
  
         JPanel rowPanel = crearFila();
@@ -255,7 +238,7 @@ public class MenuPrincipal extends JFrame {
     private JPanel crearItem(Items item) {
         JPanel itemPanel = new JPanel(new BorderLayout());
         itemPanel.setBackground(AzulItems);
-        Dimension itemSize = new Dimension(360, 410);//SETEA LAS DIMENSIONES DE LS ITEMS
+        Dimension itemSize = new Dimension(345, 410);//SETEA LAS DIMENSIONES DE LS ITEMS
         itemPanel.setPreferredSize(itemSize);
         itemPanel.setMaximumSize(itemSize);
 
@@ -285,12 +268,5 @@ public class MenuPrincipal extends JFrame {
 
         Paneles.add(itemPanel);
         return itemPanel;
-    }
-
-    public static void main(String[] args) {
-        int x = 1; // 0 = usuario, 1 = admin
-        MenuPrincipal Menu = new MenuPrincipal();
-        Menu.Contenedor(x);
-        Menu.setVisible(true);
     }
 }

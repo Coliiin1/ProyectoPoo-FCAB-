@@ -6,9 +6,9 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class IniciodeSesion extends JFrame /*implements ActionListener*/{
-    Color AzulB = new Color(102, 136, 255);   // Updated blue color
-    Color LionB = new Color(245, 243, 243); // Updated white color
-    Color Azulbr = new Color(102, 136, 255);  // Updated blue color
+    Color AzulB = new Color(102, 136, 255); 
+    Color LionB = new Color(245, 243, 243); 
+    Color Azulbr = new Color(102, 136, 255); 
     public JButton btnLogin;
     public JButton btnSignup;
     public JButton btnIgnore;
@@ -24,7 +24,7 @@ public class IniciodeSesion extends JFrame /*implements ActionListener*/{
     public IniciodeSesion() {
         setTitle("Inicio de Sesión");
         setSize(700, 400);
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
         setLayout(new GridLayout(1, 2)); // dos paneles lado a lado
@@ -110,26 +110,4 @@ public class IniciodeSesion extends JFrame /*implements ActionListener*/{
         add(loginPanel);
         add(rightPanel);
     }
-    public static void main(String[] args) {
-        IniciodeSesion Ini = new IniciodeSesion();
-        Ini.Contenedor();
-        Ini.setVisible(true);
-    }
-//    public void actionPerformed(ActionEvent Eventos){
-//        if (Eventos.getSource() == borrar){
-//            txtUser.setText("");
-//        }
-//        if (Eventos.getSource() == borrar2){
-//            txtPass.setText("");
-//        }
-//        if (Eventos.getSource() == btnLogin){
-//            if((user.Usuario).equals(txtUser.getText()) && (user.Contrasenia).equals(txtPass.getText())){
-//                MenuPrincipal men=new MenuPrincipal();
-//                men.Contenedor();
-//                men.setVisible(rootPaneCheckingEnabled);
-//            }else{
-//                error.setText("ERROR AL INICIAR SESION");
-//            }
-//        }
-//    }
 }

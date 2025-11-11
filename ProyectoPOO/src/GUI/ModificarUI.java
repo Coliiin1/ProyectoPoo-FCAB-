@@ -87,7 +87,7 @@ public class ModificarUI extends AgregarUI{
         int labelW = 120;
         int fieldX = x + labelW + 10;
         int fieldW = 360;
-        int y = 70; // start below top search row
+        int y = 70; 
         int gap = 46;
 
         lnombre = new JLabel("NOMBRE:");
@@ -109,21 +109,7 @@ public class ModificarUI extends AgregarUI{
 
         String[] tallas1 = {"Seleccione talla", "XS", "S", "M", "L", "XL"};
         String[] tallas2 = {"Seleccione talla", "15","16","17","18","19","20","21","22","23","24","25","26","27"};
-        /*
-        switch (categoria){
-            case "Zapateria":
-                for (String talla: tallas2) comboTalla.addItem(talla);
-                add(ltalla);
-                add(comboTalla);
-                break;
-            case "Ropa":
-                for (String talla: tallas1) comboTalla.addItem(talla);
-                add(ltalla);
-                add(comboTalla);
-                break;
-            default:
-        }*/
-        //y+=30;
+
         comboTalla=new JComboBox();
         comboTalla.setBounds(fieldX, y, 180, 30);
         add(ltalla);
@@ -224,10 +210,5 @@ public class ModificarUI extends AgregarUI{
         if (comboTalla!=null) comboTalla.setSelectedIndex(0);
         txtNombre.setText("");
         txtcodigo.setText("");
-    }
-    public static void main(String args[]){
-        ModificarUI ui=new ModificarUI();
-        ui.contenedormodi();
-        ui.setVisible(true);
     }
 }

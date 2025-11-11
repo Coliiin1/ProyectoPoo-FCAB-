@@ -1,7 +1,6 @@
  package Control;
 import GUI.ModificarUI;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
  
  
 public abstract class Usuario {
@@ -17,11 +16,9 @@ public abstract class Usuario {
         Scanner sc=new Scanner(System.in);
         byte encontrado=0;
         if(inventario[0]!=null){
-            System.out.println("QUE NOMBRE VAS A BUSCAR");
             String nombre=sc.nextLine();
                 for (int i = 0; i < inventario.length; i++) {
                 if(inventario[i]!=null && nombre.equals(inventario[i].NombreProd)){
-                    System.out.println("ENCONTRADO");
                     inventario[i].MostrarInfo();
                     encontrado++;
                     item=inventario[i];
@@ -29,11 +26,9 @@ public abstract class Usuario {
                 }
             }
             if(encontrado==0){
-                System.out.println("NO HAY REGISTROS");
                 item=null;
             }
         }else{
-            System.out.println("NO HAY PRODUCTOS");
             item=null;
         }
         return item;
@@ -46,7 +41,6 @@ public abstract class Usuario {
         if(inventario[0]!=null){
                 for (int i = 0; i < inventario.length; i++) {
                 if(inventario[i]!=null && nombre.equals(inventario[i].NombreProd)){
-                    System.out.println("ENCONTRADO");
                     inventario[i].MostrarInfo();
                     encontrado++;
                     item=inventario[i];

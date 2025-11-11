@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Control;
 
 //import static Control.Usuario.Consultar;//LO PUSO NEATBEANS
@@ -23,22 +19,21 @@ public class ControlUICliente implements ActionListener{
     MenuPrincipal men;
     BuscarUI ui;
     Items[][] matriz;
-//    public void iniciar(BuscarUI uis,Items[][] matrizs){
-//        ui=uis;
-//        matriz=matrizs;
-//    }
+    
     public ControlUICliente(BuscarUI ui,Items[][] matriz,Cliente cliente,MenuPrincipal men){
         this.matriz=matriz;
         this.ui=ui;
         this.men=men;
         this.cliente=cliente;
     }
+    
     private void AdaptarImagen(JLabel label, String ruta) {
         ImageIcon icon = new ImageIcon(ruta);
         Image img = icon.getImage();
         Image newImg = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
         label.setIcon(new ImageIcon(newImg));
     }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         Items itemtemp=new Items();

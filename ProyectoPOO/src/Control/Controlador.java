@@ -76,10 +76,6 @@ public class Controlador implements ActionListener{
         this.inicio.borrar.addActionListener(this);
         this.inicio.btnIgnore.addActionListener(this);
     }
-    public static void main(String args[]){
-        Controlador control=new Controlador();
-        //System.out.println("\nAsh nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk agh burzum-ishi krimpatul");
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -217,13 +213,7 @@ public class Controlador implements ActionListener{
         }
         @Override
         public void actionPerformed(ActionEvent e){
-//            for (int i = 0; i < matriz.length; i++) {
-//                for (int j = 0; j < matriz[0].length; j++) {
-//                    if(matriz[i][j]!=null){
-//                        System.out.println(i+" "+j+matriz[i][j].NombreProd);
-//                    }
-//                }
-//            }
+
             Object evento=e.getSource();
             //detecta si es que estan llenos todos los campos de la interfaz
             if(evento==agreg.btnAgregar){
@@ -305,11 +295,10 @@ public class Controlador implements ActionListener{
             }
             //acciones del evento buscar
             if (evento==bus.btnBuscar&&user!=null) {
-                bus.txtdescripcion.setText(vacio);
-                if (bus.txtnombre.getText().equals("")&&bus.txtnombre.getText().equals("")) {
+                if (bus.txtnombre.getText().equals("")&&bus.txtcodigo.getText().equals("")) {
                     JOptionPane.showMessageDialog(bus, "INGTRESE UN CAMPO AL MENOS");
                 }else{
-                    if (!bus.txtnombre.getText().equals("")) {
+                    if (!bus.txtnombre.getText().equals("")&&bus.txtcodigo.getText().equals("")) {
                         for (int i = 0; i < 5; i++) {
                             itemtemp=user.Consultar(matriz[i], bus.txtnombre.getText());
                             if (itemtemp!=null) {
@@ -318,16 +307,36 @@ public class Controlador implements ActionListener{
                                 break;
                             }
                         }
+                        if (itemtemp==null) {
+                            JOptionPane.showMessageDialog(bus, "NO SE ENCONTRO UN ITEM CON EL NOMBRE "+bus.txtnombre.getText(), "ERROR", 2);
+                        }
                     }
                     
-                    if (!bus.txtcodigo.getText().equals("")) {
+                    if (!bus.txtcodigo.getText().equals("")&&bus.txtnombre.getText().equals("")) {
                         for (int i = 0; i < 5; i++) {
-                            itemtemp=user.Consultar(matriz[i], bus.txtcodigo.getText());
+                            itemtemp=user.Consultar(matriz[i], Integer.parseInt(bus.txtcodigo.getText()));
                             if (itemtemp!=null) {
                                 bus.txtdescripcion.setText(itemtemp.MostrarInfo());
                                 AdaptarImagen(bus.labelImagen, itemtemp.DirImagen);
                                 break;
                             }
+                        }
+                        if (itemtemp==null) {
+                            JOptionPane.showMessageDialog(bus, "NO SE ENCONTRO UN ITEM CON EL CODIGO "+bus.txtcodigo.getText(), "ERROR", 2);
+                        }
+                    }
+                    if (!bus.txtcodigo.getText().equals("")&&!bus.txtnombre.getText().equals("")) {
+                        for (int i = 0; i < 5; i++) {
+                            itemtemp=user.Consultar(matriz[i], Integer.parseInt(bus.txtcodigo.getText()));
+                            itemtemp1=user.Consultar(matriz[i],bus.txtnombre.getText());
+                            if (itemtemp!=null&&itemtemp==itemtemp1) {
+                                bus.txtdescripcion.setText(itemtemp.MostrarInfo());
+                                AdaptarImagen(bus.labelImagen, itemtemp.DirImagen);
+                                break;
+                            }
+                        }
+                        if (itemtemp!=itemtemp1 || itemtemp == null) {
+                            JOptionPane.showMessageDialog(bus, "NO SE ENCONTRO UN ITEM CON CODIGO "+bus.txtcodigo.getText()+" Y EL NOMBRE "+bus.txtnombre.getText(), "ERROR", 2);
                         }
                     }
                 }

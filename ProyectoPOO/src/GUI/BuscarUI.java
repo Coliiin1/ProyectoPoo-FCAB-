@@ -80,10 +80,4 @@ public class BuscarUI extends JFrame {
         add(scroll);
 
     }
-
-    public static void main(String args[]) {
-        BuscarUI ui = new BuscarUI();
-        ui.contenedor();
-        ui.setVisible(true);
-    }
 }

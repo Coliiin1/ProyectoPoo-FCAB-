@@ -29,8 +29,8 @@ public class AgregarUI extends JFrame{
     public String ruta;
     public JFileChooser selector;
     public JButton btnSeleccionarArchivo;
-    Color AzulB = new Color(25, 68, 241);  // Updated blue color
-    Color LionB = new Color(245, 243, 243); // Updated white color
+    Color AzulB = new Color(25, 68, 241); 
+    Color LionB = new Color(245, 243, 243);
 
     public AgregarUI(){    
         setTitle("Agregar");
@@ -251,11 +251,5 @@ public class AgregarUI extends JFrame{
         btnAgregar.setBounds((xCampo + xEtiqueta + anchoEtiqueta) / 2, posY + 200, 120, 30);
         add(btnAgregar);
         
-    }
-    
-    public static void main(String[] args) {
-        AgregarUI Buscar = new AgregarUI();
-        Buscar.contenedor();
-        Buscar.setVisible(true);
     }
 }

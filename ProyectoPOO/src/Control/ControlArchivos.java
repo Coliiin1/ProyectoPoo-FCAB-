@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Control;
 import java.io.*;
 import javax.swing.JOptionPane;
@@ -44,7 +40,6 @@ public class ControlArchivos {
                 return (Items[][])entrada.readObject();
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace(System.out);
-                System.out.println(e);
                 return new Items[filas][columnas];
             }
         }
@@ -63,12 +58,10 @@ public class ControlArchivos {
                     archivoDestino.toPath(),
                     java.nio.file.StandardCopyOption.REPLACE_EXISTING
             );
-
-            System.out.println("Imagen copiada correctamente a: " + archivoDestino.getAbsolutePath());
             // Aquí guardas SOLO el nombre del archivo o una ruta relativa
             rutaAlmacenada = "src/Imagenes/" + original.getName();
         } catch (Exception e) {
-            System.out.println("Error al copiar la imagen: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al Copiar Item");
         }
         return rutaAlmacenada;
     }

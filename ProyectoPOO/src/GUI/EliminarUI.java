@@ -90,9 +90,4 @@ public class EliminarUI extends JFrame{
         btneliminar.setFocusPainted(false);
         add(btneliminar);
     }
-    public static void main(String args[]){
-        EliminarUI ui=new EliminarUI();
-        ui.contenedor();
-        ui.setVisible(true);
-    }
 }
