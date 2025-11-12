@@ -1,4 +1,5 @@
 package Control;
+import Archivos.ControlArchivos;
 import GUI.*;
 import java.awt.Image;
 import java.awt.event.ActionEvent;

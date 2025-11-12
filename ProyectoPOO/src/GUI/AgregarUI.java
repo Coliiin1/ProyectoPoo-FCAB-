@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import javax.swing.filechooser.FileNameExtensionFilter; 
-import Control.ControlArchivos;
+import Archivos.ControlArchivos;
 
 public class AgregarUI extends JFrame{
     public JButton btnEnviar;
