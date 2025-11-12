@@ -122,7 +122,7 @@ public class Controlador implements ActionListener{
                 elim.btnbuscar.addActionListener(interfaz);
                 elim.btneliminar.addActionListener(interfaz);
                 modi.btnbuscar.addActionListener(interfaz);
-                
+                modi.btnmodificar.addActionListener(interfaz);
                 
             }else{
                 inicio.error.setText("ERROR AL INICIAR SESION");

@@ -51,13 +51,6 @@ public class IniciodeSesion extends JFrame /*implements ActionListener*/{
         borrar.setBackground(Azulbr);
         borrar.setForeground(LionB);
         loginPanel.add(borrar);
-        //borrar.addActionListener(this);
-        /*
-        borrar2 = new JButton("x");
-        borrar2.setBounds(320, 130, 20, 35);
-        loginPanel.add(borrar2);
-        //borrar2.addActionListener(this);
-        */        
         txtPass = new JTextField("Ingresa la Contraseña");
         txtPass.setBounds(60, 130, 250, 35);
         loginPanel.add(txtPass);
