@@ -254,6 +254,7 @@ public class MenuPrincipal extends JFrame {
         desc = new JTextArea();
         desc.setFont(new Font("Arial", Font.BOLD, 16));
         descan = item.NombreProd + "\n" + item.Marca + "\n$" + item.Precio;
+        descan = item.NombreProd + "\n" + item.Marca + "\n$" + item.Precio + "\nCodigo: "+item.CodigoProd;
         if (item.Categoria.equals("Zapateria") || item.Categoria.equals("Ropa")) {
             descan += "\nTalla: " + item.Talla;
         }

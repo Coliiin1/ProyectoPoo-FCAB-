@@ -394,7 +394,7 @@ public class Controlador implements ActionListener{
                         }
                         break;
 
-                    case "Productos de Belleza":
+                    case "Prodcutos de Belleza"://ESCRIBIMOS MAL EN LA DE VALIDAR PARA AGREGAR PROFA 
                         if(user.Eliminar(productosB,x,vpb)){
                             vpb--;
                             deleted = true;
