@@ -17,6 +17,9 @@ public class MenuPrincipal extends JFrame {
     public JButton Guardar;
     public JButton InicioSesion;
     
+    // El botón público
+    public JButton btnGuardarPDF; 
+    
     public JButton itemRopaH = new JButton("Ropa");
     public JButton itemCalzadoH = new JButton("Calzado");
     public JButton itemBellezaH = new JButton("Productos de belleza");
@@ -32,8 +35,8 @@ public class MenuPrincipal extends JFrame {
     private Items[][] matrizActual;
 
         int anchoVentana=0;
-        int anchoItem = 360; // ancho de cada item con margen
-        int cols; // cuantos items caben por fila
+        int anchoItem = 360; 
+        int cols; 
         int countInRow = 0;
         ImageIcon icon;
         Image img;
@@ -43,10 +46,9 @@ public class MenuPrincipal extends JFrame {
     
     private JScrollPane scroll;
     public MenuPrincipal() {
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // inicia maximizada
-        //SI GUSTA QUE SE REACOMODEN DELE CLICK EN EL BOTON YA Q NO NOS AYUDO Y NO PUDIMOS :)
+        setExtendedState(JFrame.MAXIMIZED_BOTH); 
         setTitle("Inicio");
-        setLayout(new BorderLayout()); // layout para redimensionar los items si se hace mas grande o pequeña la ventana
+        setLayout(new BorderLayout()); 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1920,1080);
         getContentPane().setBackground(LionB);
@@ -58,8 +60,6 @@ public class MenuPrincipal extends JFrame {
         ABotones.setBackground(AzulB);
         ABotones.setLayout(new GridLayout(1, 0, 10, 10)); 
 
-        // Crear botones
-        
         Inicio = new JButton("Inicio");
         Anadir = new JButton("Añadir");
         Buscar = new JButton("Buscar");
@@ -68,8 +68,14 @@ public class MenuPrincipal extends JFrame {
         Guardar = new JButton("Guardar");
         InicioSesion = new JButton("Iniciar Sesión");
 
-        JButton[] itemsUser = {Inicio, itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, Buscar, InicioSesion};
-        JButton[] itemsAdmin = {Inicio, itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, Anadir, Buscar, Eliminar, Modificar, Guardar};
+        // CAMBIO: Texto corto como pediste
+        btnGuardarPDF = new JButton("GUARDAR PDF"); 
+
+        // CAMBIO: Agregado btnGuardarPDF a la lista del Usuario
+        JButton[] itemsUser = {Inicio, itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, Buscar, btnGuardarPDF, InicioSesion};
+        
+        // Se mantiene en la lista del Admin
+        JButton[] itemsAdmin = {Inicio, itemRopaH, itemCalzadoH, itemBellezaH, itemHogarH, itemAccesoriosH, Anadir, Buscar, Eliminar, Modificar, Guardar, btnGuardarPDF};
 
         if (x == 1) {
             for (JButton item : itemsAdmin) {
@@ -82,7 +88,7 @@ public class MenuPrincipal extends JFrame {
                 ABotones.add(item);
             }
         }
-        add(ABotones, BorderLayout.NORTH); // Arriba, se adapta
+        add(ABotones, BorderLayout.NORTH); 
     }
 
     private void estiloBoton(JButton boton) {
@@ -96,7 +102,6 @@ public class MenuPrincipal extends JFrame {
         if (ABotones == null) return;
         int ancho = getWidth();
 
-        // Cambiar tamaño de letra y márgenes según ancho
         for (Component c : ABotones.getComponents()) {
             if (c instanceof JButton boton) {
                 if (ancho < 1000) {
@@ -116,10 +121,7 @@ public class MenuPrincipal extends JFrame {
     }
 
     public void mostrarItems(Items[][] matriz) {
-        
-        matrizActual = matriz; // guardamos referencia para recalcular
-
-        // limpiar listas previas
+        matrizActual = matriz; 
         Paneles.clear();
         Imagenes.clear();
         Descripciones.clear();
@@ -128,7 +130,6 @@ public class MenuPrincipal extends JFrame {
             remove(scroll);
         }
 
-        // Panel contenedor principal
         contentPanel = new JPanel();
         contentPanel.setBackground(LionB);
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
@@ -141,8 +142,7 @@ public class MenuPrincipal extends JFrame {
         add(scroll, BorderLayout.CENTER);
 
         anchoVentana = getWidth();
-        //int anchoItem = 400; // ?ancho de cada item con margen
-        cols = Math.max(0, anchoVentana / anchoItem); // cuantos items caben por fila
+        cols = Math.max(0, anchoVentana / anchoItem); 
         countInRow = 0;
 
         JPanel rowPanel = crearFila();
@@ -164,15 +164,12 @@ public class MenuPrincipal extends JFrame {
         }
 
         if (countInRow > 0) contentPanel.add(rowPanel);
-
         revalidate();
         repaint();
     }
 
     public void mostrarItems(Items[][] matriz,int i) {
-        matrizActual = matriz; // guardamos referencia para recalcular
-
-        // limpiar listas previas
+        matrizActual = matriz; 
         Paneles.clear();
         Imagenes.clear();
         Descripciones.clear();
@@ -181,7 +178,6 @@ public class MenuPrincipal extends JFrame {
             remove(scroll);
         }
 
-        // Panel contenedor principal
         contentPanel = new JPanel();
         contentPanel.setBackground(LionB);
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
@@ -193,13 +189,10 @@ public class MenuPrincipal extends JFrame {
         scroll.getVerticalScrollBar().setUnitIncrement(16);
         add(scroll, BorderLayout.CENTER);
 
-        //int anchoVentana = getWidth();
         anchoVentana=getWidth();
-        //int anchoItem = 400; // ?ancho de cada item con margen
-        cols = Math.max(1, anchoVentana / anchoItem); // cuantos items caben por fila, lo puso netbeans
-        
+        cols = Math.max(1, anchoVentana / anchoItem); 
         countInRow = 0;
- 
+    
         JPanel rowPanel = crearFila();
 
         for (int j = 0; j < matriz[i].length; j++) {
@@ -217,7 +210,6 @@ public class MenuPrincipal extends JFrame {
         }
 
         if (countInRow > 0) contentPanel.add(rowPanel);
-
         revalidate();
         repaint();
     }
@@ -238,7 +230,7 @@ public class MenuPrincipal extends JFrame {
     private JPanel crearItem(Items item) {
         JPanel itemPanel = new JPanel(new BorderLayout());
         itemPanel.setBackground(AzulItems);
-        Dimension itemSize = new Dimension(345, 410);//SETEA LAS DIMENSIONES DE LS ITEMS
+        Dimension itemSize = new Dimension(345, 410);
         itemPanel.setPreferredSize(itemSize);
         itemPanel.setMaximumSize(itemSize);
 
@@ -247,7 +239,8 @@ public class MenuPrincipal extends JFrame {
         imgLabel.setHorizontalAlignment(JLabel.CENTER);
         imgLabel.setSize(new Dimension(360, 260));
         itemPanel.add(imgLabel, BorderLayout.NORTH);
-        AdaptarImagen(imgLabel, item.DirImagen);
+        
+        AdaptarImagen(imgLabel, item.DirImagen); 
         Imagenes.add(imgLabel);
 
         // Descripción

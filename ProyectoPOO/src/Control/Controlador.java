@@ -4,13 +4,12 @@ import GUI.*;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import Archivos.GeneradorPDF;
+import javax.swing.JFileChooser;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-/**
- *
- * @author fabri
- */
+
 public class Controlador implements ActionListener{
     IniciodeSesion inicio;
     Administrador user=new Administrador("ADMIN","12345");
@@ -39,14 +38,11 @@ public class Controlador implements ActionListener{
     
     Items[][] matriz={ropa,calzado,productosH,productosB,accesorios};
     
-    
-
     int vr;
     int vc;
     int vpb;
     int vph;
     int vac;
-    
     
     public Controlador(){
         ropa=new Items[50];
@@ -54,7 +50,6 @@ public class Controlador implements ActionListener{
         productosB=new Items[50];
         productosH=new Items[50];
         accesorios =new Items[50];
-        
         
         vr=0;
         vc=0;
@@ -98,6 +93,9 @@ public class Controlador implements ActionListener{
                 this.men.Modificar.addActionListener(this);
                 this.men.Guardar.addActionListener(interfaz);
                 
+                // Listener para  el Admin
+                this.men.btnGuardarPDF.addActionListener(this); 
+                
                 men.itemCalzadoH.addActionListener(interfaz);
                 men.itemRopaH.addActionListener(interfaz);
                 men.itemBellezaH.addActionListener(interfaz);
@@ -129,7 +127,7 @@ public class Controlador implements ActionListener{
                 inicio.error.setText("ERROR AL INICIAR SESION");
             }
         }
-        if (evento == inicio.btnIgnore){
+        if (evento == inicio.btnIgnore){ // SESIÓN DE USUARIO (CLIENTE)
             menCliente.Contenedor(0);
             menCliente.InicioSesion.addActionListener(this);
             menCliente.mostrarItems(matriz);
@@ -140,6 +138,9 @@ public class Controlador implements ActionListener{
             menCliente.itemHogarH.addActionListener(interfazCliente);
             menCliente.itemAccesoriosH.addActionListener(interfazCliente);
             menCliente.Inicio.addActionListener(interfazCliente);
+            
+            //  para Cliente
+            menCliente.btnGuardarPDF.addActionListener(this);
             
             menCliente.Buscar.addActionListener(this);
             inicio.hide();
@@ -164,6 +165,25 @@ public class Controlador implements ActionListener{
         if (evento==menCliente.Buscar) {
             busCliente.setVisible(true);
             busCliente.btnBuscar.addActionListener(interfazCliente);
+        }
+        
+        // Admin O Cliente
+        if (evento == men.btnGuardarPDF || evento == menCliente.btnGuardarPDF) {
+            JFileChooser selector = new JFileChooser();
+            selector.setDialogTitle("Guardar Catálogo PDF");
+            
+            int userSelection = selector.showSaveDialog(null);
+            
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                String ruta = selector.getSelectedFile().getAbsolutePath();
+                
+                if (!ruta.toLowerCase().endsWith(".pdf")) {
+                    ruta += ".pdf";
+                }
+                
+                GeneradorPDF generador = new GeneradorPDF();
+                generador.crearCatalogoPDF(matriz, ruta); 
+            }
         }
     }
 
@@ -200,7 +220,7 @@ public class Controlador implements ActionListener{
         final String[] tallas2 = {"Seleccione talla", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27"};
         public controlInterfaz(){
             matriz=con.leerDatos("src/Archivos/DATOS.dat", 5, 50);
-            ropa         = matriz[0];
+            ropa        = matriz[0];
             calzado      = matriz[1];
             productosH   = matriz[2];
             productosB   = matriz[3];
@@ -230,7 +250,6 @@ public class Controlador implements ActionListener{
                             break; 
                         }
                     }
-                    //si es que elk item a agregar ya esta dentor de alguna categoria entonces no deja agregarlo
                     if (itemtemp!=null||itemtemp1!=null) {
                         JOptionPane.showMessageDialog(agreg, "NO PUEDES AGREGAR EL ITEM POR QUE YA UNO CON EL MISMO NOMBRE");
                     }else{
@@ -247,7 +266,6 @@ public class Controlador implements ActionListener{
                                     added = true;
                                 }
                                 break;
-                            
                             case "Ropa":
                                 if(vr>=ropa.length){
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
@@ -256,7 +274,6 @@ public class Controlador implements ActionListener{
                                     added = true;
                                 }
                                 break;
-                            
                             case "Productos de Belleza":
                                 if(vpb>=productosB.length){
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
@@ -265,7 +282,6 @@ public class Controlador implements ActionListener{
                                     added = true;
                                 }
                                 break;
-                                
                             case "Productos del Hogar":
                                 if(vph>=productosH.length){
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
@@ -274,7 +290,6 @@ public class Controlador implements ActionListener{
                                     added = true;
                                 }
                                 break;
-                                
                             case "Accesorios":
                                 if(vac>=accesorios.length){
                                     JOptionPane.showMessageDialog(agreg,"YA NO PUEDES AGREGAR MAS ITEMS");
@@ -283,7 +298,6 @@ public class Controlador implements ActionListener{
                                     added = true;
                                 }
                                 break;
-                                
                             default: System.out.println("ESTO NO DEBERIA PASAR JAJAJ SALUDOS DESDE MI casa");
                         }
                         if (added && men != null) {
@@ -294,7 +308,6 @@ public class Controlador implements ActionListener{
                     }
                 }
             }
-            //acciones del evento buscar
             if (evento==bus.btnBuscar&&user!=null) {
                 if (bus.txtnombre.getText().equals("")&&bus.txtcodigo.getText().equals("")) {
                     JOptionPane.showMessageDialog(bus, "INGTRESE UN CAMPO AL MENOS");
@@ -312,7 +325,6 @@ public class Controlador implements ActionListener{
                             JOptionPane.showMessageDialog(bus, "NO SE ENCONTRO UN ITEM CON EL NOMBRE "+bus.txtnombre.getText(), "ERROR", 2);
                         }
                     }
-                    
                     if (!bus.txtcodigo.getText().equals("")&&bus.txtnombre.getText().equals("")) {
                         for (int i = 0; i < 5; i++) {
                             itemtemp=user.Consultar(matriz[i], Integer.parseInt(bus.txtcodigo.getText()));
@@ -343,7 +355,6 @@ public class Controlador implements ActionListener{
                 }
             }
             
-            //si evento es igual a liminar
             String code;
                 elim.txtdescripcion.setText(vacio);
                 elim.box.removeAllItems();
@@ -356,7 +367,6 @@ public class Controlador implements ActionListener{
                     }
                 }
             if (evento==elim.btnbuscar) {
-                
                 if (elim.txtcodigo.getText().equals("")){
                     JOptionPane.showMessageDialog(elim, "INGRESE UN CAMPO AL MENOS");
                 }else{
@@ -365,7 +375,6 @@ public class Controlador implements ActionListener{
                         itemtemp=user.Consultar(matriz[i], Integer.parseInt(elim.txtcodigo.getText()));
                         if (itemtemp!=null) {
                             elim.txtdescripcion.setText(itemtemp.MostrarInfo());
-                            //AdaptarImagen(elim.Img, itemtemp.DirImagen);
                             elim.add(elim.btneliminar);
                             elim.repaint();
                             catego=itemtemp.Categoria;
@@ -394,14 +403,12 @@ public class Controlador implements ActionListener{
                             deleted = true;
                         }
                         break;
-
-                    case "Prodcutos de Belleza"://ESCRIBIMOS MAL EN LA DE VALIDAR PARA AGREGAR PROFA 
+                    case "Prodcutos de Belleza":
                         if(user.Eliminar(productosB,x,vpb)){
                             vpb--;
                             deleted = true;
                         }
                         break;
-
                     case "Productos del Hogar":
                         if(user.Eliminar(productosH,x,vph)){
                             vph--;
@@ -422,13 +429,11 @@ public class Controlador implements ActionListener{
                     men.repaint();
                 }
             }
-            //MODIFICA4R
             if (evento==modi.btnbuscar&&!modi.txtcodigo.getText().equals("")) {
                 for (int i = 0; i < 5; i++) {
                     itemtemp=user.Consultar(matriz[i], Integer.parseInt(modi.txtcodigo.getText()));
                     if (itemtemp!=null) {
                         if (itemtemp.Categoria.equals("Zapateria") ){
-                        //comboCategorias.setSelectedItem(tallas2);
                         modi.comboTalla.removeAllItems();
                             for (String talla : tallas2) {
                                 modi.comboTalla.addItem(talla);
@@ -453,7 +458,6 @@ public class Controlador implements ActionListener{
                         modi.campoCantidad.setText(Short.toString(itemtemp.Cantidad));
                         modi.txtdescripcion.setText(itemtemp.MostrarInfo());
                         AdaptarImagen(modi.vistaImagen, itemtemp.DirImagen);
-//                        modi.limpiarCampos();
                         modi.revalidate();
                         modi.repaint();
                         break;
